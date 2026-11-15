@@ -124,1785 +124,51 @@
                 }
               ],
               "date_intervals": [],
-              "description": "Un mercatino fisso del fine settimana, all'aperto, nel quartiere Talenti, accanto a largo Pugliese dove arrivano molti autobus. Raccolto ma curato: piccola rigatteria, libri vintage, oggetti insoliti, antiquariato e collezionismo, e una parte al chiuso dedicata interamente ai vinili, che da sola vale la visita. Ingresso libero.",
+              "description": "Mercatino di antiquariato, brocantage e vintage attivo tutto il 2026, situato nel complesso Porta a Mare a Livorno. Si tiene ogni secondo sabato del mese con orari estesi nelle edizioni estive. Luogo suggestivo sul lungomare nord con vista sul porto.",
               "edition_intervals": [],
-              "entry": "",
+              "entry": "Ingresso gratuito",
               "forecast_rule": null,
               "hours_intervals": [
                 {
-                  "end": "19:30",
+                  "end": "18:30",
                   "start": "09:00"
                 }
               ],
-              "hours_text": "09:00–19:30",
-              "location": {
-                "address": "Via Arturo Graf 88, quartiere Talenti",
-                "city": "Roma",
-                "province": "RM",
-                "region": "Lazio"
-              },
-              "name": "Antichi Talenti Mercato Vintage",
-              "observed_location": {
-                "address": "Via Arturo Graf 88, quartiere Talenti, Roma",
-                "city": "Roma",
-                "province": "RM",
-                "region": "Lazio"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Antichi Talenti"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "antiquariato",
-                "collezionismo",
-                "oggettistica",
-                "vinili"
-              ],
-              "tips": ""
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "060ed46e-c725-4e8d-9c83-f39963026805"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1086,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/060ed46e-c725-4e8d-9c83-f39963026805",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "95c24a0e2bd4f74f29a7d0f6007d4545a5044b8c9afe111fce82d2bfb8b82f31",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/060ed46e-c725-4e8d-9c83-f39963026805",
-              "source_id": "060ed46e-c725-4e8d-9c83-f39963026805"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_qualified",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-14"
-        },
-        "market_id": "antichi-talenti-mercato-vintage-roma",
-        "source_page": {
-          "bytes": 1086,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/060ed46e-c725-4e8d-9c83-f39963026805",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "95c24a0e2bd4f74f29a7d0f6007d4545a5044b8c9afe111fce82d2bfb8b82f31",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-14",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/060ed46e-c725-4e8d-9c83-f39963026805",
-          "source_id": "060ed46e-c725-4e8d-9c83-f39963026805",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino Hobbisti e Riciclo consolidato nel panorama degli eventi locali bergamaschi. Evento mensile che si tiene alla domenica nel piazzale centrale di Gazzaniga. Mercato dedicato a hobbisti, articoli da riciclo e vintage.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "16:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–16:00",
-              "location": {
-                "address": "Piazzale del Mercato, Via Terruzzi",
-                "city": "Gazzaniga",
-                "province": "BG",
-                "region": "Lombardia"
-              },
-              "name": "Hobbisti del Riuso",
-              "observed_location": {
-                "address": "Piazzale del Mercato, Via Terruzzi, 24025 Gazzaniga (BG)",
-                "city": "Gazzaniga",
-                "province": "BG",
-                "region": "Lombardia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "usato",
-                "svuotasoffitte",
-                "giocattoli",
-                "modernariato",
-                "riciclo"
-              ],
-              "tips": "Consultare Vivere Bergamo prima della visita per eventuali variazioni dell'ultima ora. Gazzaniga dista circa 18 km da Bergamo via Valle Seriana. Parcheggio disponibile nelle immediate vicinanze del piazzale. Per condizioni meteo avverse, verificare il calendario."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "4cbbe3c7-2b5b-492b-9c95-e4901d6e5004"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1249,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/4cbbe3c7-2b5b-492b-9c95-e4901d6e5004",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "3b473e6fbef97f85f94261e1cce8d7bcc3a6f57d3bb78e2cc233512529325d99",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/4cbbe3c7-2b5b-492b-9c95-e4901d6e5004",
-              "source_id": "4cbbe3c7-2b5b-492b-9c95-e4901d6e5004"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-10"
-        },
-        "market_id": "hobbisti-del-riuso-gazzaniga",
-        "source_page": {
-          "bytes": 1249,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/4cbbe3c7-2b5b-492b-9c95-e4901d6e5004",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "3b473e6fbef97f85f94261e1cce8d7bcc3a6f57d3bb78e2cc233512529325d99",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-10",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/4cbbe3c7-2b5b-492b-9c95-e4901d6e5004",
-          "source_id": "4cbbe3c7-2b5b-492b-9c95-e4901d6e5004",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": true,
-              "calendar_rules": [],
-              "calendar_scope": "recurring_statement_only",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Il Mercatino di Antiquariato e Collezionismo di Bevagna si svolge ogni terza domenica del mese (8:00-20:00) in Piazza Garibaldi e Piazzale Gramsci, nel cuore del borgo medievale di Bevagna. Il mercato offre antiquariato, collezionismo, hobbistica e oggetti d'epoca in uno dei contesti medievali più integri dell'Umbria: Bevagna è rimasta praticamente immutata dal XII secolo, con le sue chiese romaniche gemelle di San Silvestro e San Michele (1195), la Piazza Silvestri medievale e le vie acciottolate. Ogni giugno il borgo si trasforma per il Mercato delle Gaite — una rievocazione medievale di grande atmosfera. Il mercato mensile è organizzato dalla Pro Loco di Bevagna. Bevagna è in posizione centrale nella Valle Umbra, a pochi chilometri da Foligno, Spello e Montefalco (il \"balcone dell'Umbria\").",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito per visitatori",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "20:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–20:00",
-              "location": {
-                "address": "Piazza Garibaldi e Piazzale Gramsci",
-                "city": "Bevagna",
-                "province": "PG",
-                "region": "Umbria"
-              },
-              "name": "Mercatino di Antiquariato",
-              "observed_location": {
-                "address": "Piazza Garibaldi e Piazzale Gramsci, Bevagna (PG), Umbria",
-                "city": "Bevagna",
-                "province": "PG",
-                "region": "Umbria"
-              },
-              "occurrences": [],
-              "recurrence_text": "Terza domenica di ogni mese",
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Pro Loco Bevagna (info@prolocobevagna.it, tel. 0742 361667 / 346 5460942)"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo"
-              ],
-              "tips": "Verificare eventuali spostamenti temporanei durante grandi eventi locali (Mercato delle Gaite a giugno, Primavera Medievale). Contattare Pro Loco Bevagna (Tel. 0742 361667, Cell. 346 5460942, email: info@prolocobevagna.it) per confermare date specifiche e tariffe espositori. Seguire i social ufficiali per aggiornamenti in tempo reale."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "24589c2e-ecdf-4dcd-b523-ecb7cceb00e0"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1900,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/24589c2e-ecdf-4dcd-b523-ecb7cceb00e0",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "b4378785ed8f63ff0a03bb18407ddcc48cf5d11e8e3e5db3e7681f6b54dadac5",
-              "modified_at": "2026-10-18",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/24589c2e-ecdf-4dcd-b523-ecb7cceb00e0",
-              "source_id": "24589c2e-ecdf-4dcd-b523-ecb7cceb00e0"
-            },
-            "status": "parsed",
-            "warnings": [
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-10-29"
-        },
-        "market_id": "mercatino-di-antiquariato-bevagna",
-        "source_page": {
-          "bytes": 1900,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/24589c2e-ecdf-4dcd-b523-ecb7cceb00e0",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "b4378785ed8f63ff0a03bb18407ddcc48cf5d11e8e3e5db3e7681f6b54dadac5",
-          "modified_at": "2026-10-18",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-29",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/24589c2e-ecdf-4dcd-b523-ecb7cceb00e0",
-          "source_id": "24589c2e-ecdf-4dcd-b523-ecb7cceb00e0",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Torna a giugno"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino estivo al Parco Palmasera di Cala Gonone (Dorgali), con operatori scelti ogni anno tramite bando del Comune. Serale, durante la stagione turistica estiva.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
+              "hours_text": "09:00–18:30",
               "location": {
                 "address": "",
-                "city": "Dorgali",
-                "province": "NU",
-                "region": "Sardegna"
-              },
-              "name": "Mercatini Estivi Lungomare Palmasera",
-              "observed_location": {
-                "address": "Parco Palmasera, Viale Palmasera / Lungomare Palmasera, 08022 Cala Gonone (NU), Dorgali",
-                "city": "Dorgali",
-                "province": "NU",
-                "region": "Sardegna"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "collezionismo"
-              ],
-              "tips": "Consultare il sito del Comune di Dorgali per i bandi ufficiali annuali e le tariffe per espositori. Verificare gli orari specifici per zona (alcuni settori hanno orario continuato dalle 10:00). Seguire la pagina Facebook ufficiale per aggiornamenti su manifestazioni e modifiche al calendario."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "6bb71405-2e4b-4175-888f-f835968221d7"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1206,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/6bb71405-2e4b-4175-888f-f835968221d7",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "49164f14276ccbfe70e6b82d80c1426712ec0dc695b47d83387f3ad0f93c3172",
-              "modified_at": "2026-09-29",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/6bb71405-2e4b-4175-888f-f835968221d7",
-              "source_id": "6bb71405-2e4b-4175-888f-f835968221d7"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatini-estivi-lungomare-palmasera-dorgali",
-        "source_page": {
-          "bytes": 1206,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/6bb71405-2e4b-4175-888f-f835968221d7",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "49164f14276ccbfe70e6b82d80c1426712ec0dc695b47d83387f3ad0f93c3172",
-          "modified_at": "2026-09-29",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/6bb71405-2e4b-4175-888f-f835968221d7",
-          "source_id": "6bb71405-2e4b-4175-888f-f835968221d7",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Aperto tutti i giorni"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Celebre mercato vintage e di seconda mano (storicamente noto come Mercato di Pugliano), uno dei punti di riferimento europei per abbigliamento usato, alta moda, vintage e modernariato. Strutturato come agglomerato di botteghe e negozi fissi lungo la strada, attivo quotidianamente. Nel 2025/2026 registra crescente rilancio con eventi speciali serali e aperture straordinarie fino a mezzanotte.",
-              "edition_intervals": [],
-              "entry": "Variabile: da pochi euro per capi comuni a prezzi superiori per collezioni e alta moda. Formule promozionali come 'Resina KG' a circa 15€/kg. Mercantneggiazione consigliata.",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "14:00",
-                  "start": "08:30"
-                }
-              ],
-              "hours_text": "08:30–14:00",
-              "location": {
-                "address": "",
-                "city": "Ercolano",
-                "province": "NA",
-                "region": "Campania"
-              },
-              "name": "Mercato di Resina",
-              "observed_location": {
-                "address": "Via Pugliano e traverse limitrofe, 80056 Ercolano (NA), Campania. A pochi minuti a piedi dalla stazione Ercolano Scavi della Circumvesuviana.",
-                "city": "Ercolano",
-                "province": "NA",
-                "region": "Campania"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "abbigliamento vintage",
-                "alta moda usata"
-              ],
-              "tips": "Visitare preferibilmente nei giorni feriali e al mattino per afflusso e assortimento completi. Molte botteghe restano aperte anche nel pomeriggio (17:00-19:00+). La mercantneggiazione è la norma. Seguire pagine Facebook e Instagram di singoli commercianti per promotions speciali e orari."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "17c02b80-67ff-4c39-b7a0-5ca645c537f5"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1679,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/17c02b80-67ff-4c39-b7a0-5ca645c537f5",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "0a77b13b7899339a6cadb4a1350524bd1800875f6b02c2c9c3bd62c814cad3b2",
-              "modified_at": "2026-10-21",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/17c02b80-67ff-4c39-b7a0-5ca645c537f5",
-              "source_id": "17c02b80-67ff-4c39-b7a0-5ca645c537f5"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-28"
-        },
-        "market_id": "mercato-di-resina-ercolano",
-        "source_page": {
-          "bytes": 1679,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/17c02b80-67ff-4c39-b7a0-5ca645c537f5",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "0a77b13b7899339a6cadb4a1350524bd1800875f6b02c2c9c3bd62c814cad3b2",
-          "modified_at": "2026-10-21",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-28",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/17c02b80-67ff-4c39-b7a0-5ca645c537f5",
-          "source_id": "17c02b80-67ff-4c39-b7a0-5ca645c537f5",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino della Stazione: evento di modernariato, antiquariato e artigianato locale che si svolge in sabati selezionati durante l'anno nella zona pedonale davanti alla stazione ferroviaria di Sondrio. Rappresenta l'evoluzione del storico 'Mercatino del Collezionismo d'Antiquariato', ora con calendario di date specifiche piuttosto che cadenza mensile fissa.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Piazzale Bertacchi / Viale Stazione",
-                "city": "Sondrio",
-                "province": "SO",
-                "region": "Lombardia"
-              },
-              "name": "Mercatino della Stazione",
-              "observed_location": {
-                "address": "Piazzale Bertacchi / Viale Stazione, 23100 Sondrio (SO)",
-                "city": "Sondrio",
-                "province": "SO",
-                "region": "Lombardia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo"
-              ],
-              "tips": "In caso di maltempo le date vengono valutate per recupero in date alternative. Consultare i portali turistici locali (sondrioevalmalenco.it, calendariovaltellinese.com) per le date specifiche aggiornate. Nel quartiere Scarpatetti è attivo anche il mercatino 'Scarpabellando' con focus su vintage e artigianato."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "e4df5d19-d97a-4a6a-9b97-08d376dacef9"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1416,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/e4df5d19-d97a-4a6a-9b97-08d376dacef9",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "902beee0694370271ebc5bddb9a86a2cd8f86a585169498818b3488b2e36c434",
-              "modified_at": "2026-10-02",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/e4df5d19-d97a-4a6a-9b97-08d376dacef9",
-              "source_id": "e4df5d19-d97a-4a6a-9b97-08d376dacef9"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-della-stazione-sondrio",
-        "source_page": {
-          "bytes": 1416,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/e4df5d19-d97a-4a6a-9b97-08d376dacef9",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "902beee0694370271ebc5bddb9a86a2cd8f86a585169498818b3488b2e36c434",
-          "modified_at": "2026-10-02",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/e4df5d19-d97a-4a6a-9b97-08d376dacef9",
-          "source_id": "e4df5d19-d97a-4a6a-9b97-08d376dacef9",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "C'era una volta Gonzaga è una delle fiere di antiquariato e collezionismo più longeve d'Italia, con edizioni in centro storico ed Edizioni Nazionali alla Fiera Millenaria, che attirano espositori da Italia ed Europa.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Piazza Matteotti e vie adiacenti (centro storico) e Fiera Millenaria di Gonzaga, Via Fiera Millenaria 13",
-                "city": "Gonzaga",
-                "province": "MN",
-                "region": "Lombardia"
-              },
-              "name": "C'era una volta Gonzaga",
-              "observed_location": {
-                "address": "Piazza Matteotti e vie adiacenti (centro storico) e Fiera Millenaria di Gonzaga, Via Fiera Millenaria 13, Gonzaga (MN)",
-                "city": "Gonzaga",
-                "province": "MN",
-                "region": "Lombardia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "hobbisti",
-                "collezionismo"
-              ],
-              "tips": "Indossare scarpe comode per le ampie aree della fiera. Parcheggi gratuiti disponibili presso la Fiera Millenaria. In caso di dubbi o maltempo contattare il Circolo Filatelico, Numismatico ed Hobbistico di Gonzaga ai numeri 0376 58729 o 335 7072502."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "14cbb427-9057-4006-93f0-a71489822fae"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1441,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/14cbb427-9057-4006-93f0-a71489822fae",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "b5e398ad07accece8f2b7c29edda0aca1632f6127e3e10ffbfad6965452a0af6",
-              "modified_at": "2026-08-25",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/14cbb427-9057-4006-93f0-a71489822fae",
-              "source_id": "14cbb427-9057-4006-93f0-a71489822fae"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-28"
-        },
-        "market_id": "c-era-una-volta-gonzaga-gonzaga",
-        "source_page": {
-          "bytes": 1441,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/14cbb427-9057-4006-93f0-a71489822fae",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "b5e398ad07accece8f2b7c29edda0aca1632f6127e3e10ffbfad6965452a0af6",
-          "modified_at": "2026-08-25",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-28",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/14cbb427-9057-4006-93f0-a71489822fae",
-          "source_id": "14cbb427-9057-4006-93f0-a71489822fae",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Rassegna periodica di antiquariato e vintage presso l'Antico Mercato nel cuore di Ortigia, Siracusa. Evento organizzato con cadenza irregolare, non confondibile con il mercato quotidiano o il Mercatino delle Pulci domenicale. La programmazione dipende dalla ditta organizzatrice e dalle concessioni comunali.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "21:00",
-                  "start": "10:00"
-                }
-              ],
-              "hours_text": "10:00–21:00",
-              "location": {
-                "address": "Antico Mercato di Ortigia, Via Emanuele De Benedictis (angolo Via Trento)",
-                "city": "Siracusa",
-                "province": "SR",
-                "region": "Sicilia"
-              },
-              "name": "Ortigia Antiquaria",
-              "observed_location": {
-                "address": "Antico Mercato di Ortigia, Via Emanuele De Benedictis (angolo Via Trento), 96100 Siracusa",
-                "city": "Siracusa",
-                "province": "SR",
-                "region": "Sicilia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "usato",
-                "hobbisti"
-              ],
-              "tips": "Parcheggiare presso i parcheggi vicino al Ponte Umbertino (all'ingresso di Ortigia) e proseguire a piedi, in quanto il centro storico è a traffico limitato (ZTL). Verificare le date ufficiali sul Portale del Comune di Siracusa prima di visitare, poiché non esiste un calendario fisso."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "06b4a971-faf5-4959-939c-0c8628c54e2e"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1430,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/06b4a971-faf5-4959-939c-0c8628c54e2e",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "f46ede84b2c9cb46b673095d5aac514aa9665622e829d9fc06cc52441b6f2b69",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/06b4a971-faf5-4959-939c-0c8628c54e2e",
-              "source_id": "06b4a971-faf5-4959-939c-0c8628c54e2e"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-28"
-        },
-        "market_id": "ortigia-antiquaria-siracusa",
-        "source_page": {
-          "bytes": 1430,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/06b4a971-faf5-4959-939c-0c8628c54e2e",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "f46ede84b2c9cb46b673095d5aac514aa9665622e829d9fc06cc52441b6f2b69",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-28",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/06b4a971-faf5-4959-939c-0c8628c54e2e",
-          "source_id": "06b4a971-faf5-4959-939c-0c8628c54e2e",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": true,
-              "calendar_rules": [],
-              "calendar_scope": "explicit_visible_list",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "\"Al Marché dal Robi Veci\" è un mercatino di antiquariato, vintage e collezionismo organizzato dal Com.Re (Consorzio Operatori Mercati Reggio Emilia) con circa 90 espositori per edizione. Si svolge presso il Mercato Ortofrutticolo con spazi coperti e ampi parcheggi, garantendo regolare svolgimento anche in caso di maltempo.",
-              "edition_intervals": [
-                {
-                  "end": "2026-11-15",
-                  "start": "2026-11-15"
-                }
-              ],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "18:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–18:00",
-              "location": {
-                "address": "Mercato Ortofrutticolo di Reggio Emilia, Via Cisalpina",
-                "city": "Reggio nell'Emilia",
-                "province": "RE",
-                "region": "Emilia-Romagna"
-              },
-              "name": "Il Mercatino D'antiquariato, Vintage E Collezionismo A Reggio Emilia",
-              "observed_location": {
-                "address": "Mercato Ortofrutticolo di Reggio Emilia, Via Cisalpina, 42122 Reggio Emilia (RE)",
-                "city": "Reggio nell'Emilia",
-                "province": "RE",
-                "region": "Emilia-Romagna"
-              },
-              "occurrences": [
-                {
-                  "date": "2026-11-15",
-                  "end_time": "18:00",
-                  "evidence": [
-                    "vintagery.it card record (browser capture)"
-                  ],
-                  "start_time": "08:00",
-                  "status": "source_listed"
-                }
-              ],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "vintage",
-                "collezionismo"
-              ],
-              "tips": "Le date non sono fisse mensilmente: consultare il sito www.comre.it o seguire i canali social (Facebook/Instagram @comre09) per gli aggiornamenti e i \"Save the date\". Disponibile anche canale WhatsApp informativo al 334 1308923."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "09348eb5-600b-4c22-92a7-1dad64dda8d2"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1405,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/09348eb5-600b-4c22-92a7-1dad64dda8d2",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "3d37e3c3e14f4a1f81a4de4923ffd1deeae9c8eb8f51d738288c6ee9d359837e",
-              "modified_at": "2026-10-22",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/09348eb5-600b-4c22-92a7-1dad64dda8d2",
-              "source_id": "09348eb5-600b-4c22-92a7-1dad64dda8d2"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-28"
-        },
-        "market_id": "il-mercatino-d-antiquariato-vintage-e-collezionismo-a-reggio-emilia-reggio-nell",
-        "source_page": {
-          "bytes": 1405,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/09348eb5-600b-4c22-92a7-1dad64dda8d2",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "3d37e3c3e14f4a1f81a4de4923ffd1deeae9c8eb8f51d738288c6ee9d359837e",
-          "modified_at": "2026-10-22",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-28",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/09348eb5-600b-4c22-92a7-1dad64dda8d2",
-          "source_id": "09348eb5-600b-4c22-92a7-1dad64dda8d2",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Sesto Fiorentino è il comune dell'area metropolitana fiorentina noto per le manifatture Richard Ginori — la storica produzione di porcellane che ha segnato l'estetica italiana del Novecento. La Sesto Antiquaria si svolge ogni prima domenica del mese (escluso agosto) in Piazza Vittorio Veneto, il cuore del centro cittadino: un mercato dedicato all'oggettistica vintage del Novecento, ai giocattoli di latta, alla numismatica e ai piccoli arredi d'epoca. Il contesto locale non è casuale — la tradizione ceramica della Ginori ha lasciato nella zona un substrato di collezionismo legato alla porcellana d'epoca, ai decori floreali e ai servizi da tavola in stile liberty. Sesto Fiorentino è facilmente raggiungibile da Firenze in tranvia (linea T2, direzione Aeroporto) o in auto sull'autostrada A11. luglio: 1° giovedì sera ore 18:00–24:00",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "",
-                "city": "Sesto Fiorentino",
-                "province": "FI",
+                "city": "Livorno",
+                "province": "LI",
                 "region": "Toscana"
               },
-              "name": "Sesto Antiquaria",
+              "name": "Brocantage a Porta a Mare",
               "observed_location": {
-                "address": "Piazza Vittorio Veneto, 50019 Sesto Fiorentino FI",
-                "city": "Sesto Fiorentino",
-                "province": "FI",
+                "address": "Via Furio Diaz 3, 57123 Livorno (LI) - Complesso Porta a Mare",
+                "city": "Livorno",
+                "province": "LI",
                 "region": "Toscana"
               },
               "occurrences": [],
               "recurrence_text": null,
               "scope_statements": [],
-              "source_rows": [],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "record.organizer"
+                  ],
+                  "field": "organizer",
+                  "value": "Consorzio Porta a Mare"
+                }
+              ],
               "suspensions": [],
               "tags": [
-                "antiquariato",
                 "modernariato",
-                "numismatica",
-                "collezionismo"
-              ],
-              "tips": "1. **Orario:** Vai al mattino presto (9:00-10:30) per trovare i pezzi migliori prima che esauriscano. 2. **Pagamento:** Porta contanti; pochi venditori accettano carte. 3. **Pratico:** Indossa scarpe comode e porta una borsa capiente per gli acquisti."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1807,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "72fcd45311eba85c411a731b5db9a688fabcdfe243ae8c015069e282d7749896",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a",
-              "source_id": "1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_with_other_text",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-03"
-        },
-        "market_id": "sesto-antiquaria-sesto-fiorentino",
-        "source_page": {
-          "bytes": 1807,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "72fcd45311eba85c411a731b5db9a688fabcdfe243ae8c015069e282d7749896",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-03",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a",
-          "source_id": "1b3292a7-ef3e-42a1-bd91-b5d29c9d0c2a",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Torna a giugno"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino serale storico di Palau attivo da decenni. Nel 2026 ha subito una significativa trasformazione con nuovo regolamento e bando pubblico per 43 stalli, passando da concessioni storiche a procedura comparativa annuale. Specializzato in artigianato artistico e produzioni tipiche.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Via Fonte Vecchia, Via Nazionale, Piazza Fresi",
-                "city": "Palau",
-                "province": "OT",
-                "region": "Sardegna"
-              },
-              "name": "Mercato Serale Via Fonte Vecchia",
-              "observed_location": {
-                "address": "Via Fonte Vecchia, Via Nazionale, Piazza Fresi, tratto iniziale Via Capo d'Orso - Palau (SS)",
-                "city": "Palau",
-                "province": "OT",
-                "region": "Sardegna"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "collezionismo"
-              ],
-              "tips": "Parcheggio consigliato nelle aree segnalate dal Comune vicino al porto o ingresso paese. Abbigliamento comodo e giacca leggera per serate ventilate. Raggiungibile in auto via SS125 Orientale Sarda. Attivo nelle ore serali dal tramonto a mezzanotte circa."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "209c56ab-5406-402a-9067-dcb0c1b9e0da"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1229,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/209c56ab-5406-402a-9067-dcb0c1b9e0da",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "7512445c3a010eae3abc4d72167c1f5f89c37c4260ae17e1f3f3c0b1f572fc3b",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/209c56ab-5406-402a-9067-dcb0c1b9e0da",
-              "source_id": "209c56ab-5406-402a-9067-dcb0c1b9e0da"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-29"
-        },
-        "market_id": "mercato-serale-via-fonte-vecchia-palau",
-        "source_page": {
-          "bytes": 1229,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/209c56ab-5406-402a-9067-dcb0c1b9e0da",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "7512445c3a010eae3abc4d72167c1f5f89c37c4260ae17e1f3f3c0b1f572fc3b",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-29",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/209c56ab-5406-402a-9067-dcb0c1b9e0da",
-          "source_id": "209c56ab-5406-402a-9067-dcb0c1b9e0da",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino dell'Usato e del Collezionismo consolidato e ben organizzato con cadenza mensile. Focalizzato su antiquariato minore, modernariato, oggettistica e collezionismo, con atmosfera autentica di mercato di paese. Spesso arricchito da eventi collaterali come raduni di auto d'epoca e degustazioni tematiche.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito per visitatori",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Piazza Ferraro",
-                "city": "Incisa Scapaccino",
-                "province": "AT",
-                "region": "Piemonte"
-              },
-              "name": "Mercatino dell'Usato e del Collezionismo di Incisa Scapaccino",
-              "observed_location": {
-                "address": "Piazza Ferraro, Incisa Scapaccino (AT)",
-                "city": "Incisa Scapaccino",
-                "province": "AT",
-                "region": "Piemonte"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "usato",
+                "design",
+                "libri",
                 "collezionismo",
-                "fumetti",
-                "vinile",
-                "chincaglieria"
-              ],
-              "tips": "Arrivare al mattino presto per trovare parcheggio agevolmente. In caso di maltempo l'evento si trasferisce presso il Foro Boario."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "284e6a1e-3c89-4762-be63-8f9569443a09"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1213,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/284e6a1e-3c89-4762-be63-8f9569443a09",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "78f78ebb54553ba4420d6ad94e0922244c01cfe517c154596ed6d00cb14af900",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/284e6a1e-3c89-4762-be63-8f9569443a09",
-              "source_id": "284e6a1e-3c89-4762-be63-8f9569443a09"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_with_other_text",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-09"
-        },
-        "market_id": "mercatino-dell-usato-e-del-collezionismo-di-incisa-scapaccino-incisa-scapaccino",
-        "source_page": {
-          "bytes": 1213,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/284e6a1e-3c89-4762-be63-8f9569443a09",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "78f78ebb54553ba4420d6ad94e0922244c01cfe517c154596ed6d00cb14af900",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-09",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/284e6a1e-3c89-4762-be63-8f9569443a09",
-          "source_id": "284e6a1e-3c89-4762-be63-8f9569443a09",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercato dell'antiquariato \"DoloMythos\" attivo presso l'area esterna del Museo DoloMythos a San Candido. Evento con frequenza irregolare durante la stagione estiva, dedicato all'antiquariato e ai collezionisti.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "18:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–18:00",
-              "location": {
-                "address": "",
-                "city": "San Candido",
-                "province": "BZ",
-                "region": "Trentino-Alto Adige"
-              },
-              "name": "DoloMythos Mercato Antiquariato",
-              "observed_location": {
-                "address": "Via P. P. Rainer 11/11b, 39038 San Candido (BZ), Alto Adige",
-                "city": "San Candido",
-                "province": "BZ",
-                "region": "Trentino-Alto Adige"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Museum DoloMythos"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "usato"
-              ],
-              "tips": "Accesso gratuito al mercatino all'aperto. Parcheggio disponibile nei pressi del centro. Consigliato vestirsi a strati per il meteo montano variabile."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "461408d1-45f3-4c27-9a6e-75c7c39f7190"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1126,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/461408d1-45f3-4c27-9a6e-75c7c39f7190",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "e20ea2986ff45787da644ebd5309aeaefdbc05e1b459d936d2bbfefbf8ef6577",
-              "modified_at": "2026-08-26",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/461408d1-45f3-4c27-9a6e-75c7c39f7190",
-              "source_id": "461408d1-45f3-4c27-9a6e-75c7c39f7190"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "dolomythos-mercato-antiquariato-san-candido",
-        "source_page": {
-          "bytes": 1126,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/461408d1-45f3-4c27-9a6e-75c7c39f7190",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "e20ea2986ff45787da644ebd5309aeaefdbc05e1b459d936d2bbfefbf8ef6577",
-          "modified_at": "2026-08-26",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/461408d1-45f3-4c27-9a6e-75c7c39f7190",
-          "source_id": "461408d1-45f3-4c27-9a6e-75c7c39f7190",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mostra Mercato di Antiquariato (Montefiascone Antiqua) è un evento annuale consolidato che si tiene ad agosto nei Giardini della Rocca dei Papi. Riunisce espositori di antiquariato e rarità nel suggestivo scenario della parte alta del borgo medievale.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "20:00",
-                  "start": "10:00"
-                }
-              ],
-              "hours_text": "10:00–20:00",
-              "location": {
-                "address": "Giardini del Palazzo Rocca dei Papi",
-                "city": "Montefiascone",
-                "province": "VT",
-                "region": "Lazio"
-              },
-              "name": "Mercatino dell'Usato e dell'Artigianato",
-              "observed_location": {
-                "address": "Giardini del Palazzo Rocca dei Papi, Montefiascone (VT)",
-                "city": "Montefiascone",
-                "province": "VT",
-                "region": "Lazio"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "collezionismo"
-              ],
-              "tips": "Prestare attenzione alla gestione dei parcheggi (strisce blu a pagamento in Piazzale Urbano V). Indossare scarpe comode per la natura collinare del sito. Portare contanti anche se molti espositori accettano pagamenti elettronici. Verificare sul sito del Comune prima della visita per confermare la location nelle edizioni future."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "93d64f14-96a1-463d-a451-f41e8d40ec0c"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1223,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/93d64f14-96a1-463d-a451-f41e8d40ec0c",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "d7de8b075a67cc334d7628e222cf051f79c6441c6cfffc5668bd222bf6e47d98",
-              "modified_at": "2026-08-24",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/93d64f14-96a1-463d-a451-f41e8d40ec0c",
-              "source_id": "93d64f14-96a1-463d-a451-f41e8d40ec0c"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_missing"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-dell-usato-e-dell-artigianato-montefiascone",
-        "source_page": {
-          "bytes": 1223,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/93d64f14-96a1-463d-a451-f41e8d40ec0c",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "d7de8b075a67cc334d7628e222cf051f79c6441c6cfffc5668bd222bf6e47d98",
-          "modified_at": "2026-08-24",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/93d64f14-96a1-463d-a451-f41e8d40ec0c",
-          "source_id": "93d64f14-96a1-463d-a451-f41e8d40ec0c",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Il mercatino del fine settimana di Baggio, in via Seguro: una trentina di banchi di oggettistica, vintage, pezzi d'epoca e curiosita'.",
-              "edition_intervals": [],
-              "entry": "",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "16:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–16:00",
-              "location": {
-                "address": "Via Seguro 111, Baggio",
-                "city": "Milano",
-                "province": "MI",
-                "region": "Lombardia"
-              },
-              "name": "Mercatino di Baggio",
-              "observed_location": {
-                "address": "Via Seguro 111, Baggio, Milano",
-                "city": "Milano",
-                "province": "MI",
-                "region": "Lombardia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Italpatrimoni srl"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "usato",
-                "oggettistica",
-                "collezionismo"
-              ],
-              "tips": "Vai al mattino presto (8:30-9:30) per più scelta. Porta contanti, in tagli piccoli. Parcheggia nelle vie vicine, evitando le ore centrali."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "66910985-68f1-4e15-b5d6-80ad04c6109d"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 954,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/66910985-68f1-4e15-b5d6-80ad04c6109d",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "7194380db436b40a1f99107623d871607616c983d057aa1316cefe3cb2a47d41",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/66910985-68f1-4e15-b5d6-80ad04c6109d",
-              "source_id": "66910985-68f1-4e15-b5d6-80ad04c6109d"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_with_other_text",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-08"
-        },
-        "market_id": "mercatino-di-baggio-milano",
-        "source_page": {
-          "bytes": 954,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/66910985-68f1-4e15-b5d6-80ad04c6109d",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "7194380db436b40a1f99107623d871607616c983d057aa1316cefe3cb2a47d41",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-08",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/66910985-68f1-4e15-b5d6-80ad04c6109d",
-          "source_id": "66910985-68f1-4e15-b5d6-80ad04c6109d",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino dell'Antiquariato e Artigianato di San Felice Circeo è un evento consolidato e ricorrente della stagione estiva, promosso dalla Pro Loco con patrocinio comunale. Si svolge in Piazzale Cresci sul lungomare con programmazione stagionale basata su weekend e blocchi di date da giugno a inizio settembre.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Piazzale Gianpaolo Cresci, lungomare di San Felice Circeo (Latina)",
-                "city": "San Felice Circeo",
-                "province": "LT",
-                "region": "Lazio"
-              },
-              "name": "Mercatino dell'Antiquariato",
-              "observed_location": {
-                "address": "Piazzale Gianpaolo Cresci, lungomare di San Felice Circeo (Latina)",
-                "city": "San Felice Circeo",
-                "province": "LT",
-                "region": "Lazio"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo"
-              ],
-              "tips": ""
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "e5078be0-5b0c-4357-aad6-aef5889d6ccf"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1074,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/e5078be0-5b0c-4357-aad6-aef5889d6ccf",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "9404c67f88ab1ce2121026f6dd4c9a0e986ab2fb9c475da43f3388e0fcd82326",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/e5078be0-5b0c-4357-aad6-aef5889d6ccf",
-              "source_id": "e5078be0-5b0c-4357-aad6-aef5889d6ccf"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-dell-antiquariato-san-felice-circeo",
-        "source_page": {
-          "bytes": 1074,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/e5078be0-5b0c-4357-aad6-aef5889d6ccf",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "9404c67f88ab1ce2121026f6dd4c9a0e986ab2fb9c475da43f3388e0fcd82326",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/e5078be0-5b0c-4357-aad6-aef5889d6ccf",
-          "source_id": "e5078be0-5b0c-4357-aad6-aef5889d6ccf",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Sul vialetto pedonalizzato di Viale Storchi, a Modena, si tiene con cadenza variabile un mercatino di usato e vintage: banchi di seconda mano, modernariato e piccole curiosità del passato. Conviene verificare di volta in volta le date in programma.",
-              "edition_intervals": [],
-              "entry": "",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Viale Storchi (sul vialetto pedonalizzato)",
-                "city": "Modena",
-                "province": "MO",
-                "region": "Emilia-Romagna"
-              },
-              "name": "Mercatino di Viale Storchi",
-              "observed_location": {
-                "address": "Viale Storchi (sul vialetto pedonalizzato), Modena",
-                "city": "Modena",
-                "province": "MO",
-                "region": "Emilia-Romagna"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "usato",
                 "vintage"
               ],
-              "tips": ""
+              "tips": "Verificare gli aggiornamenti su Facebook in caso di maltempo (evento eventualmente rinviato al sabato successivo). Non confondere con 'Vintage & Co.' che si tiene il primo sabato del mese nello stesso complesso. Disponibili aree parcheggio dedicate. Accesso facile dal centro storico e dai Quattro Mori."
             },
             "field_evidence": {
               "calendar": {
@@ -1913,7 +179,7 @@
               },
               "identity": {
                 "selector": "record.id",
-                "value": "5c7d0653-d9c9-4269-a817-80b458541e6b"
+                "value": "cdb5dc9e-7488-424c-b27f-8d98e57c4811"
               },
               "location": {
                 "selector": "record.city/region/address"
@@ -1921,566 +187,17 @@
             },
             "schema": 1,
             "source": {
-              "bytes": 824,
+              "bytes": 1455,
               "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/5c7d0653-d9c9-4269-a817-80b458541e6b",
+              "final_url": "https://vintagery.it/mercatini/cdb5dc9e-7488-424c-b27f-8d98e57c4811",
               "hash_basis": "browser_captured_record",
-              "html_sha256": "8fc4420c22ac96d25d7c845b6ab11df13aef162923ca0f1d36902f6f6fa08298",
+              "html_sha256": "96bdc5cf23481986763dd236695f944589d67db100c538d5591d8950f060a840",
               "modified_at": null,
               "published_at": null,
               "publisher": "vintagery.it",
               "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/5c7d0653-d9c9-4269-a817-80b458541e6b",
-              "source_id": "5c7d0653-d9c9-4269-a817-80b458541e6b"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_missing"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-di-viale-storchi-modena",
-        "source_page": {
-          "bytes": 824,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/5c7d0653-d9c9-4269-a817-80b458541e6b",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "8fc4420c22ac96d25d7c845b6ab11df13aef162923ca0f1d36902f6f6fa08298",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/5c7d0653-d9c9-4269-a817-80b458541e6b",
-          "source_id": "5c7d0653-d9c9-4269-a817-80b458541e6b",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino consolidato di artigianato, antiquariato e oggettistica che si tiene mensilmente nel centro storico di Bracciano. Evento distinto dalle iniziative estive del Comune, con espositori locali e visitatori interessati a pezzi vintage e artigianali. Non confondere con i 'Venerdì del Lago' organizzati in estate sul Lungolago Argenti.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "",
-                "city": "Bracciano",
-                "province": "RM",
-                "region": "Lazio"
-              },
-              "name": "Passato e Presente",
-              "observed_location": {
-                "address": "Piazza IV Novembre, centro storico di Bracciano (RM), Lazio",
-                "city": "Bracciano",
-                "province": "RM",
-                "region": "Lazio"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "vintage"
-              ],
-              "tips": "Verificare date e orari sulle pagine social o sugli avvisi del Comune di Bracciano prima di partire, soprattutto in caso di allerte meteo o eventi concomitanti. Essendo all'aperto nel centro storico, conviene arrivare nella mattinata per trovare parcheggio e girare con calma tra le bancarelle."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "5fab2754-b498-4e28-8754-ce3a3558ff08"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1443,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/5fab2754-b498-4e28-8754-ce3a3558ff08",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "2c02f1981ab37825f4d82efd1033e5034ea528afdc37bde14de9e43f45864ada",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/5fab2754-b498-4e28-8754-ce3a3558ff08",
-              "source_id": "5fab2754-b498-4e28-8754-ce3a3558ff08"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_with_other_text",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-10"
-        },
-        "market_id": "passato-e-presente-bracciano",
-        "source_page": {
-          "bytes": 1443,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/5fab2754-b498-4e28-8754-ce3a3558ff08",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "2c02f1981ab37825f4d82efd1033e5034ea528afdc37bde14de9e43f45864ada",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-10",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/5fab2754-b498-4e28-8754-ce3a3558ff08",
-          "source_id": "5fab2754-b498-4e28-8754-ce3a3558ff08",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino vintage, modernariato e artigianato organizzato dall'Associazione Culturale Scarpatetti nel nucleo storico del quartiere Scarpatetti. Filosofia incentrata su riuso, baratto e sostenibilità con eventi collaterali di economia circolare (swap party, musica, semi tradizionali alpini).",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito per visitatori. Partecipazione libera/gratuita per espositori (coordinate con associazione)",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "18:00",
-                  "start": "10:00"
-                }
-              ],
-              "hours_text": "10:00–18:00",
-              "location": {
-                "address": "Via Scarpatetti e Piazza Quadrivio",
-                "city": "Sondrio",
-                "province": "SO",
-                "region": "Lombardia"
-              },
-              "name": "Scarpabellando — Quartiere Scarpatetti",
-              "observed_location": {
-                "address": "Via Scarpatetti e Piazza Quadrivio, 23100 Sondrio (SO)",
-                "city": "Sondrio",
-                "province": "SO",
-                "region": "Lombardia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "collezionismo"
-              ],
-              "tips": "Contattare l'associazione ai numeri +39 349 4448209 o +39 340 2560100 per info su partecipazione come espositore. Evitare mesi invernali e agosto. Verificare date specifiche su Facebook dell'Associazione Culturale Scarpatetti prima di visitare."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "11638f96-ee6f-4821-97dc-1e9fab9cc3ac"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1345,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/11638f96-ee6f-4821-97dc-1e9fab9cc3ac",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "fe40b5ae5e0421121af394a2ab7bf695ea18abb665df1c8bc60fae3b8f75f3df",
-              "modified_at": "2026-10-02",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/11638f96-ee6f-4821-97dc-1e9fab9cc3ac",
-              "source_id": "11638f96-ee6f-4821-97dc-1e9fab9cc3ac"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-10-28"
-        },
-        "market_id": "scarpabellando-quartiere-scarpatetti-sondrio",
-        "source_page": {
-          "bytes": 1345,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/11638f96-ee6f-4821-97dc-1e9fab9cc3ac",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "fe40b5ae5e0421121af394a2ab7bf695ea18abb665df1c8bc60fae3b8f75f3df",
-          "modified_at": "2026-10-02",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-28",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/11638f96-ee6f-4821-97dc-1e9fab9cc3ac",
-          "source_id": "11638f96-ee6f-4821-97dc-1e9fab9cc3ac",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercato mensile di antiquariato e artigianato consolidato ad Albisola Superiore, organizzato dal Consorzio La Piazza in collaborazione con il Comune. Si svolge sulla Passeggiata Eugenio Montale durante il primo weekend di ogni mese, con edizioni straordinarie durante la stagione estiva e festività.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "",
-                "city": "Albisola Superiore",
-                "province": "SV",
-                "region": "Liguria"
-              },
-              "name": "Albisola in Piazza — Mercato Antiquariato e Artigianato",
-              "observed_location": {
-                "address": "Passeggiata Eugenio Montale, Albisola Superiore (SV), Italia - tra piazzale Marinetti, bagni Conchiglia e spiaggia libera La Marinella",
-                "city": "Albisola Superiore",
-                "province": "SV",
-                "region": "Liguria"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Consorzio La Piazza"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo"
-              ],
-              "tips": "Parcheggi pubblici disponibili lungo il lungomare (a pagamento in estate). Raggiungibile in auto via A10 (uscita Albisola) o a piedi dalla stazione ferroviaria (10-15 minuti). In estate portare protezione solare e acqua. Consultare il portale turistico del Comune o le pagine social per le date specifiche delle edizioni straordinarie."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "ad360271-dd27-4ffa-b935-843506c98ff5"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1611,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/ad360271-dd27-4ffa-b935-843506c98ff5",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "911fa70067bbeb987d1d466f9d30baaf18239e5e4d51e30c31beb66fb1b9c6de",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/ad360271-dd27-4ffa-b935-843506c98ff5",
-              "source_id": "ad360271-dd27-4ffa-b935-843506c98ff5"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_not_read",
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-11-08"
-        },
-        "market_id": "albisola-in-piazza-mercato-antiquariato-e-artigianato-albisola-superiore",
-        "source_page": {
-          "bytes": 1611,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/ad360271-dd27-4ffa-b935-843506c98ff5",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "911fa70067bbeb987d1d466f9d30baaf18239e5e4d51e30c31beb66fb1b9c6de",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-08",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/ad360271-dd27-4ffa-b935-843506c98ff5",
-          "source_id": "ad360271-dd27-4ffa-b935-843506c98ff5",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": true,
-              "calendar_rules": [],
-              "calendar_scope": "recurring_statement_only",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Il Baule dei Ricordi è un mercatino di antiquariato e usato attivo a Galliate dal settembre 2025, gestito da Confesercenti con patrocinio comunale. Si tiene mensilmente nella quarta domenica del mese in orario continuato. Rappresenta il rilancio di un evento consolidato, con orari prolungati per favorire la ricerca di pezzi particolari.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "19:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–19:00",
-              "location": {
-                "address": "Piazza Vittorio Veneto e viale Leonardo da Vinci",
-                "city": "Galliate",
-                "province": "NO",
-                "region": "Piemonte"
-              },
-              "name": "Il Baule dei Ricordi",
-              "observed_location": {
-                "address": "Piazza Vittorio Veneto e viale Leonardo da Vinci, Galliate (NO)",
-                "city": "Galliate",
-                "province": "NO",
-                "region": "Piemonte"
-              },
-              "occurrences": [],
-              "recurrence_text": "Quarta domenica del mese",
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo"
-              ],
-              "tips": "Arrivare la mattina presto per trovare i migliori pezzi, oppure nel pomeriggio per negoziare i prezzi. Galliate dista 10 km da Novara (direzione est, SP11) e dispone di parcheggi nelle vie adiacenti. Raggiungibile da Milano via A4 (uscita Novara Est, SS32)."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "8c0725d3-06c2-407d-ba09-05c523d4de78"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1327,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/8c0725d3-06c2-407d-ba09-05c523d4de78",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "da5433430e55bb78c888c20a800914b0f0a47719924f038e48a71eb4c71afc3e",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/8c0725d3-06c2-407d-ba09-05c523d4de78",
-              "source_id": "8c0725d3-06c2-407d-ba09-05c523d4de78"
-            },
-            "status": "parsed",
-            "warnings": [
-              "next_date_unconfirmed"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "il-baule-dei-ricordi-galliate",
-        "source_page": {
-          "bytes": 1327,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/8c0725d3-06c2-407d-ba09-05c523d4de78",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "da5433430e55bb78c888c20a800914b0f0a47719924f038e48a71eb4c71afc3e",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/8c0725d3-06c2-407d-ba09-05c523d4de78",
-          "source_id": "8c0725d3-06c2-407d-ba09-05c523d4de78",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Data da confermare"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Il Trovarobe è il mercato mensile dell'antiquariato, del modernariato e del collezionismo di Cuneo, organizzato dal Comune ogni ultimo sabato del mese sotto i lunghi portici di Piazza Europa e Corso Nizza — il sistema di portici di Cuneo è tra i più estesi del Piemonte, con oltre 500 metri continui che collegano il centro storico. Il mercato è aperto dalle 8:00 alle 18:00 e accoglie sia operatori professionali che venditori occasionali (hobbisti), con un'offerta variegata: antiquariato classico, mobili, ceramiche, porcellane, oggetti di design, libri, dischi, modernariato e usato di qualità. Cuneo è capoluogo della \"Granda\" — la provincia più grande del Piemonte — e si trova ai piedi delle Alpi Marittime e Cozie, con le vallate alpine a portata di giornata. Piazza Europa + portici Corso Nizza. Hobbisti e professionisti: vinili, libri, chincaglieria, numismatica, telerie d'epoca.",
-              "edition_intervals": [],
-              "entry": "Ingresso gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "18:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–18:00",
-              "location": {
-                "address": "Portici di Piazza Europa e Corso Nizza",
-                "city": "Cuneo",
-                "province": "CN",
-                "region": "Piemonte"
-              },
-              "name": "Il Trovarobe — Mercato dell'Antiquariato di Cuneo",
-              "observed_location": {
-                "address": "Portici di Piazza Europa e Corso Nizza, Cuneo (CN), Italia",
-                "city": "Cuneo",
-                "province": "CN",
-                "region": "Piemonte"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Comune di Cuneo"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "modernariato",
-                "collezionismo",
-                "usato"
-              ],
-              "tips": "Verificare date e orari sul sito del Comune di Cuneo prima della visita, perché le fonti consultate non sono tutte concordi. Lo svolgimento sotto i portici offre protezione in caso di maltempo. Non esiste una pagina social dedicata al mercatino."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "0fbfb5c1-f197-485d-8042-e590676de12a"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1909,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/0fbfb5c1-f197-485d-8042-e590676de12a",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "583b3e5ecd23272a45a4ab851f2736306d7cddea948acd465df990c5764f71f5",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/0fbfb5c1-f197-485d-8042-e590676de12a",
-              "source_id": "0fbfb5c1-f197-485d-8042-e590676de12a"
+              "requested_url": "https://vintagery.it/mercatini/cdb5dc9e-7488-424c-b27f-8d98e57c4811",
+              "source_id": "cdb5dc9e-7488-424c-b27f-8d98e57c4811"
             },
             "status": "parsed",
             "warnings": [
@@ -2488,459 +205,22 @@
               "next_date_unconfirmed"
             ]
           },
-          "read_on": "2026-11-01"
+          "read_on": "2026-11-15"
         },
-        "market_id": "il-trovarobe-mercato-dell-antiquariato-di-cuneo-cuneo",
+        "market_id": "brocantage-a-porta-a-mare-livorno",
         "source_page": {
-          "bytes": 1909,
+          "bytes": 1455,
           "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/0fbfb5c1-f197-485d-8042-e590676de12a",
+          "final_url": "https://vintagery.it/mercatini/cdb5dc9e-7488-424c-b27f-8d98e57c4811",
           "hash_basis": "browser_captured_record",
-          "html_sha256": "583b3e5ecd23272a45a4ab851f2736306d7cddea948acd465df990c5764f71f5",
+          "html_sha256": "96bdc5cf23481986763dd236695f944589d67db100c538d5591d8950f060a840",
           "modified_at": null,
           "published_at": null,
           "publisher": "vintagery.it",
-          "read_on": "2026-11-01",
+          "read_on": "2026-11-15",
           "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/0fbfb5c1-f197-485d-8042-e590676de12a",
-          "source_id": "0fbfb5c1-f197-485d-8042-e590676de12a",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercato delle pulci di Messina con carattere altalenante, situato nell'area dell'ex mercato Mandalari. Soggetto a frequenti sospensioni temporanee per motivi igienico-sanitari e di gestione dei rifiuti. Le date vanno verificate tramite ordinanze sindacali e pagine social del Comune di Messina.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "14:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–14:00",
-              "location": {
-                "address": "Area Ex Mandalari, Viale Giostra",
-                "city": "Messina",
-                "province": "ME",
-                "region": "Sicilia"
-              },
-              "name": "Mercato delle Pulci di Messina",
-              "observed_location": {
-                "address": "Area Ex Mandalari, Viale Giostra, Messina",
-                "city": "Messina",
-                "province": "ME",
-                "region": "Sicilia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "usato",
-                "antiquariato",
-                "vintage"
-              ],
-              "tips": "Verificare eventuali chiusure straordinarie sul portale del Comune di Messina in caso di allerte meteo o eventi speciali. Gli orari possono variare stagionalmente (es. 8:30-12:30)."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "3d76405b-a084-4c3a-b4c7-4d30733ab6e0"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1224,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/3d76405b-a084-4c3a-b4c7-4d30733ab6e0",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "3ec458eeaa2c8e79308c6a8cf5960c6f97bf4a3a8fb5707b165fc041af79e516",
-              "modified_at": "2026-10-08",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/3d76405b-a084-4c3a-b4c7-4d30733ab6e0",
-              "source_id": "3d76405b-a084-4c3a-b4c7-4d30733ab6e0"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercato-delle-pulci-di-messina-messina",
-        "source_page": {
-          "bytes": 1224,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/3d76405b-a084-4c3a-b4c7-4d30733ab6e0",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "3ec458eeaa2c8e79308c6a8cf5960c6f97bf4a3a8fb5707b165fc041af79e516",
-          "modified_at": "2026-10-08",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/3d76405b-a084-4c3a-b4c7-4d30733ab6e0",
-          "source_id": "3d76405b-a084-4c3a-b4c7-4d30733ab6e0",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Cortonantiquaria è la mostra d'antiquariato più longeva d'Italia (dal 1963, 64ª edizione nel 2026). Ospita espositori con opere d'arte, manufatti rari, antiquariato di diverse epoche e provenienze. La manifestazione si svolge annualmente a fine agosto/inizio settembre a Cortona con eventi collaterali prestigiosi incluso il Premio Cortonantiquaria.",
-              "edition_intervals": [],
-              "entry": "Intero €10,00 | Ridotto €7,00 | Biglietto congiunto Cortonantiquaria + MAEC €17,00",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Centro Convegni Sant'Agostino, Via Guelfa 40",
-                "city": "Cortona",
-                "province": "AR",
-                "region": "Toscana"
-              },
-              "name": "Cortonantiquaria (Mostra Mercato Nazionale dell'Antiquariato)",
-              "observed_location": {
-                "address": "Centro Convegni Sant'Agostino, Via Guelfa 40, 52044 Cortona (AR), Toscana",
-                "city": "Cortona",
-                "province": "AR",
-                "region": "Toscana"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Comune di Cortona e Cortona Sviluppo"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato"
-              ],
-              "tips": "Orari differenziati: visitare sabato-domenica per accesso dalle 10:00. Considerare il biglietto congiunto MAEC se interessati alla mostra su Gino Severini. Contatti: info@cortonasviluppo.it / 0575 630158. Gli eventi collaterali (concerti, mostre) sono solitamente gratuiti o a biglietto separato."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "a774cf8c-04b6-4a0e-860a-7555c5afa6f6"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1542,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/a774cf8c-04b6-4a0e-860a-7555c5afa6f6",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "7fab4fbde5e62d1131764ec81837af807ac54c56c75ab332495c7d120e2e1a72",
-              "modified_at": "2026-10-01",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/a774cf8c-04b6-4a0e-860a-7555c5afa6f6",
-              "source_id": "a774cf8c-04b6-4a0e-860a-7555c5afa6f6"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "cortonantiquaria-mostra-mercato-nazionale-dell-antiquariato-cortona",
-        "source_page": {
-          "bytes": 1542,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/a774cf8c-04b6-4a0e-860a-7555c5afa6f6",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "7fab4fbde5e62d1131764ec81837af807ac54c56c75ab332495c7d120e2e1a72",
-          "modified_at": "2026-10-01",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/a774cf8c-04b6-4a0e-860a-7555c5afa6f6",
-          "source_id": "a774cf8c-04b6-4a0e-860a-7555c5afa6f6",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Antiquariando in Fiera è uno dei principali appuntamenti barese per modernariato, antiquariato, vintage e collezionismo. L'evento si svolge con cadenza irregolare alternando edizioni speciali nei padiglioni della Nuova Fiera del Levante ad altre ospitate in spazi urbani all'aperto della città.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "21:00",
-                  "start": "09:00"
-                }
-              ],
-              "hours_text": "09:00–21:00",
-              "location": {
-                "address": "Nuova Fiera del Levante",
-                "city": "Bari",
-                "province": "BA",
-                "region": "Puglia"
-              },
-              "name": "Antiquariando In Fiera A Bari",
-              "observed_location": {
-                "address": "Nuova Fiera del Levante, Bari",
-                "city": "Bari",
-                "province": "BA",
-                "region": "Puglia"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "collezionismo",
-                "hobbisti"
-              ],
-              "tips": "Le date vengono modulate mese per mese."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "d4c3ddcc-fb4a-47a7-affd-42d94c91896f"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1111,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/d4c3ddcc-fb4a-47a7-affd-42d94c91896f",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "1cb62808350e5e9812afd4e92fdb0734d52e9002fe8fa39049899aed2b1cd093",
-              "modified_at": "2026-10-22",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/d4c3ddcc-fb4a-47a7-affd-42d94c91896f",
-              "source_id": "d4c3ddcc-fb4a-47a7-affd-42d94c91896f"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-29"
-        },
-        "market_id": "antiquariando-in-fiera-a-bari-bari",
-        "source_page": {
-          "bytes": 1111,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/d4c3ddcc-fb4a-47a7-affd-42d94c91896f",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "1cb62808350e5e9812afd4e92fdb0734d52e9002fe8fa39049899aed2b1cd093",
-          "modified_at": "2026-10-22",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-29",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/d4c3ddcc-fb4a-47a7-affd-42d94c91896f",
-          "source_id": "d4c3ddcc-fb4a-47a7-affd-42d94c91896f",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Prossima data non ancora nota"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Akra Market è un collettivo urbano che ha sostituito il tradizionale mercatino di antiquariato. Propone una fusione di vintage, handmade, design e sostenibilità con musica live e dj set. Evento mensile nel cuore del centro storico di Olbia durante la stagione estiva.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Piazza Matteotti (esteso a Piazza Regina Margherita), Centro Storico",
-                "city": "Olbia",
-                "province": "OT",
-                "region": "Sardegna"
-              },
-              "name": "Mercatino Antiquariato — Piazza Matteotti, Olbia",
-              "observed_location": {
-                "address": "Piazza Matteotti (esteso a Piazza Regina Margherita), Centro Storico, 07026 Olbia (SS), Sardegna",
-                "city": "Olbia",
-                "province": "OT",
-                "region": "Sardegna"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [
-                {
-                  "evidence": [
-                    "record.organizer"
-                  ],
-                  "field": "organizer",
-                  "value": "Akra Market"
-                }
-              ],
-              "suspensions": [],
-              "tags": [
-                "antiquariato",
-                "oggetti d'epoca"
-              ],
-              "tips": "Il calendario mensile non è fisso: verificare sempre le date esatte sulla pagina Instagram @akra.market o contattare gli organizzatori al +39 389 825 2455 prima di visitare. Gli orari prolungati fino alle 2:00 del mattino favoriscono la socializzazione serale nel centro storico."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "5e07763d-789f-40fd-a33e-078b4c6c3596"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1368,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/5e07763d-789f-40fd-a33e-078b4c6c3596",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "95399d0f2359079ac01c4a8b3f50b88b794b25342079c3db549d313923707d20",
-              "modified_at": "2026-10-25",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/5e07763d-789f-40fd-a33e-078b4c6c3596",
-              "source_id": "5e07763d-789f-40fd-a33e-078b4c6c3596"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-antiquariato-piazza-matteotti-olbia-olbia",
-        "source_page": {
-          "bytes": 1368,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/5e07763d-789f-40fd-a33e-078b4c6c3596",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "95399d0f2359079ac01c4a8b3f50b88b794b25342079c3db549d313923707d20",
-          "modified_at": "2026-10-25",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/5e07763d-789f-40fd-a33e-078b4c6c3596",
-          "source_id": "5e07763d-789f-40fd-a33e-078b4c6c3596",
+          "requested_url": "https://vintagery.it/mercatini/cdb5dc9e-7488-424c-b27f-8d98e57c4811",
+          "source_id": "cdb5dc9e-7488-424c-b27f-8d98e57c4811",
           "status": "parsed"
         }
       },
@@ -2963,128 +243,24 @@
                 }
               ],
               "date_intervals": [],
-              "description": "Mercatino di antiquariato e vintage con circa 25-50 espositori selezionati: antiquariato, modernariato, abbigliamento vintage, collezionismo e artigianato. L'evento si è spostato all'Area Verde Coltorti per i lavori al Varco sul Mare.",
+              "description": "La Piazzetta dei Ricordi è un mercatino annuale dell'usato, antiquariato e artigianato organizzato dalla Pro Loco, inserito nel programma dell'Estate Frosolonese. L'evento si svolge nel centro storico medievale di Frosolone con date variabili ogni anno (XV edizione nel luglio 2026).",
               "edition_intervals": [],
               "entry": "Gratuito",
               "forecast_rule": null,
               "hours_intervals": [],
               "hours_text": null,
               "location": {
-                "address": "Lungomare Piermanni, altezza Campi da Basket / vicinanze Biblioteca comunale Zavatti",
-                "city": "Civitanova Marche",
-                "province": "MC",
-                "region": "Marche"
+                "address": "Centro storico di Frosolone, Piazza Municipio e Corso Vittorio Emanuele (Loggia dei Pezzenti)",
+                "city": "Frosolone",
+                "province": "IS",
+                "region": "Molise"
               },
-              "name": "Civitanova Vintage Market",
+              "name": "Fiera Estiva con Rigattieri",
               "observed_location": {
-                "address": "Lungomare Piermanni, altezza Campi da Basket / vicinanze Biblioteca comunale Zavatti, Civitanova Marche (MC)",
-                "city": "Civitanova Marche",
-                "province": "MC",
-                "region": "Marche"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "collezionismo",
-                "antiquariato"
-              ],
-              "tips": "Consultare il sito ufficiale mercatiniantiquari.com per le date esatte delle prossime edizioni. L'orario serale (17:00-24:00) è tipico delle edizioni estive. Ingresso libero per i visitatori."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "2746568c-66ed-44da-9e8a-f886976a208b"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1261,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/2746568c-66ed-44da-9e8a-f886976a208b",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "7d9efcbcf29ee6c3984c9fe94f54c682387bcec17fc51a77ddb3e97aaeb70f7d",
-              "modified_at": "2026-10-01",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/2746568c-66ed-44da-9e8a-f886976a208b",
-              "source_id": "2746568c-66ed-44da-9e8a-f886976a208b"
-            },
-            "status": "parsed",
-            "warnings": [
-              "hours_missing",
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-29"
-        },
-        "market_id": "civitanova-vintage-market-civitanova-marche",
-        "source_page": {
-          "bytes": 1261,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/2746568c-66ed-44da-9e8a-f886976a208b",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "7d9efcbcf29ee6c3984c9fe94f54c682387bcec17fc51a77ddb3e97aaeb70f7d",
-          "modified_at": "2026-10-01",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-29",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/2746568c-66ed-44da-9e8a-f886976a208b",
-          "source_id": "2746568c-66ed-44da-9e8a-f886976a208b",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatino di antiquariato, vintage e usato a Polistena integrato in iniziative culturali estive. Non è un appuntamento fisso ma segue una programmazione sporadica, spesso organizzato da associazioni locali come BarattiAmo e Viviamo la Corte. L'accesso è libero e gratuito.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
-              "location": {
-                "address": "Palazzo Avati, Piazza del Popolo",
-                "city": "Polistena",
-                "province": "RC",
-                "region": "Calabria"
-              },
-              "name": "Mercatino Antiquariato e Vintage",
-              "observed_location": {
-                "address": "Palazzo Avati, Piazza del Popolo, Polistena (RC)",
-                "city": "Polistena",
-                "province": "RC",
-                "region": "Calabria"
+                "address": "Centro storico di Frosolone, Piazza Municipio e Corso Vittorio Emanuele (Loggia dei Pezzenti), Frosolone",
+                "city": "Frosolone",
+                "province": "IS",
+                "region": "Molise"
               },
               "occurrences": [],
               "recurrence_text": null,
@@ -3093,10 +269,9 @@
               "suspensions": [],
               "tags": [
                 "antiquariato",
-                "artigianato",
-                "oggetti d'epoca"
+                "collezionismo"
               ],
-              "tips": "Monitorare le pagine Facebook di BarattiAmo e Viviamo la Corte per annunci degli eventi, poiché non esiste un calendario ufficiale. In estate portare acqua e protezioni solari. Parcheggiare nelle zone limitrofe al centro storico e raggiungere la piazza a piedi."
+              "tips": "Consultare Facebook della Pro Loco pochi giorni prima della visita per confermare date e orari. Parcheggiare all'ingresso del borgo e proseguire a piedi. Portare scarpe comode e una giacca leggera (Frosolone è in montagna con temperature serali fresche). Esiste anche un mercato generale ogni lunedì mattina per alimentari e abbigliamento."
             },
             "field_evidence": {
               "calendar": {
@@ -3107,7 +282,7 @@
               },
               "identity": {
                 "selector": "record.id",
-                "value": "c33d27e1-bc4d-4e95-af6d-c80952bc3a8e"
+                "value": "7093dc26-c7d1-4a05-a72c-a88179fed51f"
               },
               "location": {
                 "selector": "record.city/region/address"
@@ -3115,17 +290,17 @@
             },
             "schema": 1,
             "source": {
-              "bytes": 1326,
+              "bytes": 1390,
               "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/c33d27e1-bc4d-4e95-af6d-c80952bc3a8e",
+              "final_url": "https://vintagery.it/mercatini/7093dc26-c7d1-4a05-a72c-a88179fed51f",
               "hash_basis": "browser_captured_record",
-              "html_sha256": "2b4e0475a51d002d37e81e82f23336046587c91e89854ea3c67a27fc2cbed2c5",
-              "modified_at": null,
+              "html_sha256": "d4bc360330e0114848158d32b033b050092592aae958df09c391a48cf3e57208",
+              "modified_at": "2026-08-25",
               "published_at": null,
               "publisher": "vintagery.it",
               "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/c33d27e1-bc4d-4e95-af6d-c80952bc3a8e",
-              "source_id": "c33d27e1-bc4d-4e95-af6d-c80952bc3a8e"
+              "requested_url": "https://vintagery.it/mercatini/7093dc26-c7d1-4a05-a72c-a88179fed51f",
+              "source_id": "7093dc26-c7d1-4a05-a72c-a88179fed51f"
             },
             "status": "parsed",
             "warnings": [
@@ -3135,20 +310,20 @@
           },
           "read_on": "2026-10-27"
         },
-        "market_id": "mercatino-antiquariato-e-vintage-polistena",
+        "market_id": "fiera-estiva-con-rigattieri-frosolone",
         "source_page": {
-          "bytes": 1326,
+          "bytes": 1390,
           "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/c33d27e1-bc4d-4e95-af6d-c80952bc3a8e",
+          "final_url": "https://vintagery.it/mercatini/7093dc26-c7d1-4a05-a72c-a88179fed51f",
           "hash_basis": "browser_captured_record",
-          "html_sha256": "2b4e0475a51d002d37e81e82f23336046587c91e89854ea3c67a27fc2cbed2c5",
-          "modified_at": null,
+          "html_sha256": "d4bc360330e0114848158d32b033b050092592aae958df09c391a48cf3e57208",
+          "modified_at": "2026-08-25",
           "published_at": null,
           "publisher": "vintagery.it",
           "read_on": "2026-10-27",
           "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/c33d27e1-bc4d-4e95-af6d-c80952bc3a8e",
-          "source_id": "c33d27e1-bc4d-4e95-af6d-c80952bc3a8e",
+          "requested_url": "https://vintagery.it/mercatini/7093dc26-c7d1-4a05-a72c-a88179fed51f",
+          "source_id": "7093dc26-c7d1-4a05-a72c-a88179fed51f",
           "status": "parsed"
         }
       },
@@ -3167,245 +342,28 @@
                     "Prossima apertura"
                   ],
                   "kind": "publisher_status",
-                  "text": "Prossima apertura: Torna a giugno"
+                  "text": "Prossima apertura: Data da confermare"
                 }
               ],
               "date_intervals": [],
-              "description": "Fiera di San Massimo a L'Aquila, evento annuale molto sentito dalla comunità locale che nel 2026 ha segnato un importante ritorno nel centro storico dopo 17 anni di assenza legati al post-terremoto. La manifestazione offre bancarelle di artigianato locale, abbigliamento, prodotti per la casa, dolciumi e street food.",
+              "description": "Pontebello è il mercatino mensile di usato, antiquariato e collezionismo di Ponte San Nicolò (Padova), attivo da anni con cadenza regolare la terza domenica di ogni mese. L'evento si svolge nella Zona Industriale di Roncajette con ampi spazi di parcheggio. È disponibile un sistema di prenotazione online per gli espositori hobbisti.",
               "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "20:00",
-                  "start": "08:00"
-                }
-              ],
-              "hours_text": "08:00–20:00",
-              "location": {
-                "address": "Piazza Duomo e Corso Vittorio Emanuele",
-                "city": "L'Aquila",
-                "province": "AQ",
-                "region": "Abruzzo"
-              },
-              "name": "Fiera di San Massimo",
-              "observed_location": {
-                "address": "Piazza Duomo e Corso Vittorio Emanuele, L'Aquila",
-                "city": "L'Aquila",
-                "province": "AQ",
-                "region": "Abruzzo"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "vintage",
-                "collezionismo"
-              ],
-              "tips": "Consultare le ordinanze di viabilità sul sito del Comune prima della data (divieti di transito dalle 06:00 alle 21:00 circa). Utilizzare parcheggi multipiano o aree periferiche servite da mezzi pubblici, poiché l'accesso veicolare al centro è fortemente limitato. Monitorare il sito del Comune nel mese di maggio di ogni anno per le date ufficiali."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "e069cbc2-17a5-47e5-a9ce-cfe55df5ed50"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1446,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/e069cbc2-17a5-47e5-a9ce-cfe55df5ed50",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "02b1d205cf3148eade5162c2de2231cb61f4844620b8823eba2fc99ded5b1fa7",
-              "modified_at": null,
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/e069cbc2-17a5-47e5-a9ce-cfe55df5ed50",
-              "source_id": "e069cbc2-17a5-47e5-a9ce-cfe55df5ed50"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "fiera-di-san-massimo-l-aquila",
-        "source_page": {
-          "bytes": 1446,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/e069cbc2-17a5-47e5-a9ce-cfe55df5ed50",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "02b1d205cf3148eade5162c2de2231cb61f4844620b8823eba2fc99ded5b1fa7",
-          "modified_at": null,
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/e069cbc2-17a5-47e5-a9ce-cfe55df5ed50",
-          "source_id": "e069cbc2-17a5-47e5-a9ce-cfe55df5ed50",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Date annunciate di volta in volta"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Castiglione della Pescaia è uno dei borghi più amati della Costa d'Argento: il centro storico medievale su promontorio si affaccia su un golfo di sabbia e macchia mediterranea, mentre il porto di Punta Ala e la laguna di Diaccia Botrona completano un paesaggio costiero tra i più preservati della Toscana meridionale. Il Mercatino di Scambio 2.0 — ribattezzato \"Il Second Hand Castiglionese\" — si tiene due volte l'anno in Piazza Orto del Lilli con il patrocinio del Comune: un'iniziativa orientata alla sostenibilità e al riuso consapevole in cui privati espongono abbigliamento usato, libri, accessori e piccoli oggetti domestici. In alcune edizioni il mercato funziona in formula baratto o dono reciproco, senza moneta in circolo. È uno degli appuntamenti di riuso più attivi e strutturati della costa maremmana, con copertura su media locali e pagina Instagram attiva. Abbigliamento, libri, acces",
-              "edition_intervals": [],
-              "entry": "Gratuito",
-              "forecast_rule": null,
-              "hours_intervals": [
-                {
-                  "end": "18:00",
-                  "start": "10:00"
-                }
-              ],
-              "hours_text": "10:00–18:00",
-              "location": {
-                "address": "Piazza Orto del Lilli",
-                "city": "Castiglione della Pescaia",
-                "province": "GR",
-                "region": "Toscana"
-              },
-              "name": "Mercatino di Scambio 2.0",
-              "observed_location": {
-                "address": "Piazza Orto del Lilli, 58043 Castiglione della Pescaia (GR)",
-                "city": "Castiglione della Pescaia",
-                "province": "GR",
-                "region": "Toscana"
-              },
-              "occurrences": [],
-              "recurrence_text": null,
-              "scope_statements": [],
-              "source_rows": [],
-              "suspensions": [],
-              "tags": [
-                "usato",
-                "riuso",
-                "abbigliamento",
-                "vintage",
-                "baratto"
-              ],
-              "tips": "Monitorare Instagram @mercatinodiscambio per le date esatte delle prossime edizioni, poiché il calendario è irregolare. Portare oggetti in buono stato da scambiare."
-            },
-            "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "93ca2843-1e85-4a25-b391-1f3f6b94b5aa"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
-            },
-            "schema": 1,
-            "source": {
-              "bytes": 1940,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/93ca2843-1e85-4a25-b391-1f3f6b94b5aa",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "99e6101c5ed6b2f5f809ad1c6997cc047d4f93af80e72001bdc1910916029ff1",
-              "modified_at": "2026-10-03",
-              "published_at": null,
-              "publisher": "vintagery.it",
-              "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/93ca2843-1e85-4a25-b391-1f3f6b94b5aa",
-              "source_id": "93ca2843-1e85-4a25-b391-1f3f6b94b5aa"
-            },
-            "status": "parsed",
-            "warnings": [
-              "rule_not_read"
-            ]
-          },
-          "read_on": "2026-10-27"
-        },
-        "market_id": "mercatino-di-scambio-2-0-castiglione-della-pescaia",
-        "source_page": {
-          "bytes": 1940,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/93ca2843-1e85-4a25-b391-1f3f6b94b5aa",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "99e6101c5ed6b2f5f809ad1c6997cc047d4f93af80e72001bdc1910916029ff1",
-          "modified_at": "2026-10-03",
-          "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
-          "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/93ca2843-1e85-4a25-b391-1f3f6b94b5aa",
-          "source_id": "93ca2843-1e85-4a25-b391-1f3f6b94b5aa",
-          "status": "parsed"
-        }
-      },
-      {
-        "document": {
-          "parsed": {
-            "conflicts": [],
-            "event": {
-              "archive_marker": false,
-              "calendar_complete": false,
-              "calendar_rules": [],
-              "calendar_scope": "unknown",
-              "conditions": [
-                {
-                  "evidence": [
-                    "Prossima apertura"
-                  ],
-                  "kind": "publisher_status",
-                  "text": "Prossima apertura: Torna a giugno"
-                }
-              ],
-              "date_intervals": [],
-              "description": "Mercatini Serali Estivi organizzati dal Comune di Roseto degli Abruzzi in collaborazione con associazioni di categoria, specializzati in artigianato, antiquariato e collezionismo. Evento ricorrente con alta frequenza durante la stagione estiva (giugno-settembre) nella cornice della Pineta Celommi.",
-              "edition_intervals": [],
-              "entry": "Gratuito",
+              "entry": "Ingresso gratuito per visitatori. Espositori: 15€ (9 mq) o 20€ (12 mq)",
               "forecast_rule": null,
               "hours_intervals": [],
               "hours_text": null,
               "location": {
-                "address": "Pineta Celommi",
-                "city": "Roseto degli Abruzzi",
-                "province": "TE",
-                "region": "Abruzzo"
+                "address": "Zona Industriale Roncajette, Viale del Lavoro/Via Finlandia",
+                "city": "Ponte San Nicolò",
+                "province": "PD",
+                "region": "Veneto"
               },
-              "name": "Mercatino delle Pulci",
+              "name": "Mercatino dell'Usato",
               "observed_location": {
-                "address": "Pineta Celommi, Roseto degli Abruzzi (TE)",
-                "city": "Roseto degli Abruzzi",
-                "province": "TE",
-                "region": "Abruzzo"
+                "address": "Zona Industriale Roncajette, Viale del Lavoro/Via Finlandia, Ponte San Nicolò (PD)",
+                "city": "Ponte San Nicolò",
+                "province": "PD",
+                "region": "Veneto"
               },
               "occurrences": [],
               "recurrence_text": null,
@@ -3416,7 +374,7 @@
                 "vintage",
                 "collezionismo"
               ],
-              "tips": "Arrivare in treno o auto via A14. Utilizzare la navetta gratuita disponibile dal 1° luglio al 6 settembre che collega mare, centro, stazione e frazioni. Consigliato parcheggiare in aree periferiche. Portare scarpe comode e borsa riutilizzabile per gli acquisti."
+              "tips": "Arrivare entro le 14:00 per la migliore selezione di oggetti. Gli espositori arrivano tra le 06:00 e le 07:30. Consultare il calendario sul sito della Pro Loco per eventuali variazioni. Ample aree di parcheggio disponibili in zona industriale."
             },
             "field_evidence": {
               "calendar": {
@@ -3427,7 +385,7 @@
               },
               "identity": {
                 "selector": "record.id",
-                "value": "dffab385-0a84-41ad-9347-6626b0dd7d5a"
+                "value": "3f0b10f0-19e6-4138-b2ac-62bf16777c88"
               },
               "location": {
                 "selector": "record.city/region/address"
@@ -3435,40 +393,41 @@
             },
             "schema": 1,
             "source": {
-              "bytes": 1338,
+              "bytes": 1388,
               "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/dffab385-0a84-41ad-9347-6626b0dd7d5a",
+              "final_url": "https://vintagery.it/mercatini/3f0b10f0-19e6-4138-b2ac-62bf16777c88",
               "hash_basis": "browser_captured_record",
-              "html_sha256": "8111698b0259b1651eab0ea311047f771b5592896c0f549439f918efe2cab8df",
+              "html_sha256": "87f1fe6f677082f37e763df70a9f8424dd577f458c9bdcb8597892ba64bcd700",
               "modified_at": null,
               "published_at": null,
               "publisher": "vintagery.it",
               "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/dffab385-0a84-41ad-9347-6626b0dd7d5a",
-              "source_id": "dffab385-0a84-41ad-9347-6626b0dd7d5a"
+              "requested_url": "https://vintagery.it/mercatini/3f0b10f0-19e6-4138-b2ac-62bf16777c88",
+              "source_id": "3f0b10f0-19e6-4138-b2ac-62bf16777c88"
             },
             "status": "parsed",
             "warnings": [
               "hours_seasonal_or_per_edition",
-              "rule_not_read"
+              "rule_with_other_text",
+              "next_date_unconfirmed"
             ]
           },
-          "read_on": "2026-10-27"
+          "read_on": "2026-10-31"
         },
-        "market_id": "mercatino-delle-pulci-roseto-degli-abruzzi",
+        "market_id": "mercatino-dell-usato-ponte-san-nicolo",
         "source_page": {
-          "bytes": 1338,
+          "bytes": 1388,
           "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/dffab385-0a84-41ad-9347-6626b0dd7d5a",
+          "final_url": "https://vintagery.it/mercatini/3f0b10f0-19e6-4138-b2ac-62bf16777c88",
           "hash_basis": "browser_captured_record",
-          "html_sha256": "8111698b0259b1651eab0ea311047f771b5592896c0f549439f918efe2cab8df",
+          "html_sha256": "87f1fe6f677082f37e763df70a9f8424dd577f458c9bdcb8597892ba64bcd700",
           "modified_at": null,
           "published_at": null,
           "publisher": "vintagery.it",
-          "read_on": "2026-10-27",
+          "read_on": "2026-10-31",
           "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/dffab385-0a84-41ad-9347-6626b0dd7d5a",
-          "source_id": "dffab385-0a84-41ad-9347-6626b0dd7d5a",
+          "requested_url": "https://vintagery.it/mercatini/3f0b10f0-19e6-4138-b2ac-62bf16777c88",
+          "source_id": "3f0b10f0-19e6-4138-b2ac-62bf16777c88",
           "status": "parsed"
         }
       },
@@ -3491,40 +450,40 @@
                 }
               ],
               "date_intervals": [],
-              "description": "Mercatino del Rigattiere e Antiquariato consolidato nel centro di Corbola, provincia di Rovigo. Si svolge mensilmente nella quarta domenica del mese con espositori di antiquariato, usato e rigatteria. Evento pubblico all'aperto organizzato dall'Amministrazione Comunale in collaborazione con la Pro Loco.",
+              "description": "Mercatino delle pulci, usato e artigianato la domenica mattina al Mercato Ortofrutticolo di Pagani-Nocera Inferiore, con ingresso gratuito e ampio parcheggio.",
               "edition_intervals": [],
-              "entry": "Ingresso gratuito per visitatori",
+              "entry": "Ingresso gratuito; prezzi della merce variabili e basati sulla trattativa, consigliato il contante in piccoli tagli",
               "forecast_rule": null,
               "hours_intervals": [
                 {
-                  "end": "19:00",
-                  "start": "08:00"
+                  "end": "13:00",
+                  "start": "06:00"
                 }
               ],
-              "hours_text": "08:00–19:00",
+              "hours_text": "06:00–13:00",
               "location": {
-                "address": "Piazza Martiri",
-                "city": "Corbola",
-                "province": "RO",
-                "region": "Veneto"
+                "address": "",
+                "city": "Pagani",
+                "province": "SA",
+                "region": "Campania"
               },
-              "name": "Mercatino del Rigattiere e Antiquariato",
+              "name": "Mercatino delle Pulci",
               "observed_location": {
-                "address": "Piazza Martiri, 45015 Corbola (RO), Veneto",
-                "city": "Corbola",
-                "province": "RO",
-                "region": "Veneto"
+                "address": "Via Mangioni, 1, 84016 Pagani (SA), presso il Mercato Ortofrutticolo di Pagani-Nocera Inferiore",
+                "city": "Pagani",
+                "province": "SA",
+                "region": "Campania"
               },
               "occurrences": [],
-              "recurrence_text": "Ogni quarta domenica del mese, tutto l'anno",
+              "recurrence_text": "Ogni domenica",
               "scope_statements": [],
               "source_rows": [],
               "suspensions": [],
               "tags": [
-                "usato",
-                "antiquariato"
+                "vintage",
+                "collezionismo"
               ],
-              "tips": "Verificare sulla pagina Facebook ufficiale eventuali slittamenti straordinari in caso di festività o allerte meteo prima di visitare. Per informazioni su esposizioni contattare: 331.2620896 o 392.4553882. Evento all'aperto in piazza, consultare previsioni meteo stagionali."
+              "tips": "Arrivare nelle prime ore del mattino per una scelta migliore e per facilitare il parcheggio. Portare contanti in piccoli tagli. Prima di partire, controllare la pagina Facebook \"Mercatini dell'usato, dell'artigianato e non solo Nocera / Pagani\", soprattutto in caso di festività o possibili ordinanze comunali."
             },
             "field_evidence": {
               "calendar": {
@@ -3535,7 +494,7 @@
               },
               "identity": {
                 "selector": "record.id",
-                "value": "8afefb7d-e80a-46b2-b8a2-536a3526ce22"
+                "value": "4b84e5f7-f711-42ce-a81e-d71142997418"
               },
               "location": {
                 "selector": "record.city/region/address"
@@ -3543,45 +502,915 @@
             },
             "schema": 1,
             "source": {
-              "bytes": 1252,
+              "bytes": 1250,
               "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/8afefb7d-e80a-46b2-b8a2-536a3526ce22",
+              "final_url": "https://vintagery.it/mercatini/4b84e5f7-f711-42ce-a81e-d71142997418",
               "hash_basis": "browser_captured_record",
-              "html_sha256": "e4f9d247a2b7e97cfe5b21a03d3d8e0b54a7fea844569a5e960992f0863a9bdf",
-              "modified_at": "2026-10-10",
+              "html_sha256": "d1ddd9c870bf205459c5781871c97af99f7da679f0969fb364d54cd81f5d3b3c",
+              "modified_at": null,
               "published_at": null,
               "publisher": "vintagery.it",
               "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/8afefb7d-e80a-46b2-b8a2-536a3526ce22",
-              "source_id": "8afefb7d-e80a-46b2-b8a2-536a3526ce22"
+              "requested_url": "https://vintagery.it/mercatini/4b84e5f7-f711-42ce-a81e-d71142997418",
+              "source_id": "4b84e5f7-f711-42ce-a81e-d71142997418"
             },
             "status": "parsed",
             "warnings": [
               "next_date_unconfirmed"
             ]
           },
+          "read_on": "2026-11-10"
+        },
+        "market_id": "mercatino-delle-pulci-pagani",
+        "source_page": {
+          "bytes": 1250,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/4b84e5f7-f711-42ce-a81e-d71142997418",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "d1ddd9c870bf205459c5781871c97af99f7da679f0969fb364d54cd81f5d3b3c",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-11-10",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/4b84e5f7-f711-42ce-a81e-d71142997418",
+          "source_id": "4b84e5f7-f711-42ce-a81e-d71142997418",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": false,
+              "calendar_rules": [],
+              "calendar_scope": "unknown",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "La Soffitta in Piazza è un mercatino consolidato a Seano che ospita circa 200 espositori di antiquariato, oggetti vintage, collezionismo e artigianato locale. Si svolge regolarmente ogni seconda domenica del mese (escluso agosto) ed è gestito dalla Pro Loco di Carmignano. È un tipico mercato delle pulci con oggetti di 'roba vecchia' e articoli da collezionismo.",
+              "edition_intervals": [],
+              "entry": "Ingresso gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [],
+              "hours_text": null,
+              "location": {
+                "address": "Seano",
+                "city": "Carmignano",
+                "province": "PO",
+                "region": "Toscana"
+              },
+              "name": "La Soffitta in Piazza",
+              "observed_location": {
+                "address": "Pista Rossa, Via Carlo Levi, Seano, Carmignano (PO), Toscana",
+                "city": "Carmignano",
+                "province": "PO",
+                "region": "Toscana"
+              },
+              "occurrences": [],
+              "recurrence_text": null,
+              "scope_statements": [],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "record.organizer"
+                  ],
+                  "field": "organizer",
+                  "value": "Pro Loco di Carmignano"
+                }
+              ],
+              "suspensions": [],
+              "tags": [
+                "usato",
+                "riuso",
+                "svuotasoffitte",
+                "abbigliamento",
+                "privati"
+              ],
+              "tips": "Circa 200 espositori; ammessi anche privati e artigiani."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "ff3b6781-c77f-4d82-bc26-86d0d46231ed"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1171,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/ff3b6781-c77f-4d82-bc26-86d0d46231ed",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "207e9d4b8f68e38c7dcc8e11429047368228406246c1206e839399ac3da7a2dc",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/ff3b6781-c77f-4d82-bc26-86d0d46231ed",
+              "source_id": "ff3b6781-c77f-4d82-bc26-86d0d46231ed"
+            },
+            "status": "parsed",
+            "warnings": [
+              "hours_seasonal_or_per_edition",
+              "rule_with_other_text",
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-11-09"
+        },
+        "market_id": "la-soffitta-in-piazza-carmignano",
+        "source_page": {
+          "bytes": 1171,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/ff3b6781-c77f-4d82-bc26-86d0d46231ed",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "207e9d4b8f68e38c7dcc8e11429047368228406246c1206e839399ac3da7a2dc",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-11-09",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/ff3b6781-c77f-4d82-bc26-86d0d46231ed",
+          "source_id": "ff3b6781-c77f-4d82-bc26-86d0d46231ed",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "recurring_statement_only",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "Mercatino mensile di antiquariato e vintage ogni prima domenica del mese lungo Via Cavour a Olbia. Oggettistica, piccolo antiquariato e modernariato nel centro della città gallurese.",
+              "edition_intervals": [],
+              "entry": "Ingresso gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "13:30",
+                  "start": "08:00"
+                }
+              ],
+              "hours_text": "08:00–13:30",
+              "location": {
+                "address": "Via Cavour",
+                "city": "Olbia",
+                "province": "OT",
+                "region": "Sardegna"
+              },
+              "name": "Mercatino Antiquariato — Via Cavour, Olbia",
+              "observed_location": {
+                "address": "Via Cavour, Olbia (SS)",
+                "city": "Olbia",
+                "province": "OT",
+                "region": "Sardegna"
+              },
+              "occurrences": [],
+              "recurrence_text": "Prima domenica del mese",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": [],
+              "tags": [
+                "antiquariato",
+                "oggetti d'epoca"
+              ],
+              "tips": "Olbia è il principale porto per i traghetti dalla Penisola: comodo da visitare all'arrivo o alla partenza."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "75e8bc89-71eb-460c-b72f-af5366e23eee"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 914,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/75e8bc89-71eb-460c-b72f-af5366e23eee",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "5bb1fad5bb81513808c37af58b5764c2c9b0ea0aa6e3cf56fed7cbe895875f61",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/75e8bc89-71eb-460c-b72f-af5366e23eee",
+              "source_id": "75e8bc89-71eb-460c-b72f-af5366e23eee"
+            },
+            "status": "parsed",
+            "warnings": [
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-11-02"
+        },
+        "market_id": "mercatino-antiquariato-via-cavour-olbia-olbia",
+        "source_page": {
+          "bytes": 914,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/75e8bc89-71eb-460c-b72f-af5366e23eee",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "5bb1fad5bb81513808c37af58b5764c2c9b0ea0aa6e3cf56fed7cbe895875f61",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-11-02",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/75e8bc89-71eb-460c-b72f-af5366e23eee",
+          "source_id": "75e8bc89-71eb-460c-b72f-af5366e23eee",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "recurring_statement_only",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "La seconda domenica del mese la frazione di Stellata, a Bondeno, ospita il suo mercatino dell'antiquariato e dell'usato, disposto attorno alla scenografica Rocca Possente, fortezza estense affacciata sul Po. Dalla mattina alla sera, banchi di antiquariato, modernariato, oggettistica e curiosità d'epoca in una delle cornici più suggestive del Ferrarese. Una domenica tra storia e ricerca, sull'argine del grande fiume.",
+              "edition_intervals": [],
+              "entry": "Ingresso gratuito per visitatori. Punti ristoro con prezzi popolari. Modulo richiesta banco disponibile sul sito Pro Loco",
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "18:00",
+                  "start": "09:00"
+                }
+              ],
+              "hours_text": "09:00–18:00",
+              "location": {
+                "address": "",
+                "city": "Bondeno",
+                "province": "FE",
+                "region": "Emilia-Romagna"
+              },
+              "name": "Mercatino dell'Antiquariato e dell'Usato di Stellata",
+              "observed_location": {
+                "address": "Centro paese, area Rocca Possente e Parco Golenale, Via per Stellata, 44012 Stellata di Bondeno (FE)",
+                "city": "Bondeno",
+                "province": "FE",
+                "region": "Emilia-Romagna"
+              },
+              "occurrences": [],
+              "recurrence_text": "Seconda domenica di ogni mese",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": [],
+              "tags": [
+                "antiquariato",
+                "usato"
+              ],
+              "tips": "Consultare il sito della Pro Loco per il modulo espositore e le date confermate. Verificare i canali social per eventuali variazioni. Possibilità di pranzare in loco con prodotti tipici locali a prezzi accessibili."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "2a915090-3509-485a-b349-fc4a13a9d432"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1467,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/2a915090-3509-485a-b349-fc4a13a9d432",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "786353a211554e03fb2528cddda4e9f815a0a9e8f46691c41a7d96e8a9c899ec",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/2a915090-3509-485a-b349-fc4a13a9d432",
+              "source_id": "2a915090-3509-485a-b349-fc4a13a9d432"
+            },
+            "status": "parsed",
+            "warnings": [
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-11-10"
+        },
+        "market_id": "mercatino-dell-antiquariato-e-dell-usato-di-stellata-bondeno",
+        "source_page": {
+          "bytes": 1467,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/2a915090-3509-485a-b349-fc4a13a9d432",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "786353a211554e03fb2528cddda4e9f815a0a9e8f46691c41a7d96e8a9c899ec",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-11-10",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/2a915090-3509-485a-b349-fc4a13a9d432",
+          "source_id": "2a915090-3509-485a-b349-fc4a13a9d432",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": false,
+              "calendar_rules": [],
+              "calendar_scope": "unknown",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Date annunciate di volta in volta"
+                }
+              ],
+              "date_intervals": [],
+              "description": "Mercatino hobbistico e di artigianato locale legato a eventi estivi e sagre paesane organizzati dalla Pro Loco Caviola. Ha frequenza stagionale concentrata in luglio-agosto con appuntamento principale alla Sagra d'Istà. Esiste anche un mercato ambulante ordinario ogni giovedì nella frazione.",
+              "edition_intervals": [],
+              "entry": "Gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [],
+              "hours_text": null,
+              "location": {
+                "address": "",
+                "city": "Alleghe",
+                "province": "BL",
+                "region": "Veneto"
+              },
+              "name": "Mercatino di artigianato e hobbistica - Caviola",
+              "observed_location": {
+                "address": "Piazza S. Pertini 32024, Caviola di Falcade (BL), Alleghe",
+                "city": "Alleghe",
+                "province": "BL",
+                "region": "Veneto"
+              },
+              "occurrences": [],
+              "recurrence_text": null,
+              "scope_statements": [],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "record.organizer"
+                  ],
+                  "field": "organizer",
+                  "value": "Pro Loco Caviola"
+                }
+              ],
+              "suspensions": [],
+              "tags": [
+                "hobbisti",
+                "artigianato",
+                "usato"
+              ],
+              "tips": "Contattare in anticipo la Pro Loco Caviola per informazioni aggiornate su date specifiche 2025-2026 e per partecipazioni come espositore."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "e896087f-e8ba-4382-b8db-bb450a29b4ee"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1272,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/e896087f-e8ba-4382-b8db-bb450a29b4ee",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "c641eeccc3363b87e2ac9bce1eb89891ed629a77f5cdd52d522a30d443223d15",
+              "modified_at": "2026-10-04",
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/e896087f-e8ba-4382-b8db-bb450a29b4ee",
+              "source_id": "e896087f-e8ba-4382-b8db-bb450a29b4ee"
+            },
+            "status": "parsed",
+            "warnings": [
+              "hours_seasonal_or_per_edition",
+              "rule_not_read"
+            ]
+          },
           "read_on": "2026-10-27"
         },
-        "market_id": "mercatino-del-rigattiere-e-antiquariato-corbola",
+        "market_id": "mercatino-di-artigianato-e-hobbistica-caviola-alleghe",
         "source_page": {
-          "bytes": 1252,
+          "bytes": 1272,
           "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/8afefb7d-e80a-46b2-b8a2-536a3526ce22",
+          "final_url": "https://vintagery.it/mercatini/e896087f-e8ba-4382-b8db-bb450a29b4ee",
           "hash_basis": "browser_captured_record",
-          "html_sha256": "e4f9d247a2b7e97cfe5b21a03d3d8e0b54a7fea844569a5e960992f0863a9bdf",
-          "modified_at": "2026-10-10",
+          "html_sha256": "c641eeccc3363b87e2ac9bce1eb89891ed629a77f5cdd52d522a30d443223d15",
+          "modified_at": "2026-10-04",
           "published_at": null,
           "publisher": "vintagery.it",
           "read_on": "2026-10-27",
           "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/8afefb7d-e80a-46b2-b8a2-536a3526ce22",
-          "source_id": "8afefb7d-e80a-46b2-b8a2-536a3526ce22",
+          "requested_url": "https://vintagery.it/mercatini/e896087f-e8ba-4382-b8db-bb450a29b4ee",
+          "source_id": "e896087f-e8ba-4382-b8db-bb450a29b4ee",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "recurring_statement_only",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "AntiquAlatri (Artigiani nel Borgo) è una mostra-mercato consolidata nel panorama ciociaro dedicata ad antiquariato, modernariato, collezionismo e artigianato locale. L'evento si svolge regolarmente ogni terza domenica del mese presso Viale Duca d'Aosta nel centro di Alatri. Si tratta di un mercatino all'aperto con ingresso gratuito e accesso pubblico.",
+              "edition_intervals": [],
+              "entry": "Ingresso gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "18:00",
+                  "start": "09:00"
+                }
+              ],
+              "hours_text": "09:00–18:00",
+              "location": {
+                "address": "Viale Duca d'Aosta",
+                "city": "Alatri",
+                "province": "FR",
+                "region": "Lazio"
+              },
+              "name": "AntiquAlatri — Mercatino dell'Antiquariato",
+              "observed_location": {
+                "address": "Viale Duca d'Aosta, Alatri (FR)",
+                "city": "Alatri",
+                "province": "FR",
+                "region": "Lazio"
+              },
+              "occurrences": [],
+              "recurrence_text": "Ogni terza domenica del mese",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": [],
+              "tags": [
+                "antiquariato",
+                "collezionismo"
+              ],
+              "tips": "Parcheggiare nelle aree limitrofe al centro storico e raggiungere Viale Duca d'Aosta a piedi. Portare contanti di piccolo taglio poiché molti espositori potrebbero non disporre di POS portatili. Verificare eventuali variazioni eccezionali tramite la pagina Facebook di 'Artigiani nel Borgo' o i gruppi locali Ciociaria Eventi. Per info o per esporre: 334 3251985."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1365,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "98d40e377ef5cfeeb2af99365d6600c9bfa501a856a56d6ed01e4c661cb01422",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4",
+              "source_id": "2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4"
+            },
+            "status": "parsed",
+            "warnings": [
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-10-28"
+        },
+        "market_id": "antiqualatri-mercatino-dell-antiquariato-alatri",
+        "source_page": {
+          "bytes": 1365,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "98d40e377ef5cfeeb2af99365d6600c9bfa501a856a56d6ed01e4c661cb01422",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-10-28",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4",
+          "source_id": "2e3e89c8-ae0b-4889-9ec6-c8c77a8421f4",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": false,
+              "calendar_rules": [],
+              "calendar_scope": "unknown",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "Il mercatino solidale dell'usato della Croce Azzurra del Litorale Pisano in piazza Viviani, la terza domenica.",
+              "edition_intervals": [],
+              "entry": "",
+              "forecast_rule": null,
+              "hours_intervals": [
+                {
+                  "end": "19:00",
+                  "start": "09:00"
+                }
+              ],
+              "hours_text": "09:00–19:00",
+              "location": {
+                "address": "Piazza Viviani, Marina di Pisa",
+                "city": "Pisa",
+                "province": "PI",
+                "region": "Toscana"
+              },
+              "name": "Compro Baratto Vendo",
+              "observed_location": {
+                "address": "Piazza Viviani, Marina di Pisa (PI)",
+                "city": "Pisa",
+                "province": "PI",
+                "region": "Toscana"
+              },
+              "occurrences": [],
+              "recurrence_text": null,
+              "scope_statements": [],
+              "source_rows": [
+                {
+                  "evidence": [
+                    "record.organizer"
+                  ],
+                  "field": "organizer",
+                  "value": "CALP - Croce Azzurra del Litorale Pisano"
+                }
+              ],
+              "suspensions": [],
+              "tags": [
+                "usato",
+                "oggettistica"
+              ],
+              "tips": ""
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "a9895ef0-0893-4e42-bcad-8318a7b8e966"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 794,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/a9895ef0-0893-4e42-bcad-8318a7b8e966",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "b658a16275460d50e5107e491785e2208e13d3a57316a0dd6a37cec1b295a021",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/a9895ef0-0893-4e42-bcad-8318a7b8e966",
+              "source_id": "a9895ef0-0893-4e42-bcad-8318a7b8e966"
+            },
+            "status": "parsed",
+            "warnings": [
+              "rule_with_other_text",
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-11-01"
+        },
+        "market_id": "compro-baratto-vendo-pisa",
+        "source_page": {
+          "bytes": 794,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/a9895ef0-0893-4e42-bcad-8318a7b8e966",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "b658a16275460d50e5107e491785e2208e13d3a57316a0dd6a37cec1b295a021",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-11-01",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/a9895ef0-0893-4e42-bcad-8318a7b8e966",
+          "source_id": "a9895ef0-0893-4e42-bcad-8318a7b8e966",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": true,
+              "calendar_rules": [],
+              "calendar_scope": "recurring_statement_only",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Data da confermare"
+                }
+              ],
+              "date_intervals": [],
+              "description": "Mercatino dell'Antiquariato e del Collezionismo di Chioggia, appuntamento mensile lungo il Corso del Popolo nel centro storico, con antiquariato, collezionismo e oggetti vari.",
+              "edition_intervals": [],
+              "entry": "Ingresso gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [],
+              "hours_text": null,
+              "location": {
+                "address": "Corso del Popolo (lato nord), centro storico",
+                "city": "Chioggia",
+                "province": "VE",
+                "region": "Veneto"
+              },
+              "name": "Mercatino dell'Antiquariato e del Collezionismo",
+              "observed_location": {
+                "address": "Corso del Popolo (lato nord), centro storico, Chioggia (VE)",
+                "city": "Chioggia",
+                "province": "VE",
+                "region": "Veneto"
+              },
+              "occurrences": [],
+              "recurrence_text": "Seconda domenica di ogni mese",
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": [],
+              "tags": [
+                "antiquariato",
+                "modernariato",
+                "collezionismo"
+              ],
+              "tips": "Visitare preferibilmente la seconda domenica del mese. Il centro storico è ZTL: parcheggiare nelle aree limitrofe o negli scambiatori all'ingresso della città. Consultare i canali social del Comune alcuni giorni prima per eventuali variazioni meteo o concomitanza con altri eventi (es. Sagra del Pesce). Abbigliamento comodo consigliato in quanto mercatino all'aperto."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "d7496e44-03e9-4787-bedc-8bc2360a41cc"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1336,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/d7496e44-03e9-4787-bedc-8bc2360a41cc",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "f62986e1dc2b415c4ff027e3e09e104493a9030f47e569bf10a1fc95e79c5c44",
+              "modified_at": "2026-08-02",
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/d7496e44-03e9-4787-bedc-8bc2360a41cc",
+              "source_id": "d7496e44-03e9-4787-bedc-8bc2360a41cc"
+            },
+            "status": "parsed",
+            "warnings": [
+              "hours_seasonal_or_per_edition",
+              "next_date_unconfirmed"
+            ]
+          },
+          "read_on": "2026-10-27"
+        },
+        "market_id": "mercatino-dell-antiquariato-e-del-collezionismo-chioggia",
+        "source_page": {
+          "bytes": 1336,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/d7496e44-03e9-4787-bedc-8bc2360a41cc",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "f62986e1dc2b415c4ff027e3e09e104493a9030f47e569bf10a1fc95e79c5c44",
+          "modified_at": "2026-08-02",
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-10-27",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/d7496e44-03e9-4787-bedc-8bc2360a41cc",
+          "source_id": "d7496e44-03e9-4787-bedc-8bc2360a41cc",
+          "status": "parsed"
+        }
+      },
+      {
+        "document": {
+          "parsed": {
+            "conflicts": [],
+            "event": {
+              "archive_marker": false,
+              "calendar_complete": false,
+              "calendar_rules": [],
+              "calendar_scope": "unknown",
+              "conditions": [
+                {
+                  "evidence": [
+                    "Prossima apertura"
+                  ],
+                  "kind": "publisher_status",
+                  "text": "Prossima apertura: Torna a marzo"
+                }
+              ],
+              "date_intervals": [],
+              "description": "La Fiera di San Giuseppe a Cosenza è un evento storico e millenario attivo e di grande richiamo regionale. Si svolge annualmente a marzo con oltre 450 stand dedicati ad artigianato locale (vimini, terrecotte), mercatino generale e punti ristoro con le tipiche zeppole di San Giuseppe.",
+              "edition_intervals": [],
+              "entry": "Gratuito",
+              "forecast_rule": null,
+              "hours_intervals": [],
+              "hours_text": null,
+              "location": {
+                "address": "Viale Giacomo Mancini, Cosenza (percorso di circa 6 km con estensioni su via Aceti, via A. Scopelliti, via P. La Torre, via Baccelli)",
+                "city": "Cosenza",
+                "province": "CS",
+                "region": "Calabria"
+              },
+              "name": "Fiera di San Giuseppe",
+              "observed_location": {
+                "address": "Viale Giacomo Mancini, Cosenza (percorso di circa 6 km con estensioni su via Aceti, via A. Scopelliti, via P. La Torre, via Baccelli)",
+                "city": "Cosenza",
+                "province": "CS",
+                "region": "Calabria"
+              },
+              "occurrences": [],
+              "recurrence_text": null,
+              "scope_statements": [],
+              "source_rows": [],
+              "suspensions": [],
+              "tags": [
+                "collezionismo"
+              ],
+              "tips": "Indossare scarpe comode per il lungo percorso (6 km). Portare ombrello/giacca in quanto marzo è variabile. Consigliato utilizzare parcheggi scambiatori o arrivare con anticipo data l'alta congestione del traffico. Alcune categorie merceologiche iniziano l'esposizione giorni prima della data ufficiale."
+            },
+            "field_evidence": {
+              "calendar": {
+                "selector": "record.start_date; schedule_notes dates"
+              },
+              "hours": {
+                "selector": "record.start_time/end_time"
+              },
+              "identity": {
+                "selector": "record.id",
+                "value": "52b17fc1-4b35-4d0a-a47f-2d35eb2c5317"
+              },
+              "location": {
+                "selector": "record.city/region/address"
+              }
+            },
+            "schema": 1,
+            "source": {
+              "bytes": 1386,
+              "canonical_url": null,
+              "final_url": "https://vintagery.it/mercatini/52b17fc1-4b35-4d0a-a47f-2d35eb2c5317",
+              "hash_basis": "browser_captured_record",
+              "html_sha256": "e51a6da50953f254da73ed5ac5dae9881ac14bf2c779ce45b927e7885097b717",
+              "modified_at": null,
+              "published_at": null,
+              "publisher": "vintagery.it",
+              "redirect_observed": false,
+              "requested_url": "https://vintagery.it/mercatini/52b17fc1-4b35-4d0a-a47f-2d35eb2c5317",
+              "source_id": "52b17fc1-4b35-4d0a-a47f-2d35eb2c5317"
+            },
+            "status": "parsed",
+            "warnings": [
+              "hours_seasonal_or_per_edition",
+              "rule_not_read"
+            ]
+          },
+          "read_on": "2026-10-27"
+        },
+        "market_id": "fiera-di-san-giuseppe-cosenza",
+        "source_page": {
+          "bytes": 1386,
+          "canonical_url": null,
+          "final_url": "https://vintagery.it/mercatini/52b17fc1-4b35-4d0a-a47f-2d35eb2c5317",
+          "hash_basis": "browser_captured_record",
+          "html_sha256": "e51a6da50953f254da73ed5ac5dae9881ac14bf2c779ce45b927e7885097b717",
+          "modified_at": null,
+          "published_at": null,
+          "publisher": "vintagery.it",
+          "read_on": "2026-10-27",
+          "redirect_observed": false,
+          "requested_url": "https://vintagery.it/mercatini/52b17fc1-4b35-4d0a-a47f-2d35eb2c5317",
+          "source_id": "52b17fc1-4b35-4d0a-a47f-2d35eb2c5317",
           "status": "parsed"
         }
       }
     ],
-    "date": "2026-11-14",
-    "max_new": 32,
+    "date": "2026-11-15",
+    "max_new": 12,
     "publisher": "later-sources",
     "schema": 1
   },
@@ -3591,9 +1420,9 @@
   "reconciled_id_count": 77,
   "records_added": 0,
   "records_deleted": 0,
-  "records_total": 14689,
+  "records_total": 14721,
   "review_only": false,
   "schema": 1,
-  "source_age_days": 44,
+  "source_age_days": 45,
   "verified_future_events_created": 0
 }

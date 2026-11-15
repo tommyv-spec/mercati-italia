@@ -8,13 +8,13 @@ No forecast, human verification, original source, or identity changed.
 
 - Held official rows screened: **1368**
 - Existing market cards with added information: **780**
-- Missing hours supplied from official regional source: **1**
+- Missing hours supplied from official regional source: **0**
 - Missing/vague venues supplied from the complete source: **0**
 - Managed venues updated from the same source ID: **0**
-- Official source attributions attached: **2**
-- exact_matches: 155
-- existing_hours_differ_from_official: 7
-- existing_hours_preserved: 155
+- Official source attributions attached: **0**
+- exact_matches: 154
+- existing_hours_differ_from_official: 6
+- existing_hours_preserved: 154
 - field_observation_records_updated: 780
 - held_unique_town_coordinates_conflict: 107
 - held_unique_town_daypart_or_place_disagrees: 218
@@ -24,20 +24,17 @@ No forecast, human verification, original source, or identity changed.
 - held_unique_town_raw_unknown_weekday_competitor: 50
 - held_unique_town_target_identity_incomplete: 86
 - held_unique_town_unmanaged_indirizzo: 390
-- hours_added: 1
 - municipality_day_unique_matches: 632
 - observed_spelling_matches: 25
-- official_source_attributions_added: 2
 - skipped_coordinates_conflict: 3
-- skipped_legacy_without_explicit_annual_weekday: 363
+- skipped_legacy_without_explicit_annual_weekday: 368
 - skipped_market_type_unproved_or_conflicting: 2
 - skipped_multiple_official_markets_same_venue_day: 2
-- skipped_no_exact_legacy_market: 662
+- skipped_no_exact_legacy_market: 663
 - skipped_no_exact_location_or_day: 540
 - skipped_official_raw_identity_unproved_or_conflicting: 56
 - skipped_official_without_explicit_annual_weekday: 515
 - unique_town_targets_screened: 2343
-- vague_hours_replaced: 1
 
 ## Example exact matches
 

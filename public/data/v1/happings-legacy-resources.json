@@ -654,17 +654,44 @@
       "status": "resolved"
     },
     {
-      "attempts": 2,
+      "attempts": 3,
       "city_keys": [
         "camerano"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": "2026-11-14",
+      "last_attempt_on": "2026-11-15",
       "last_error": null,
-      "last_success_on": null,
+      "last_success_on": "2026-11-15",
       "next_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-camerano-2.html",
-      "proof": null,
+      "proof": {
+        "canonical_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "final_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "matched_city_days": [
+          {
+            "city_key": "camerano",
+            "weekday": 1
+          },
+          {
+            "city_key": "camerano",
+            "weekday": 3
+          },
+          {
+            "city_key": "camerano",
+            "weekday": 4
+          },
+          {
+            "city_key": "camerano",
+            "weekday": 5
+          }
+        ],
+        "observed_on": "2026-11-15",
+        "province_heading": "ancona",
+        "requested_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "resource_url": "https://www.happings.com/it/mercati-settimanali-a-ancona-e-provincia/",
+        "source_html_sha256": "cd7997f6a2f404ff221a545db93effd5151553d6e28de2e7f86a70643aa5cc0f",
+        "source_rows": 88
+      },
       "province": "AN",
       "redirects": [
         {
@@ -681,7 +708,7 @@
         }
       ],
       "region": "marche",
-      "status": "redirect_observed"
+      "status": "resolved"
     },
     {
       "attempts": 3,
@@ -782,21 +809,28 @@
       "status": "pending"
     },
     {
-      "attempts": 0,
+      "attempts": 1,
       "city_keys": [
         "casal velino"
       ],
       "first_seen_on": "2026-10-27",
-      "last_attempt_on": null,
+      "last_attempt_on": "2026-11-15",
       "last_error": null,
       "last_success_on": null,
-      "next_url": "https://www.happings.com/it/mercato-settimanale-a-casal-velino-1.html",
+      "next_url": "https://www.happings.com/it/mercato-settimanale-a-casal-velino-1/",
       "origin_url": "https://www.happings.com/it/mercato-settimanale-a-casal-velino-1.html",
       "proof": null,
       "province": "SA",
-      "redirects": [],
+      "redirects": [
+        {
+          "location_url": "https://www.happings.com/it/mercato-settimanale-a-casal-velino-1/",
+          "observed_on": "2026-11-15",
+          "requested_url": "https://www.happings.com/it/mercato-settimanale-a-casal-velino-1.html",
+          "status_code": 301
+        }
+      ],
       "region": "campania",
-      "status": "pending"
+      "status": "redirect_observed"
     },
     {
       "attempts": 0,

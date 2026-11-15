@@ -606,6 +606,11 @@
    "query": "GARIBALDI, San Martino Dall'Argine, Italia",
    "type": "secondary"
   },
+  "giardini del palazzo rocca dei papi|montefiascone|vt": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-15",
+   "query": "Giardini del Palazzo Rocca dei Papi, Montefiascone, Italia"
+  },
   "giardini della villa comunale|sulmona|aq": {
    "miss": "nessun_risultato",
    "queried_on": "2026-11-04",
@@ -1006,6 +1011,16 @@
    "queried_on": "2026-11-04",
    "query": "Lungomare pedonale Cristoforo Colombo, Margherita di Savoia, Italia"
   },
+  "lungomare piermanni|civitanova marche|mc": {
+   "class": "highway",
+   "lat": 43.309429,
+   "lng": 13.732908,
+   "name": "Lungomare Sergio Piermanni, Centro, Civitanova Marche, Macerata, Marche, 62012, Italia",
+   "osm": "way/1469164235",
+   "queried_on": "2026-11-15",
+   "query": "Lungomare Piermanni, Civitanova Marche, Italia",
+   "type": "unclassified"
+  },
   "lungomare starita|bari|ba": {
    "class": "highway",
    "lat": 41.139669,
@@ -1180,6 +1195,11 @@
    "queried_on": "2026-11-06",
    "query": "Mostra d'Oltremare, Napoli, Italia",
    "type": "service"
+  },
+  "nuova fiera del levante|bari|ba": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-15",
+   "query": "Nuova Fiera del Levante, Bari, Italia"
   },
   "nuovo centro notarbartolo|palermo|pa": {
    "miss": "nessun_risultato",
@@ -2616,6 +2636,16 @@
    "queried_on": "2026-11-08",
    "query": "Piazza del Popolo, Petralia Soprana, Italia"
   },
+  "piazza del popolo|polistena|rc": {
+   "class": "highway",
+   "lat": 38.405545,
+   "lng": 16.079524,
+   "name": "Piazza del Popolo, Polistena, Reggio Calabria, Calabria, 89024, Italia",
+   "osm": "way/148742555",
+   "queried_on": "2026-11-15",
+   "query": "Piazza del Popolo, Polistena, Italia",
+   "type": "unclassified"
+  },
   "piazza del popolo|ravenna|ra": {
    "class": "highway",
    "lat": 44.417767,
@@ -3171,6 +3201,16 @@
    "query": "Piazza Duomo, Belluno, Italia",
    "type": "bus_stop"
   },
+  "piazza duomo|l aquila|aq": {
+   "class": "place",
+   "lat": 42.390799,
+   "lng": 13.494162,
+   "name": "Piazza Duomo, Camarda, L'Aquila, Abruzzo, Italia",
+   "osm": "relation/9870020",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Duomo, L'Aquila, Italia",
+   "type": "square"
+  },
   "piazza duomo|pontremoli|ms": {
    "class": "place",
    "lat": 44.377565,
@@ -3351,6 +3391,16 @@
    "query": "Piazza Ferrari, Loreggia, Italia",
    "type": "residential"
   },
+  "piazza ferraro|incisa scapaccino|at": {
+   "class": "highway",
+   "lat": 44.808444,
+   "lng": 8.379934,
+   "name": "Piazza Ferraro, Incisa Scapaccino, Asti, Piemonte, 14045, Italia",
+   "osm": "way/557916099",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Ferraro, Incisa Scapaccino, Italia",
+   "type": "unclassified"
+  },
   "piazza finelli|carrara|ms": {
    "class": "place",
    "lat": 44.046804,
@@ -3470,6 +3520,16 @@
    "queried_on": "2026-11-04",
    "query": "Piazza Garibaldi, Assisi, Italia",
    "type": "pedestrian"
+  },
+  "piazza garibaldi|bevagna|pg": {
+   "class": "place",
+   "lat": 42.935094,
+   "lng": 12.609598,
+   "name": "Piazza Giuseppe Garibaldi, Bevagna, Perugia, Umbria, 06031, Italia",
+   "osm": "way/678859951",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Garibaldi, Bevagna, Italia",
+   "type": "square"
   },
   "piazza garibaldi|caltanissetta|cl": {
    "class": "place",
@@ -4356,6 +4416,16 @@
    "query": "Piazza Martiri, Carpi, Italia",
    "type": "square"
   },
+  "piazza martiri|corbola|ro": {
+   "class": "highway",
+   "lat": 45.005644,
+   "lng": 12.076838,
+   "name": "Piazza Martiri, Corbola, Rovigo, Veneto, 45015, Italia",
+   "osm": "way/1230963211",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Martiri, Corbola, Italia",
+   "type": "residential"
+  },
   "piazza martiri|cuorgne|to": {
    "class": "place",
    "lat": 45.390571,
@@ -4406,6 +4476,16 @@
    "queried_on": "2026-10-27",
    "query": "PIAZZA Matteotti, Cosenza, Italia"
   },
+  "piazza matteotti|gonzaga|mn": {
+   "class": "highway",
+   "lat": 44.954895,
+   "lng": 10.820867,
+   "name": "Piazza Giacomo Matteotti, Gonzaga, Mantova, Lombardia, 46023, Italia",
+   "osm": "way/75524122",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Matteotti, Gonzaga, Italia",
+   "type": "residential"
+  },
   "piazza matteotti|massa lombarda|ra": {
    "class": "highway",
    "lat": 44.446369,
@@ -4425,6 +4505,16 @@
    "queried_on": "2026-10-27",
    "query": "PIAZZA Matteotti, Modena, Italia",
    "type": "bus_stop"
+  },
+  "piazza matteotti|olbia|ot": {
+   "class": "place",
+   "lat": 40.923122,
+   "lng": 9.499861,
+   "name": "Piazza Giacomo Matteotti, Centro storico, Olbia, Gallura Nord-Est Sardegna, Sardigna/Sardegna, 07026, Italia",
+   "osm": "way/136908412",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Matteotti, Olbia, Italia",
+   "type": "square"
   },
   "piazza matteotti|palmi|rc": {
    "class": "highway",
@@ -4604,6 +4694,16 @@
    "osm": "way/746402844",
    "queried_on": "2026-10-25",
    "query": "Piazza Omegna, Lodi, Italia",
+   "type": "pedestrian"
+  },
+  "piazza orto del lilli|castiglione della pescaia|gr": {
+   "class": "highway",
+   "lat": 42.76454,
+   "lng": 10.882167,
+   "name": "Piazza Orto del Lilli, Portaccia, Castiglione della Pescaia, Grosseto, Toscana, 58043, Italia",
+   "osm": "relation/15851861",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Orto del Lilli, Castiglione della Pescaia, Italia",
    "type": "pedestrian"
   },
   "piazza p f calvi|noale|ve": {
@@ -5616,6 +5716,16 @@
    "query": "Piazza Vittorio Puntoni, Bologna, Italia",
    "type": "square"
   },
+  "piazza vittorio veneto|galliate|no": {
+   "class": "highway",
+   "lat": 45.478144,
+   "lng": 8.696288,
+   "name": "Piazza Vittorio Veneto, Porta San Pietro, Case Sparse, Galliate, Novara, Piemonte, 28066, Italia",
+   "osm": "relation/17454786",
+   "queried_on": "2026-11-15",
+   "query": "Piazza Vittorio Veneto, Galliate, Italia",
+   "type": "pedestrian"
+  },
   "piazza vittorio veneto|sona|vr": {
    "class": "highway",
    "lat": 45.453159,
@@ -5841,6 +5951,16 @@
    "queried_on": "2026-11-14",
    "query": "Piazzale Gerani, Matelica, Italia"
   },
+  "piazzale gianpaolo cresci|san felice circeo|lt": {
+   "class": "highway",
+   "lat": 41.240573,
+   "lng": 13.102811,
+   "name": "Piazzale Gianpaolo Cresci, San Felice Circeo, Pantano Marino, San Felice Circeo, Latina, Lazio, 04017, Italia",
+   "osm": "way/29015778",
+   "queried_on": "2026-11-15",
+   "query": "Piazzale Gianpaolo Cresci, San Felice Circeo, Italia",
+   "type": "tertiary"
+  },
   "piazzale goisis|bergamo|bg": {
    "class": "highway",
    "lat": 45.709062,
@@ -6005,6 +6125,16 @@
    "miss": "via_diversa",
    "queried_on": "2026-10-25",
    "query": "PIEVE CENTRO, Pieve Emanuele, Italia"
+  },
+  "pineta celommi|roseto degli abruzzi|te": {
+   "class": "leisure",
+   "lat": 42.677927,
+   "lng": 14.015824,
+   "name": "Raffaello Celommi, Piana Grande, Roseto degli Abruzzi, Teramo, Abruzzo, Italia",
+   "osm": "way/64987712",
+   "queried_on": "2026-11-15",
+   "query": "Pineta Celommi, Roseto degli Abruzzi, Italia",
+   "type": "park"
   },
   "prato della valle|padova|pd": {
    "class": "place",
@@ -6385,6 +6515,16 @@
    "queried_on": "2026-10-25",
    "query": "VIA Arniense, Chieti, Italia",
    "type": "residential"
+  },
+  "via arturo graf|roma|rm": {
+   "class": "highway",
+   "lat": 41.942193,
+   "lng": 12.552623,
+   "name": "Via Arturo Graf, Monte Sacro Alto, Municipio Roma III, Roma, Roma Capitale, Lazio, 00137, Italia",
+   "osm": "way/1429936318",
+   "queried_on": "2026-11-15",
+   "query": "Via Arturo Graf, Roma, Italia",
+   "type": "primary"
   },
   "via ascianghi|bari|ba": {
    "class": "highway",
@@ -6785,6 +6925,11 @@
    "queried_on": "2026-10-27",
    "query": "VIA Cimabue, Grosseto, Italia",
    "type": "secondary"
+  },
+  "via cisalpina|reggio nell emilia|re": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-15",
+   "query": "Via Cisalpina, Reggio nell'Emilia, Italia"
   },
   "via conca d oro|roma|rm": {
    "class": "highway",
@@ -7361,6 +7506,16 @@
    "query": "VIA EDOARDO FERIOLI, Saronno, Italia",
    "type": "residential"
   },
+  "via emanuele de benedictis|siracusa|sr": {
+   "class": "highway",
+   "lat": 37.065115,
+   "lng": 15.293512,
+   "name": "Via Emanuele De Benedictis, Ortigia, Siracusa, Sicilia, 96100, Italia",
+   "osm": "way/44897988",
+   "queried_on": "2026-11-15",
+   "query": "Via Emanuele De Benedictis, Siracusa, Italia",
+   "type": "pedestrian"
+  },
   "via emilia|san donato milanese|mi": {
    "class": "highway",
    "lat": 45.413085,
@@ -7520,6 +7675,16 @@
    "queried_on": "2026-10-25",
    "query": "via Flavio Stilicone, Roma, Italia",
    "type": "residential"
+  },
+  "via fonte vecchia|palau|ot": {
+   "class": "highway",
+   "lat": 41.179007,
+   "lng": 9.383332,
+   "name": "Via Fonte Vecchia, Lu Palau/Palau, Gallura Nord-Est Sardegna, Sardigna/Sardegna, 07024, Italia",
+   "osm": "way/38338570",
+   "queried_on": "2026-11-15",
+   "query": "Via Fonte Vecchia, Palau, Italia",
+   "type": "unclassified"
   },
   "via francesco albani|bologna|bo": {
    "class": "highway",
@@ -7920,6 +8085,16 @@
    "miss": "comune_diverso",
    "queried_on": "2026-10-27",
    "query": "VIA GROMLONGO, Palazzago, Italia"
+  },
+  "via guelfa|cortona|ar": {
+   "class": "highway",
+   "lat": 43.273909,
+   "lng": 11.984565,
+   "name": "Via Guelfa, Cortona, Toppello, Camucia, Cortona, Arezzo, Toscana, 52044, Italia",
+   "osm": "way/577427978",
+   "queried_on": "2026-11-15",
+   "query": "Via Guelfa, Cortona, Italia",
+   "type": "pedestrian"
   },
   "via guglielmo marconi|gazoldo degli ippoliti|mn": {
    "miss": "nessun_risultato",
@@ -9396,6 +9571,16 @@
    "query": "Via Scardona, Rovigo, Italia",
    "type": "residential"
   },
+  "via scarpatetti|sondrio|so": {
+   "class": "highway",
+   "lat": 46.17379,
+   "lng": 9.873189,
+   "name": "Via Scarpatetti, Scarpatetti, Centro storico, Colda, Ponchiera, Sondrio, Comunità montana della Valtellina di Sondrio, Sondrio, Lombardia, 23100, Italia",
+   "osm": "way/34908345",
+   "queried_on": "2026-11-15",
+   "query": "Via Scarpatetti, Sondrio, Italia",
+   "type": "residential"
+  },
   "via segantini|bologna|bo": {
    "class": "highway",
    "lat": 44.503431,
@@ -10111,6 +10296,16 @@
    "query": "Viale Giorgio De Chirico, Roma, Italia",
    "type": "tertiary"
   },
+  "viale giostra|messina|me": {
+   "class": "highway",
+   "lat": 38.216095,
+   "lng": 15.535393,
+   "name": "Viale Giostra, Ritiro, Giostra, V Circoscrizione, San Michele, Messina, Sicilia, 98152, Italia",
+   "osm": "way/154704108",
+   "queried_on": "2026-11-15",
+   "query": "Viale Giostra, Messina, Italia",
+   "type": "primary"
+  },
   "viale giotto|arezzo|ar": {
    "class": "highway",
    "lat": 43.457507,
@@ -10310,6 +10505,16 @@
    "queried_on": "2026-10-25",
    "query": "Viale Spartaco Lavagnini, Firenze, Italia",
    "type": "primary"
+  },
+  "viale storchi|modena|mo": {
+   "class": "highway",
+   "lat": 44.652965,
+   "lng": 10.916069,
+   "name": "Viale Gaetano Storchi, Cittadella, Centro storico, Modena, Emilia-Romagna, 41121, Italia",
+   "osm": "way/102299244",
+   "queried_on": "2026-11-15",
+   "query": "Viale Storchi, Modena, Italia",
+   "type": "tertiary"
   },
   "viale tirreno|grosseto|gr": {
    "miss": "comune_diverso",

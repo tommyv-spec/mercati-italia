@@ -5,15 +5,15 @@
   "market_confirmations_created": 0,
   "market_identities_deleted": 0,
   "metrics": {
-    "address_missing": 1229,
-    "coordinates_missing": 973,
-    "future_dates_missing": 2971,
-    "hours_missing": 1920,
+    "address_missing": 1233,
+    "coordinates_missing": 963,
+    "future_dates_missing": 3005,
+    "hours_missing": 1924,
     "review_only_duplicate_groups": 1523,
     "review_only_potential_extra_rows": 1837,
     "suspicious_city": 2,
-    "total": 14721,
-    "without_individual_verification": 14721
+    "total": 14733,
+    "without_individual_verification": 14733
   },
   "per_region": [
     {
@@ -22,7 +22,7 @@
       "hours_missing": 30,
       "future_dates_missing": 54,
       "address_missing": 33,
-      "coordinates_missing": 16
+      "coordinates_missing": 14
     },
     {
       "region": "Basilicata",
@@ -33,49 +33,49 @@
     },
     {
       "region": "Calabria",
-      "markets": 350,
-      "hours_missing": 49,
+      "markets": 351,
+      "hours_missing": 50,
       "address_missing": 38,
-      "future_dates_missing": 61,
+      "future_dates_missing": 62,
       "coordinates_missing": 27
     },
     {
       "region": "Campania",
-      "markets": 841,
+      "markets": 842,
       "hours_missing": 123,
-      "address_missing": 62,
-      "future_dates_missing": 109,
-      "coordinates_missing": 36
+      "address_missing": 63,
+      "future_dates_missing": 110,
+      "coordinates_missing": 37
     },
     {
       "region": "Emilia-Romagna",
-      "markets": 953,
+      "markets": 954,
       "hours_missing": 179,
-      "future_dates_missing": 371,
-      "address_missing": 108,
+      "future_dates_missing": 375,
+      "address_missing": 109,
       "coordinates_missing": 77
     },
     {
       "region": "Friuli Venezia Giulia",
       "markets": 276,
       "hours_missing": 33,
-      "future_dates_missing": 84,
+      "future_dates_missing": 86,
       "address_missing": 21,
       "coordinates_missing": 27
     },
     {
       "region": "Lazio",
-      "markets": 1112,
+      "markets": 1113,
       "address_missing": 64,
-      "future_dates_missing": 256,
-      "hours_missing": 104,
-      "coordinates_missing": 67
+      "future_dates_missing": 259,
+      "coordinates_missing": 66,
+      "hours_missing": 103
     },
     {
       "region": "Liguria",
       "markets": 415,
       "hours_missing": 60,
-      "future_dates_missing": 105,
+      "future_dates_missing": 104,
       "address_missing": 56,
       "coordinates_missing": 34
     },
@@ -84,31 +84,31 @@
       "markets": 4085,
       "hours_missing": 525,
       "address_missing": 166,
-      "future_dates_missing": 737,
-      "coordinates_missing": 261
+      "future_dates_missing": 742,
+      "coordinates_missing": 257
     },
     {
       "region": "Marche",
       "markets": 322,
-      "future_dates_missing": 91,
-      "coordinates_missing": 26,
+      "future_dates_missing": 92,
+      "coordinates_missing": 25,
       "hours_missing": 62,
       "address_missing": 43
     },
     {
       "region": "Molise",
-      "markets": 219,
+      "markets": 220,
       "address_missing": 30,
-      "hours_missing": 16,
-      "future_dates_missing": 27,
-      "coordinates_missing": 1
+      "hours_missing": 17,
+      "future_dates_missing": 29,
+      "coordinates_missing": 2
     },
     {
       "region": "Piemonte",
       "markets": 1381,
       "hours_missing": 159,
-      "future_dates_missing": 217,
-      "coordinates_missing": 47,
+      "future_dates_missing": 218,
+      "coordinates_missing": 44,
       "address_missing": 178
     },
     {
@@ -121,10 +121,10 @@
     },
     {
       "region": "Sardegna",
-      "markets": 412,
+      "markets": 413,
       "hours_missing": 31,
-      "future_dates_missing": 51,
-      "coordinates_missing": 21,
+      "future_dates_missing": 53,
+      "coordinates_missing": 20,
       "address_missing": 31
     },
     {
@@ -133,20 +133,20 @@
       "hours_missing": 67,
       "address_missing": 41,
       "future_dates_missing": 95,
-      "coordinates_missing": 20
+      "coordinates_missing": 18
     },
     {
       "region": "Toscana",
-      "markets": 1032,
-      "future_dates_missing": 260,
-      "hours_missing": 201,
-      "address_missing": 113,
-      "coordinates_missing": 93
+      "markets": 1035,
+      "future_dates_missing": 266,
+      "hours_missing": 202,
+      "address_missing": 114,
+      "coordinates_missing": 94
     },
     {
       "region": "Trentino-Alto Adige",
       "markets": 277,
-      "future_dates_missing": 79,
+      "future_dates_missing": 80,
       "hours_missing": 31,
       "address_missing": 37,
       "coordinates_missing": 35
@@ -155,8 +155,8 @@
       "region": "Umbria",
       "markets": 202,
       "address_missing": 23,
-      "coordinates_missing": 19,
-      "future_dates_missing": 51,
+      "coordinates_missing": 18,
+      "future_dates_missing": 52,
       "hours_missing": 35
     },
     {
@@ -169,11 +169,11 @@
     },
     {
       "region": "Veneto",
-      "markets": 1379,
-      "future_dates_missing": 213,
-      "address_missing": 127,
-      "coordinates_missing": 123,
-      "hours_missing": 141,
+      "markets": 1382,
+      "future_dates_missing": 218,
+      "address_missing": 128,
+      "coordinates_missing": 125,
+      "hours_missing": 143,
       "suspicious_city": 2
     }
   ],
@@ -192,7 +192,7 @@
     },
     {
       "source": "vintagery.it",
-      "records": 480
+      "records": 492
     },
     {
       "source": "cosedicasa.com",
@@ -713,16 +713,16 @@
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
     "examples": [],
-    "baseline_records": 14689,
+    "baseline_records": 14721,
     "baseline_potential_extra_rows": 1837,
     "positive_group_growth": 0,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
-    "total": 32,
-    "hours_missing": 15,
-    "address_missing": 6,
-    "coordinates_missing": 11,
+    "total": 12,
+    "hours_missing": 4,
+    "address_missing": 4,
+    "coordinates_missing": -10,
     "future_dates_missing": 34,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
