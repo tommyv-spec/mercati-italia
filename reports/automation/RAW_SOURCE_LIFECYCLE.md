@@ -11,10 +11,10 @@ La data di lettura non prova che un mercato abbia aperto oggi.
 
 | Fonte | Stato | ID fonte fuori catalogo (non nuovi mercati) | Già trattenuti dal controllo sovrapposizioni | Residui senza esito del filtro | Proposte in staging | Collisioni da valutare | Fatti cambiati | ID non più visti (non chiusi) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| altoadige-odh-mercati | sola verifica, non apertura confermata | 29 | 0 | 29 | 0 | 172 | 40 | 0 |
+| altoadige-odh-mercati | sola verifica, non apertura confermata | 29 | 0 | 29 | 0 | 171 | 0 | 0 |
 | bologna-generic-venues | sola verifica, non apertura confermata | 9 | 0 | 9 | 0 | 40 | 0 | 0 |
 | corciano-generic-shadow | non disponibile / vecchio checkpoint | 1 | 0 | 1 | 0 | 1 | 0 | 0 |
-| trentino-com-mercati | sola verifica, non apertura confermata | 22 | 0 | 22 | 0 | 31 | 0 | 0 |
+| trentino-com-mercati | sola verifica, non apertura confermata | 22 | 0 | 22 | 0 | 32 | 25 | 0 |
 | veneto-calendario-antiquariato | sola verifica, non apertura confermata | 29 | 0 | 29 | 0 | 37 | 0 | 0 |
 | veneto-calendario-mercati | sola verifica, non apertura confermata | 478 | 0 | 478 | 0 | 604 | 0 | 0 |
 
