@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-15",
+  "as_of": "2026-11-16",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -667,18 +667,18 @@
       "automatic_source_row_reuse_authorized_by_this_audit": false,
       "count_delta_since_last_audit": 0,
       "fields": {
-        "address_generic_not_navigable": 3749,
-        "address_missing": 588,
+        "address_generic_not_navigable": 3750,
+        "address_missing": 587,
         "coordinates_missing": 329,
         "future_dates_missing": 374,
-        "hours_missing": 678,
+        "hours_missing": 672,
         "records": 9914,
         "source_or_import_date_unknown": 267
       },
       "kind": "legacy_aggregator",
       "layout": "weekly_area_index_and_event_details",
       "next_action": "Continue the existing authorized Happings pipeline and track province/detail format coverage. Preserve source field scope, identity, calendar limits and conflicts; a scrape is not proof of each market opening.",
-      "priority_workload_score_not_evidence": 35902,
+      "priority_workload_score_not_evidence": 35893,
       "publisher": "happings.com",
       "records": 9914,
       "rights_classification": "see_existing_happings_operational_policy",
@@ -846,12 +846,12 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 12,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 3,
         "address_missing": 94,
         "coordinates_missing": 236,
-        "future_dates_missing": 383,
+        "future_dates_missing": 400,
         "hours_missing": 231,
         "records": 492,
         "source_or_import_date_unknown": 492
@@ -859,7 +859,7 @@
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 1637,
+      "priority_workload_score_not_evidence": 1654,
       "publisher": "vintagery.it",
       "records": 492,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -914,7 +914,7 @@
       "fields": {
         "address_generic_not_navigable": 30,
         "coordinates_missing": 24,
-        "future_dates_missing": 91,
+        "future_dates_missing": 161,
         "hours_missing": 148,
         "records": 442,
         "source_or_import_date_unknown": 10
@@ -922,7 +922,7 @@
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1009,
+      "priority_workload_score_not_evidence": 1079,
       "publisher": "cosedicasa.com",
       "records": 442,
       "rights_classification": "publisher_rights_unreviewed",
@@ -946,7 +946,7 @@
           "mercatino-antiquariato-e-usato-di-benevento-mercatino-delle-streghe-piazza-caste",
           "mercatino-antiquariato-e-usato-di-bologna-mercato-antiquario-citta-di-bologna-pi",
           "mercatino-antiquariato-e-usato-di-borgo-val-di-taro-viale-bottego-borgo-val-di-t",
-          "mercatino-antiquariato-e-usato-di-castel-di-casio-la-soffitta-della-torre-centro"
+          "mercatino-antiquariato-e-usato-di-budrio-incanti-e-mercanti-centro-storico-e-pia"
         ],
         "hours_missing": [
           "mercatino-antiquariato-e-usato-di-matera-mercatino-degli-scambi-via-don-minzoni",
@@ -15592,7 +15592,7 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-15",
+    "generated_for_date": "2026-11-16",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
