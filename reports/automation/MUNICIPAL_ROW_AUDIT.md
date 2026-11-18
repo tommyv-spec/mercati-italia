@@ -8,41 +8,41 @@ Nessuna fonte viene abilitata all'importazione.
 - Dataset con campione storico: **71**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - ROVERE VERONESE
-- Editore dichiarato: Comune di Roverè Veronese
+## Fiere e mercati - NOGARA
+- Editore dichiarato: Comune di Nogara
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 6
-- Nomi distinti (NON mercato nuovo): 2
-- Concessioni scadute: 0
-- Righe di posteggi storici: 6
-- Giorni settimanali espliciti: 6
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - CASTEL D'AZZANO
-- Editore dichiarato: Comune di Castel d'Azzano
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 1
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 101
 - Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 1
+- Concessioni scadute: 97
+- Righe di posteggi storici: 0
 - Giorni settimanali espliciti: 0
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
-## Posteggi mercati e fiere - SELVAZZANO DENTRO
-- Editore dichiarato: Comune di Selvazzano Dentro
+## Fiere e mercati - DUEVILLE
+- Editore dichiarato: Comune di Dueville
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 3
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 43
 - Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 3
-- Giorni settimanali espliciti: 3
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Concessioni scadute: 1
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+
+## Fiere e mercati - VO'
+- Editore dichiarato: Comune di Vo'
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 31
+- Nomi distinti (NON mercato nuovo): 5
+- Concessioni scadute: 27
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,
