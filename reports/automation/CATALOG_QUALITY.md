@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,733**.
+- Schede: **14,749**.
 - Orari mancanti: **1,924**.
-- Indirizzi mancanti: **1,233**.
-- Coordinate mancanti: **963**.
-- Date future mancanti: **3,005**.
+- Indirizzi mancanti: **1,236**.
+- Coordinate mancanti: **974**.
+- Date future mancanti: **3,008**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,523** gruppi, **1,837** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,733**.
+- Verifiche umane documentate mancanti: **14,749**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -23,9 +23,9 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 |---|---:|
 | happings.com | 9,914 |
 | eventiesagre.it | 2,200 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,142 |
-| vintagery.it | 492 |
-| cosedicasa.com | 442 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,143 |
+| vintagery.it | 506 |
+| cosedicasa.com | 443 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
@@ -40,24 +40,24 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 |---|---:|---:|---:|
 | Abruzzo | 408 | 30 | 33 |
 | Basilicata | 38 | 3 | 9 |
-| Calabria | 351 | 50 | 38 |
+| Calabria | 352 | 45 | 37 |
 | Campania | 842 | 123 | 63 |
 | Emilia-Romagna | 954 | 179 | 109 |
 | Friuli Venezia Giulia | 276 | 33 | 21 |
-| Lazio | 1,113 | 103 | 64 |
+| Lazio | 1,114 | 104 | 65 |
 | Liguria | 415 | 60 | 56 |
-| Lombardia | 4,085 | 525 | 166 |
+| Lombardia | 4,087 | 526 | 166 |
 | Marche | 322 | 62 | 43 |
 | Molise | 220 | 17 | 30 |
-| Piemonte | 1,381 | 159 | 178 |
-| Puglia | 519 | 60 | 40 |
+| Piemonte | 1,382 | 159 | 179 |
+| Puglia | 520 | 60 | 40 |
 | Sardegna | 413 | 31 | 31 |
 | Sicilia | 436 | 67 | 41 |
-| Toscana | 1,035 | 202 | 114 |
+| Toscana | 1,039 | 204 | 115 |
 | Trentino-Alto Adige | 277 | 31 | 37 |
-| Umbria | 202 | 35 | 23 |
-| Valle d'Aosta | 64 | 11 | 9 |
-| Veneto | 1,382 | 143 | 128 |
+| Umbria | 203 | 35 | 24 |
+| Valle d'Aosta | 65 | 11 | 9 |
+| Veneto | 1,386 | 144 | 128 |
 
 ## Località da verificare (campione limitato)
 

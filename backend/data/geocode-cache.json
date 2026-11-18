@@ -271,6 +271,16 @@
    "query": "Corso Dante, Cles, Italia",
    "type": "pedestrian"
   },
+  "corso del popolo|chioggia|ve": {
+   "class": "highway",
+   "lat": 45.22133,
+   "lng": 12.279582,
+   "name": "Corso del Popolo, Tombola, Saloni, Sottomarina, Chioggia, Venezia, Veneto, 30015, Italia",
+   "osm": "way/157413390",
+   "queried_on": "2026-11-18",
+   "query": "Corso del Popolo, Chioggia, Italia",
+   "type": "living_street"
+  },
   "corso del popolo|rovigo|ro": {
    "class": "highway",
    "lat": 45.072155,
@@ -4641,6 +4651,11 @@
    "query": "PIAZZA MUNICIPIO, Cervignano D'Adda, Italia",
    "type": "unclassified"
   },
+  "piazza municipio|frosolone|is": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-18",
+   "query": "Piazza Municipio, Frosolone, Italia"
+  },
   "piazza municipio|nalles|bz": {
    "class": "highway",
    "lat": 46.543074,
@@ -5756,6 +5771,16 @@
    "query": "piazza Vittorio Veneto, Torino, Italia",
    "type": "square"
   },
+  "piazza viviani|pisa|pi": {
+   "class": "place",
+   "lat": 43.674945,
+   "lng": 10.271384,
+   "name": "Piazza Giuseppe Viviani, Marina di Pisa, Pisa, Toscana, 56128, Italia",
+   "osm": "node/12083490664",
+   "queried_on": "2026-11-18",
+   "query": "Piazza Viviani, Pisa, Italia",
+   "type": "square"
+  },
   "piazza vue du cervin|antey saint andre|ao": {
    "miss": "via_diversa",
    "queried_on": "2026-11-05",
@@ -6830,6 +6855,16 @@
    "queried_on": "2026-10-29",
    "query": "Via Cavour, Fontanafredda, Italia",
    "type": "secondary"
+  },
+  "via cavour|olbia|ot": {
+   "class": "highway",
+   "lat": 40.923115,
+   "lng": 9.501147,
+   "name": "Via Camillo Benso di Cavour, Centro storico, Olbia, Gallura Nord-Est Sardegna, Sardigna/Sardegna, 07026, Italia",
+   "osm": "way/237089424",
+   "queried_on": "2026-11-18",
+   "query": "Via Cavour, Olbia, Italia",
+   "type": "residential"
   },
   "via cederna|monza|mb": {
    "class": "highway",
@@ -10161,6 +10196,11 @@
    "queried_on": "2026-11-05",
    "query": "Viale dei Lecci, Firenze, Italia"
   },
+  "viale del lavoro via finlandia|ponte san nicolo|pd": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-18",
+   "query": "Viale del Lavoro/Via Finlandia, Ponte San Nicolò, Italia"
+  },
   "viale dell appennino|forli|fc": {
    "class": "highway",
    "lat": 44.1868,
@@ -10221,6 +10261,11 @@
    "query": "Viale di Vigna Pia, Roma, Italia",
    "type": "residential"
   },
+  "viale duca d aosta|alatri|fr": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-18",
+   "query": "Viale Duca d'Aosta, Alatri, Italia"
+  },
   "viale enrico fermi|asolo|tv": {
    "class": "highway",
    "lat": 45.781872,
@@ -10275,6 +10320,16 @@
    "queried_on": "2026-10-25",
    "query": "Viale Francia, Palermo, Italia",
    "type": "residential"
+  },
+  "viale giacomo mancini|cosenza|cs": {
+   "class": "highway",
+   "lat": 39.304414,
+   "lng": 16.255175,
+   "name": "Viale Giacomo Mancini, Popilia, Cosenza, Calabria, 87100, Italia",
+   "osm": "way/40970184",
+   "queried_on": "2026-11-18",
+   "query": "Viale Giacomo Mancini, Cosenza, Italia",
+   "type": "tertiary"
   },
   "viale giacomo matteotti|pavia|pv": {
    "class": "highway",

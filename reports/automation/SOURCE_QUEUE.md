@@ -13,7 +13,7 @@ Licenza, editore, attualità dei calendari e schema reale richiedono prove.
 
 | Priorità | Punti | Dataset | Tipo | Schema osservato | Editore dichiarato | Data ufficiale analizzata (se disponibile) |
 |---:|---:|---|---|---|---|---|
-| 1 | 24 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | 2026-11-10 |
+| 1 | 24 | Mercati su aree pubbliche | market_location_candidate | non esplorato | Regione Lombardia | 2026-11-17 |
 | 2 | 23 | Elenco dei mercati settimanali | market_location_candidate | non esplorato | Comune di Corciano | 07-01-2026 |
 | 3 | 19 | Mercati e fiere | mixed_events_candidate | non esplorato | Comune di Bologna | 2025-04-02 |
 | 4 | 16 | Dati sui Mercati Rionali | market_location_candidate | manual_schema_review_required | Roma Capitale | sconosciuta |

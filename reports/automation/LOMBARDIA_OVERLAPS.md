@@ -5,11 +5,12 @@ Le nuove schede con giorno uguale o ignoto vengono messe in revisione.
 Nessun record storico viene cancellato o dichiarato verificato.
 
 - Sorgenti Lombardia: **1368**.
-- Importabili senza conflitto esatto: **1134**.
-- Da rivedere: **234**.
+- Importabili senza conflitto esatto: **1135**.
+- Da rivedere: **233**.
 - existing_lombardia_identity: 1134
-- quarantined_same_location_same_weekday: 101
+- quarantined_same_location_same_weekday: 100
 - quarantined_same_location_unknown_or_conflicting_schedule: 133
+- same_place_distinct_documented_day: 1
 
 ## Esempi da esaminare
 
@@ -31,10 +32,10 @@ Nessun record storico viene cancellato o dichiarato verificato.
 - Prata Camportaccio · VIA SPLUGA · lo-mercap-100134-senza-giorno (same_location_unknown_or_conflicting_schedule)
 - Sondrio · VIA MAFFEI · lo-mercap-100138-lunedi (same_location_same_weekday)
 - San Fermo Della Battaglia · PIAZZA XXVII MAGGIO · lo-mercap-1002-senza-giorno (same_location_unknown_or_conflicting_schedule)
-- Siziano · VIA FRATELLI CERVI · lo-mercap-100223-sabato (same_location_same_weekday)
 - Vigevano · PIAZZA CALZOLAIO D'ITALIA · lo-mercap-100231-mercoledi (same_location_same_weekday)
 - Vigevano · PIAZZA CALZOLAIO D'ITALIA · lo-mercap-100232-sabato (same_location_same_weekday)
 - Vigevano · VIA ROCCA VECCHIA · lo-mercap-100234-lunedi (same_location_same_weekday)
 - Zinasco · PIAZZA DI VITTORIO · lo-mercap-100240-martedi (same_location_same_weekday)
 - Aicurzio · PIAZZA DELLA CHIESA · lo-mercap-100243-senza-giorno (same_location_unknown_or_conflicting_schedule)
 - Barlassina · VIALE DANTE · lo-mercap-100246-senza-giorno (same_location_unknown_or_conflicting_schedule)
+- Bernareggio · VIA LEONI · lo-mercap-100248-senza-giorno (same_location_unknown_or_conflicting_schedule)

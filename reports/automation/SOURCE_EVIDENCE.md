@@ -7,7 +7,7 @@ Nessuna fonte è autorizzata all'import da questo controllo.
 | Fonte | Metadati | Licenza dichiarata | Confronto | Ultimo dato dichiarato |
 |---|---|---|---|---|
 | Comune di Bologna | metadata_checked | CC-BY-4.0 | publisher_and_catalog_agree_review_required | 2025-04-02 |
-| Regione Lombardia | metadata_checked | CC0-1.0 | publisher_and_catalog_agree_review_required | 2026-11-10 |
+| Regione Lombardia | metadata_checked | CC0-1.0 | publisher_and_catalog_agree_review_required | 2026-11-17 |
 | Roma Capitale | needs_review | non disponibile | not_evaluated | sconosciuto |
 
 ## Elementi da verificare
