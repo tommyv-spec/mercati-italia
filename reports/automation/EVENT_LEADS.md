@@ -1,34 +1,34 @@
 # Mercati Italia — scoperta automatica eventi: solo segnali
 
-Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-11-16**.
+Nessun evento è stato aggiunto o confermato. Data di controllo: **2026-11-18**.
 Le assenze di una fonte o di un link NON provano la chiusura di un mercato.
 
-- Schede di mercato esistenti conservate: **14733**
-- Segnali ufficiali nell'ultima scansione: **3**
-- Collegamenti esterni, non dati riutilizzabili: **11**
+- Schede di mercato esistenti conservate: **14749**
+- Segnali ufficiali nell'ultima scansione: **0**
+- Collegamenti esterni, non dati riutilizzabili: **0**
 
 | Fonte | Stato | Richieste |
 |---|---|---:|
-| firenze-feelflorence | discovery_leads_only | 1 |
+| firenze-feelflorence | source_unavailable_or_schema_review | 0 |
 | bologna-agenda | discovery_leads_only | 1 |
-| eventiesagre-index | discovery_leads_only | 3 |
+| eventiesagre-index | source_unavailable_or_schema_review | 0 |
 
 ## Segnali da verificare presso Comune o organizzatore
 
-- Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: source_lead_unverified
-- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: source_lead_unverified
-- Joulutori - mercato di Natale nordico — https://www.feelflorence.it/it/eventi/joulutori-mercato-di-natale-nordico — stato: source_lead_unverified
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21194922_Petra+Vintage+A+Petralia+Soprana.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194552_Il+Mercatino+D+arte+Artigianato+E+Creativita+A+Gradisca+Di+Sedegliano.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21193632_Il+Mercato+Del+Capitolo+A+Aquileia.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21192451_Mercatino+Dell+artigianato+A+Udine.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21190449_Una+Domenica+Di+Altri+Tempi.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21186633_Arte+AND+Sapori.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21186285_Estate+A+Cividale+Del+Friuli.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21096919_Il+Mercatino+delle+Millemila+cose+a+Zopplola.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21053417_Magia+Delle+Mani.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21027371_Mercatino+Artisti+e+Creativi+a+Grado.html — stato: external_pointer_only_no_fact_reuse
-- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/1182_Mercatini+a+Barcis.html — stato: external_pointer_only_no_fact_reuse
+- Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
+- Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
+- Joulutori - mercato di Natale nordico — https://www.feelflorence.it/it/eventi/joulutori-mercato-di-natale-nordico — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21194922_Petra+Vintage+A+Petralia+Soprana.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_hobbisti+creativi/21194552_Il+Mercatino+D+arte+Artigianato+E+Creativita+A+Gradisca+Di+Sedegliano.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21193632_Il+Mercato+Del+Capitolo+A+Aquileia.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21192451_Mercatino+Dell+artigianato+A+Udine.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Antiquariato/21190449_Una+Domenica+Di+Altri+Tempi.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21186633_Arte+AND+Sapori.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21186285_Estate+A+Cividale+Del+Friuli.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21096919_Il+Mercatino+delle+Millemila+cose+a+Zopplola.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21053417_Magia+Delle+Mani.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/21027371_Mercatino+Artisti+e+Creativi+a+Grado.html — stato: not_seen_again_not_a_market_closure
+- Link esterno (ID soltanto) — https://www.eventiesagre.it/Mercatini_Artigianato/1182_Mercatini+a+Barcis.html — stato: not_seen_again_not_a_market_closure
 - Magnifico 1492. Collezionismo mediceo a Palazzo Pitti — https://www.feelflorence.it/it/eventi/magnifico-1492-collezionismo-mediceo-palazzo-pitti — stato: not_seen_again_not_a_market_closure
 - Mercato di Natale in Piazza Santa Croce — https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce — stato: not_seen_again_not_a_market_closure
 - ARTour il bello in piazza - Artigianato artistico e tradizionale in Piazza Strozzi — https://www.feelflorence.it/it/eventi/artour-il-bello-piazza-artigianato-artistico-e-tradizionale-piazza-strozzi — stato: not_seen_again_not_a_market_closure
