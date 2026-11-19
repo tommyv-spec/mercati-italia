@@ -941,6 +941,16 @@
    "queried_on": "2026-11-04",
    "query": "Lungolago Lavello, Calolziocorte, Italia"
   },
+  "lungolago roma|bardolino|vr": {
+   "class": "highway",
+   "lat": 45.545994,
+   "lng": 10.719806,
+   "name": "Lungolago Roma, Bardolino, Verona, Veneto, 37011, Italia",
+   "osm": "way/246844547",
+   "queried_on": "2026-11-19",
+   "query": "Lungolago Roma, Bardolino, Italia",
+   "type": "pedestrian"
+  },
   "lungomare centro|porto recanati|mc": {
    "miss": "nessun_risultato",
    "queried_on": "2026-11-05",
@@ -5441,6 +5451,16 @@
    "query": "Piazza Stradivari, Cremona, Italia",
    "type": "square"
   },
+  "piazza tache|gressoney la trinite|ao": {
+   "class": "highway",
+   "lat": 45.827073,
+   "lng": 7.82291,
+   "name": "Piazza Tache, La Tache, Gressoney-La-Trinité, Valle d'Aosta / Vallée d'Aoste, 11020, Italia",
+   "osm": "way/297182487",
+   "queried_on": "2026-11-19",
+   "query": "Piazza Tache, Gressoney-La-Trinité, Italia",
+   "type": "pedestrian"
+  },
   "piazza terraglio|bassano del grappa|vi": {
    "class": "place",
    "lat": 45.768445,
@@ -7471,6 +7491,11 @@
    "queried_on": "2026-10-25",
    "query": "VIA DIETRO CASTELLO, San Felice Del Benaco, Italia"
   },
+  "via don f tocchetti|godega di sant urbano|tv": {
+   "miss": "nessun_risultato",
+   "queried_on": "2026-11-19",
+   "query": "Via don F. Tocchetti, Godega di Sant'Urbano, Italia"
+  },
   "via don grioli|torino|to": {
    "class": "highway",
    "lat": 45.036752,
@@ -9260,6 +9285,11 @@
    "queried_on": "2026-10-25",
    "query": "VIA ROMA, Formigara, Italia",
    "type": "residential"
+  },
+  "via roma|gaiole in chianti|si": {
+   "miss": "comune_diverso",
+   "queried_on": "2026-11-19",
+   "query": "Via Roma, Gaiole in Chianti, Italia"
   },
   "via roma|lambrugo|co": {
    "class": "highway",

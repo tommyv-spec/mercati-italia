@@ -6,14 +6,14 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 1236,
-    "coordinates_missing": 974,
-    "future_dates_missing": 3008,
-    "hours_missing": 1924,
+    "coordinates_missing": 972,
+    "future_dates_missing": 3002,
+    "hours_missing": 1925,
     "review_only_duplicate_groups": 1523,
     "review_only_potential_extra_rows": 1837,
     "suspicious_city": 2,
-    "total": 14749,
-    "without_individual_verification": 14749
+    "total": 14750,
+    "without_individual_verification": 14750
   },
   "per_region": [
     {
@@ -75,17 +75,17 @@
       "region": "Liguria",
       "markets": 415,
       "hours_missing": 60,
-      "future_dates_missing": 104,
+      "future_dates_missing": 103,
       "address_missing": 56,
       "coordinates_missing": 34
     },
     {
       "region": "Lombardia",
-      "markets": 4087,
-      "hours_missing": 526,
+      "markets": 4088,
+      "hours_missing": 527,
       "address_missing": 166,
       "future_dates_missing": 744,
-      "coordinates_missing": 258
+      "coordinates_missing": 259
     },
     {
       "region": "Marche",
@@ -107,7 +107,7 @@
       "region": "Piemonte",
       "markets": 1382,
       "hours_missing": 159,
-      "future_dates_missing": 219,
+      "future_dates_missing": 218,
       "coordinates_missing": 45,
       "address_missing": 179
     },
@@ -123,7 +123,7 @@
       "region": "Sardegna",
       "markets": 413,
       "hours_missing": 31,
-      "future_dates_missing": 53,
+      "future_dates_missing": 51,
       "coordinates_missing": 19,
       "address_missing": 31
     },
@@ -138,7 +138,7 @@
     {
       "region": "Toscana",
       "markets": 1039,
-      "future_dates_missing": 270,
+      "future_dates_missing": 269,
       "hours_missing": 204,
       "address_missing": 115,
       "coordinates_missing": 97
@@ -163,16 +163,16 @@
       "region": "Valle d'Aosta",
       "markets": 65,
       "hours_missing": 11,
-      "coordinates_missing": 13,
+      "coordinates_missing": 12,
       "future_dates_missing": 18,
       "address_missing": 9
     },
     {
       "region": "Veneto",
       "markets": 1386,
-      "future_dates_missing": 220,
+      "future_dates_missing": 219,
       "address_missing": 128,
-      "coordinates_missing": 128,
+      "coordinates_missing": 126,
       "hours_missing": 144,
       "suspicious_city": 2
     }
@@ -192,7 +192,7 @@
     },
     {
       "source": "vintagery.it",
-      "records": 506
+      "records": 507
     },
     {
       "source": "cosedicasa.com",
@@ -713,17 +713,17 @@
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
     "examples": [],
-    "baseline_records": 14733,
+    "baseline_records": 14749,
     "baseline_potential_extra_rows": 1837,
     "positive_group_growth": 0,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
-    "total": 16,
-    "hours_missing": 6,
-    "address_missing": 4,
-    "coordinates_missing": 11,
-    "future_dates_missing": -84,
+    "total": 1,
+    "hours_missing": 1,
+    "address_missing": 0,
+    "coordinates_missing": -2,
+    "future_dates_missing": -6,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0
@@ -732,15 +732,15 @@
   "quality_release_safe": true,
   "comparison_anchor": "actual_published_DEV_catalog",
   "previous_scorecard_drift": {
-    "status": "stale",
+    "status": "aligned",
     "differences": {
       "total": 0,
-      "hours_missing": -6,
-      "address_missing": -1,
+      "hours_missing": 0,
+      "address_missing": 0,
       "review_only_duplicate_groups": 0,
       "review_only_potential_extra_rows": 0,
       "suspicious_city": 0,
-      "future_dates_missing": 87
+      "future_dates_missing": 0
     },
     "comparison_is_not_market_mutation": true,
     "new_candidate_regressions_still_block": true

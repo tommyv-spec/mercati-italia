@@ -1,26 +1,21 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,749\n- Senza verifica documentata: 14,749\n- Fonte vecchia oltre soglia: 51\n- Fonte senza data: 13,347\n- Date previste da fonte vecchia/sconosciuta: 10,258\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: Regione Lombardia\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: bassa-romagna-farmers, bassa-romagna-weekly\n- Conflitti fra valori esistenti e nuove letture: 0\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: d4c9101a26453153",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,750\n- Senza verifica documentata: 14,750\n- Fonte vecchia oltre soglia: 51\n- Fonte senza data: 13,348\n- Date previste da fonte vecchia/sconosciuta: 10,248\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: nessuno\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: bassa-romagna-weekly\n- Conflitti fra valori esistenti e nuove letture: 4\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 4edbdff15ace738e",
   "problems": {
-    "automatic_field_conflicts": 0,
+    "automatic_field_conflicts": 4,
     "automatic_page_refresh_held": [
-      "bassa-romagna-farmers",
       "bassa-romagna-weekly"
     ],
     "municipal_csv_changed": [],
-    "publisher_new_data_claims": [
-      "Regione Lombardia"
-    ],
-    "publisher_unavailable": [
-      "Roma Capitale"
-    ],
-    "stale_forecast": 10258,
+    "publisher_new_data_claims": [],
+    "publisher_unavailable": [],
+    "stale_forecast": 10248,
     "stale_source": 51,
-    "total": 14749,
-    "unknown_source_date": 13347,
+    "total": 14750,
+    "unknown_source_date": 13348,
     "unsupported_confirmation": 0,
-    "without_verification": 14749
+    "without_verification": 14750
   },
-  "signature": "d4c9101a26453153",
+  "signature": "4edbdff15ace738e",
   "title": "[Mercati autopilot] Dati da verificare"
 }

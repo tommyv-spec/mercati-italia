@@ -3,21 +3,21 @@
 Tutti i mercati, anche incompleti, restano nel catalogo.
 Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 
-- ID controllati e conservati: **14749**
+- ID controllati e conservati: **14750**
 - Etichette di fonte: **92**
-- Casi nel lotto di lavoro del giorno: **480**
+- Casi nel lotto di lavoro del giorno: **460**
 - Lotti rotanti: **31**
 - Feed Lombardia: fresh_dataset_not_market_confirmation
 - Mercati aggiunti/rimossi/aggiornati automaticamente da questo report: **0**
 
 ## Campi ancora incerti o assenti
 
-- coordinates: **14660**
-- date: **3008**
+- coordinates: **14661**
+- date: **3002**
 - indirizzo: **5068**
-- individual_edition_confirmation: **14749**
-- orario_testo: **1924**
-- ricorrenza_testo: **1420**
+- individual_edition_confirmation: **14750**
+- orario_testo: **1925**
+- ricorrenza_testo: **1421**
 
 ## Origini ordinate per numero di schede
 
@@ -26,7 +26,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 | happings.com | 9914 | 672 | 4337 | happings-weekly-or-detail |
 | eventiesagre.it | 2200 | 360 | 482 | eventiesagre-event-index |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1143 | 342 | 3 | lombardia-mercap |
-| vintagery.it | 506 | 237 | 101 | source-family-not-resolved-by-this-worklist |
+| vintagery.it | 507 | 238 | 101 | source-family-not-resolved-by-this-worklist |
 | cosedicasa.com | 443 | 148 | 30 | cosedicasa-editorial-calendar |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | source-family-not-resolved-by-this-worklist |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | milano-municipal |
@@ -123,7 +123,7 @@ Il dato aggiornato del publisher NON conferma l'apertura della singola edizione.
 - exact_field_evidence_candidates: 0
 - many_market_places_on_same_city_day: 12
 - multiple_official_venues_on_same_street_day: 2
-- no_usable_source_match: 13520
+- no_usable_source_match: 13521
 - review_only_field_candidates: 45
 - same_source_id: 804
 - unique_city_province_street_weekday: 382
