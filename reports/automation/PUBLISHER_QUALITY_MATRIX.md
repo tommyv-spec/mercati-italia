@@ -4,7 +4,7 @@
 presenti nel catalogo e, separatamente, le fonti ufficiali candidate.
 Nessun dato viene riletto o ripubblicato dal sito terzo.
 
-- Schede controllate: **14749**
+- Schede controllate: **14750**
 - Fonti distinte nelle schede: **92**
 - Dataset ufficiali candidati: **50**
 - Nuovi eventi certificati: **0**; schede modificate: **0**
@@ -16,8 +16,8 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | happings.com | 9914 | 672 | 587 | 329 | 0 | 0 | weekly_area_index_and_event_details |
 | eventiesagre.it | 2200 | 360 | 438 | 100 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1143 | 342 | 1 | 151 | 0 | 0 | one_market_id_per_weekday |
-| vintagery.it | 506 | 237 | 98 | 246 | 0 | 0 | unclassified_source_page |
-| cosedicasa.com | 443 | 148 | 0 | 25 | 0 | 0 | monthly_recurrence_with_exceptions |
+| vintagery.it | 507 | 238 | 98 | 245 | 0 | 0 | unclassified_source_page |
+| cosedicasa.com | 443 | 148 | 0 | 24 | 0 | 0 | monthly_recurrence_with_exceptions |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | 44 | 0 | 0 | unclassified_source_page |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 8 | 0 | one_venue_with_weekdays |
 | dati.comune.roma.it | 70 | 2 | 0 | 6 | 0 | 0 | unclassified_source_page |
@@ -123,7 +123,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 - Licenze: existing_adapter_source_scope
 - Prossimo passo: Run source-row identity and town+street+weekday checks from the approved official MERCap adapter. Quarantine conflicting venue/day.
 
-### vintagery.it — 506 schede
+### vintagery.it — 507 schede
 - Carenze strutturali: **non** prova che il dato originale sia scorretto.
 - Licenze: source_rights_and_structure_require_review
 - Prossimo passo: Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.
@@ -161,7 +161,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | Elenco dei mercati settimanali | Comune di Corciano | 23 | already_integrated_adapter | market_location_candidate |
 | Mercati e fiere | Comune di Bologna | 19 | already_integrated_adapter | mixed_events_candidate |
 | Attività commerciali: mercati settimanali scoperti | Comune di Milano | 14 | already_integrated_adapter | market_location_candidate |
-| Dati sui Mercati Rionali | Roma Capitale | 16 | schema_sampled_review_only | market_location_candidate |
+| Dati sui Mercati Rionali | Roma Capitale | 18 | schema_sampled_review_only | market_location_candidate |
 | Censimento dei mercati giornalieri | Regione Lazio | 9 | schema_sampled_review_only | market_location_candidate |
 | Censimento dei mercati itineranti | Regione Lazio | 9 | schema_sampled_review_only | market_location_candidate |
 | Anagrafica mercati | Regione Piemonte | 10 | metadata_candidate_only | general_market_candidate |
@@ -210,7 +210,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 
 ## Formati delle fonti: avanzamento dei controlli
 
-Unità primarie: **620**; campioni confrontati: **0**; parziali: **105**; non esaminati: **515**.
+Unità primarie: **621**; campioni confrontati: **0**; parziali: **105**; non esaminati: **516**.
 
 Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna il registro dal catalogo senza nuove richieste alle fonti. Prove e TODO completi in `backend/data/source-format-review-ledger.json` e `reports/automation/SOURCE_FORMAT_CHECKLIST.md`.
 
@@ -509,6 +509,7 @@ Le verifiche del formato non certificano ogni mercato. Questo passaggio aggiorna
 | vintagery.it--53c147988f73 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--5430b76fc5dd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--548fed827afd | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
+| vintagery.it--54cb95cdff96 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--558b691a2f58 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--563ddd437343 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |
 | vintagery.it--566453129490 | 1 | source_sample, field_mapping, parser_comparison, storage_comparison | new_format | — |

@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-18",
+  "as_of": "2026-11-19",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -62,10 +62,10 @@
       "publisher": "Roma Capitale",
       "record_count_measured": null,
       "review_status": "schema_sampled_review_only",
-      "schema_observation": "manual_schema_review_required",
+      "schema_observation": "venue_inventory_missing_visit_days",
       "title": "Dati sui Mercati Rionali",
       "triage_class": "market_location_candidate",
-      "triage_score_not_market_yield": 16
+      "triage_score_not_market_yield": 18
     },
     {
       "actual_market_count_estimated": null,
@@ -653,7 +653,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14749,
+  "catalog_record_count": 14750,
   "catalog_source_labels_count": 92,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -736,7 +736,7 @@
         "address_generic_not_navigable": 44,
         "address_missing": 438,
         "coordinates_missing": 100,
-        "future_dates_missing": 1463,
+        "future_dates_missing": 1464,
         "hours_missing": 360,
         "records": 2200,
         "source_or_import_date_unknown": 3
@@ -744,7 +744,7 @@
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5961,
+      "priority_workload_score_not_evidence": 5962,
       "publisher": "eventiesagre.it",
       "records": 2200,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -795,7 +795,7 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 2,
         "address_missing": 1,
@@ -846,22 +846,22 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 14,
+      "count_delta_since_last_audit": 1,
       "fields": {
         "address_generic_not_navigable": 3,
         "address_missing": 98,
-        "coordinates_missing": 246,
-        "future_dates_missing": 389,
-        "hours_missing": 237,
-        "records": 506,
-        "source_or_import_date_unknown": 506
+        "coordinates_missing": 245,
+        "future_dates_missing": 383,
+        "hours_missing": 238,
+        "records": 507,
+        "source_or_import_date_unknown": 507
       },
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 1681,
+      "priority_workload_score_not_evidence": 1678,
       "publisher": "vintagery.it",
-      "records": 506,
+      "records": 507,
       "rights_classification": "source_rights_and_structure_require_review",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -910,11 +910,11 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 30,
-        "coordinates_missing": 25,
-        "future_dates_missing": 87,
+        "coordinates_missing": 24,
+        "future_dates_missing": 86,
         "hours_missing": 148,
         "records": 443,
         "source_or_import_date_unknown": 11
@@ -922,7 +922,7 @@
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1006,
+      "priority_workload_score_not_evidence": 1005,
       "publisher": "cosedicasa.com",
       "records": 443,
       "rights_classification": "publisher_rights_unreviewed",
@@ -9949,6 +9949,24 @@
       },
       {
         "catalog_records": 1,
+        "format_id": "vintagery.it--54cb95cdff96",
+        "host": "vintagery.it",
+        "open_todo_ids": [],
+        "pending_checks": [
+          "source_sample",
+          "field_mapping",
+          "parser_comparison",
+          "storage_comparison"
+        ],
+        "recheck_reasons": [
+          "new_format"
+        ],
+        "review_status": "not_reviewed",
+        "reviewed_at": null,
+        "url_pattern": "/mercatini/a9186a2d-1451-4a7c-a1ff-841e99a6b5dc"
+      },
+      {
+        "catalog_records": 1,
         "format_id": "vintagery.it--558b691a2f58",
         "host": "vintagery.it",
         "open_todo_ids": [],
@@ -15844,23 +15862,23 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-18",
+    "generated_for_date": "2026-11-19",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
       "auxiliary_format_units": 27,
       "catalog_records_modified": 0,
       "completed_tasks": 23,
-      "formats_requiring_recheck": 620,
+      "formats_requiring_recheck": 621,
       "formats_with_documented_source_read": 104,
       "formats_with_open_corrections": 106,
       "formats_with_sample_attempt": 110,
       "network_reads_performed": 0,
       "open_tasks": 36,
       "partial_review_formats": 105,
-      "primary_format_units": 620,
+      "primary_format_units": 621,
       "reviewed_sample_formats": 0,
-      "unreviewed_formats": 515
+      "unreviewed_formats": 516
     }
   },
   "source_labels_added_since_previous": [],
