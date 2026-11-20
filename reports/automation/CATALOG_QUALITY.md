@@ -4,15 +4,15 @@
 Un mercato trovato due volte nello stesso luogo e giorno può essere una
 duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 
-- Schede: **14,750**.
+- Schede: **14,751**.
 - Orari mancanti: **1,925**.
 - Indirizzi mancanti: **1,236**.
 - Coordinate mancanti: **972**.
-- Date future mancanti: **3,002**.
+- Date future mancanti: **3,001**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,523** gruppi, **1,837** righe in eccesso potenziali.
-- Verifiche umane documentate mancanti: **14,750**.
+- Verifiche umane documentate mancanti: **14,751**.
 - Gate qualità: **APPROVATO**.
 - Sovrapposizioni rese visibili dal recupero documentato di indirizzi su ID già presenti: **0** righe potenziali in **0** gruppi; restano tutte nel conteggio da rivedere.
 - Incremento dei gruppi senza questa prova: **0** righe potenziali; le soglie del gate restano invariate.
@@ -25,7 +25,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | eventiesagre.it | 2,200 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1,143 |
 | vintagery.it | 507 |
-| cosedicasa.com | 443 |
+| cosedicasa.com | 444 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 |
 | dati.comune.roma.it | 70 |
@@ -46,7 +46,7 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 | Friuli Venezia Giulia | 276 | 33 | 21 |
 | Lazio | 1,114 | 104 | 65 |
 | Liguria | 415 | 60 | 56 |
-| Lombardia | 4,088 | 527 | 166 |
+| Lombardia | 4,089 | 527 | 166 |
 | Marche | 322 | 62 | 43 |
 | Molise | 220 | 17 | 30 |
 | Piemonte | 1,382 | 159 | 179 |

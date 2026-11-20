@@ -2,12 +2,12 @@
 
 **Questo report viene aggiornato dagli script, non manualmente.**
 
-- Ultimo run: [20261119-043339-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261119-043339-market-autopilot) — UTC 2026-11-19T05:08:15.626604+00:00
+- Ultimo run: [20261120-043005-market-autopilot](https://github.com/tommyv-spec/mercati-italia/actions/runs/20261120-043005-market-autopilot) — UTC 2026-11-20T04:26:16.073822+00:00
 - Qualità DEV: APPROVATA
 - Nuova versione di dati: sì
-- Schede nel catalogo: **14,750**
-- Schede con date previste a +60 giorni: **11,180**
-- Schede con date previste a +90 giorni: **10,729**
+- Schede nel catalogo: **14,751**
+- Schede con date previste a +60 giorni: **11,168**
+- Schede con date previste a +90 giorni: **10,717**
 - Indice nazionale gzip: **488.5 KiB**
 - Verifiche documentate: **0**
 - Posizioni precise dichiarate: **89**
@@ -29,15 +29,16 @@
 - Aggiornamenti generici con prove per campo: **0** valori gestiti aggiornati e **142** schede con riscontri aggiornati o ritirati; identità conservate.
 - Dettagli Happings: **1** nuove sedi con dati ricostruiti dalla pagina originale e verificati nell’export. Le date restano riportate dalla fonte, senza conferme individuali di apertura.
 - Audit nazionale: **0** date dichiarate previste/confermate ma assenti, **2** località da esaminare e **1523** gruppi settimanali con possibile sovrapposizione (**1837** righe candidate, non cancellate).
-- Miglioramento UX reversibile: **898** gruppi provati dalla stessa fonte, **1053** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14750** ID originali preservati.
-- Fonti datate negli ultimi 30 giorni: **1161**; oltre soglia: **51**; senza data: **13348**.
-- Aggiornamenti del solo dataset (non dei singoli mercati): **1389**, di cui recenti **1161**.
-- Date previste con origine vecchia/sconosciuta: **10248**.
-- Metadati degli enti leggibili: **3/3**.
+- Miglioramento UX reversibile: **898** gruppi provati dalla stessa fonte, **1053** pulsanti ripetuti evitati, **2** località anomale non mostrate come Comuni; **14751** ID originali preservati.
+- Fonti datate negli ultimi 30 giorni: **1160**; oltre soglia: **51**; senza data: **13349**.
+- Aggiornamenti del solo dataset (non dei singoli mercati): **1389**, di cui recenti **1160**.
+- Date previste con origine vecchia/sconosciuta: **10233**.
+- Metadati degli enti leggibili: **2/3**.
 - ATTENZIONE fonte: no_record_has_documented_verification
 - ATTENZIONE fonte: source_content_dates_are_unproven
 - ATTENZIONE fonte: future_predictions_have_stale_or_missing_source_dates
 - ATTENZIONE fonte: source_data_older_than_allowed_forecast_window
+- ATTENZIONE fonte: publisher_metadata_unavailable_or_changed
 - ATTENZIONE fonte: publisher_refresh_incomplete
 - ATTENZIONE fonte: publisher_refresh_conflicting_fields
 

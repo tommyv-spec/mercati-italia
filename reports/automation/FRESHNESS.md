@@ -3,20 +3,20 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-19**.
-- Schede totali: **14,750**.
+- Data della misura: **2026-11-20**.
+- Schede totali: **14,751**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **910**.
-- Lettura della fonte registrata entro 30 giorni: **13,920**.
-- Fonte datata entro 30 giorni: **1,161**.
-- Di cui solo aggiornamento dataset, non del singolo mercato: **1,161**.
+- Importazione registrata entro 30 giorni: **815**.
+- Lettura della fonte registrata entro 30 giorni: **13,909**.
+- Fonte datata entro 30 giorni: **1,160**.
+- Di cui solo aggiornamento dataset, non del singolo mercato: **1,160**.
 - Schede con aggiornamento soltanto del dataset: **1,389**.
-- Fonte datata tra 31 e 365 giorni: **189**.
+- Fonte datata tra 31 e 365 giorni: **190**.
 - Fonte più vecchia del limite di 540 giorni: **51**.
-- Schede con età del contenuto della fonte non comprovata: **13,348**.
+- Schede con età del contenuto della fonte non comprovata: **13,349**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,209**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,248**.
+- Schede con date future previste: **11,194**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,233**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -25,6 +25,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_content_dates_are_unproven
 - Da correggere: future_predictions_have_stale_or_missing_source_dates
 - Da correggere: source_data_older_than_allowed_forecast_window
+- Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_incomplete
 - Da correggere: publisher_refresh_conflicting_fields
 
@@ -34,7 +35,7 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 |---|---|---|
 | Comune di Bologna | metadata_checked | 2025-04-02 |
 | Regione Lombardia | metadata_checked | 2026-11-17 |
-| Roma Capitale | metadata_checked | 2022-07-04 |
+| Roma Capitale | needs_review | non disponibile |
 
 ## Copertura di tutte le fonti del catalogo
 
@@ -47,25 +48,25 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | Comune di Firenze - FeelFlorence (CC BY 4.0) | www.feelflorence.it | 4 | 0 | 4 | 0 | 4 |
 | Comune di Milano - Open Data (CC BY 4.0) | dati.comune.milano.it | 85 | 0 | 85 | 0 | 85 |
 | Open Data Hub Alto Adige / Südtirol (LTS) — CC0 — dati ufficiali; apertura non confermata | opendatahub.com | 14 | 14 | 0 | 0 | 14 |
-| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1143 | 1142 | 1 | 0 | 1142 |
+| Regione Lombardia – MERCap (CC0 1.0 dichiarata) | www.dati.lombardia.it | 1143 | 1141 | 2 | 0 | 1142 |
 | Regione del Veneto – Calendario mercatini dell'antiquariato e del collezionismo — dati ufficiali; ap | www.regione.veneto.it | 9 | 0 | 9 | 0 | 9 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | www.regione.veneto.it | 94 | 0 | 94 | 0 | 94 |
 | Roma Capitale, Municipio XIII — fonte amministrativa (apertura non confermata) | www.comune.roma.it | 5 | 0 | 5 | 0 | 0 |
 | algherohospitality.it | www.algherohospitality.it | 7 | 0 | 0 | 7 | 0 |
-| arezzonotizie.it | www.arezzonotizie.it | 1 | 0 | 0 | 1 | 1 |
+| arezzonotizie.it | www.arezzonotizie.it | 1 | 0 | 0 | 1 | 0 |
 | assosagre.it | www.assosagre.it | 2 | 0 | 0 | 2 | 0 |
-| baritoday.it | www.baritoday.it | 1 | 0 | 0 | 1 | 1 |
-| bolognatoday.it | www.bolognatoday.it | 3 | 0 | 0 | 3 | 2 |
-| bresciatoday.it | www.bresciatoday.it | 2 | 0 | 0 | 2 | 1 |
+| baritoday.it | www.baritoday.it | 1 | 0 | 0 | 1 | 0 |
+| bolognatoday.it | www.bolognatoday.it | 3 | 0 | 0 | 3 | 0 |
+| bresciatoday.it | www.bresciatoday.it | 2 | 0 | 0 | 2 | 0 |
 | brindisireport.it | www.brindisireport.it | 2 | 0 | 0 | 2 | 0 |
-| casertanews.it | www.casertanews.it | 1 | 0 | 0 | 1 | 1 |
+| casertanews.it | www.casertanews.it | 1 | 0 | 0 | 1 | 0 |
 | cesenatoday.it | www.cesenatoday.it | 1 | 0 | 0 | 1 | 1 |
 | chietitoday.it | www.chietitoday.it | 1 | 0 | 0 | 1 | 0 |
 | cittadellaspezia.com | www.cittadellaspezia.com | 2 | 0 | 0 | 2 | 0 |
-| citynews_baritoday.it | www.baritoday.it | 1 | 0 | 0 | 1 | 1 |
-| citynews_bresciatoday.it | www.bresciatoday.it | 1 | 0 | 0 | 1 | 1 |
-| citynews_cagliaritoday.it | www.cagliaritoday.it | 1 | 0 | 0 | 1 | 1 |
-| citynews_cataniatoday.it | www.cataniatoday.it | 1 | 0 | 0 | 1 | 1 |
+| citynews_baritoday.it | www.baritoday.it | 1 | 0 | 0 | 1 | 0 |
+| citynews_bresciatoday.it | www.bresciatoday.it | 1 | 0 | 0 | 1 | 0 |
+| citynews_cagliaritoday.it | www.cagliaritoday.it | 1 | 0 | 0 | 1 | 0 |
+| citynews_cataniatoday.it | www.cataniatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_ferraratoday.it | www.ferraratoday.it | 1 | 0 | 0 | 1 | 1 |
 | citynews_firenzetoday.it | www.firenzetoday.it | 2 | 0 | 0 | 2 | 2 |
 | citynews_forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 1 |
@@ -82,7 +83,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | citynews_vicenzatoday.it | www.vicenzatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_viterbotoday.it | www.viterbotoday.it | 1 | 0 | 0 | 1 | 0 |
 | cosafareafirenze.it | www.cosafareafirenze.it | 22 | 0 | 0 | 22 | 0 |
-| cosedicasa.com | www.cosedicasa.com | 443 | 0 | 0 | 443 | 441 |
+| cosedicasa.com | www.cosedicasa.com | 444 | 0 | 0 | 444 | 441 |
 | dati.comune.roma.it | dati.comune.roma.it | 70 | 0 | 0 | 70 | 68 |
 | emiliaromagnaturismo.it | emiliaromagnaturismo.it | 8 | 0 | 0 | 8 | 0 |
 | enjoysicilia.it | www.enjoysicilia.it | 3 | 0 | 0 | 3 | 0 |
@@ -96,7 +97,7 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 1 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
 | genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 5 |
-| happings.com | www.happings.com | 9914 | 0 | 1 | 9913 | 9247 |
+| happings.com | www.happings.com | 9914 | 0 | 1 | 9913 | 9246 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
 | leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 1 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
@@ -142,13 +143,13 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1236 | 3102 | 2058 | 8171 | 183 |
-| Orari | 1925 | 1573 | 2200 | 7672 | 1380 |
-| Giorni | 1421 | 1836 | 2061 | 9215 | 217 |
+| Sede | 1236 | 3101 | 2059 | 8172 | 183 |
+| Orari | 1925 | 1739 | 2196 | 7506 | 1385 |
+| Giorni | 1422 | 1836 | 2061 | 9215 | 217 |
 
 ## Funzionamento del recupero automatico
 
-URL primari distinti nel catalogo: 6526. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
+URL primari distinti nel catalogo: 6527. Le pagine riconosciute vengono lette una volta per tutti i mercati collegabili. Una fonte senza lettore resta nella coda di copertura: non viene conteggiata come controllata.
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|

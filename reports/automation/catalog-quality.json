@@ -7,13 +7,13 @@
   "metrics": {
     "address_missing": 1236,
     "coordinates_missing": 972,
-    "future_dates_missing": 3002,
+    "future_dates_missing": 3001,
     "hours_missing": 1925,
     "review_only_duplicate_groups": 1523,
     "review_only_potential_extra_rows": 1837,
     "suspicious_city": 2,
-    "total": 14750,
-    "without_individual_verification": 14750
+    "total": 14751,
+    "without_individual_verification": 14751
   },
   "per_region": [
     {
@@ -75,16 +75,16 @@
       "region": "Liguria",
       "markets": 415,
       "hours_missing": 60,
-      "future_dates_missing": 103,
+      "future_dates_missing": 104,
       "address_missing": 56,
       "coordinates_missing": 34
     },
     {
       "region": "Lombardia",
-      "markets": 4088,
+      "markets": 4089,
       "hours_missing": 527,
       "address_missing": 166,
-      "future_dates_missing": 744,
+      "future_dates_missing": 743,
       "coordinates_missing": 259
     },
     {
@@ -132,7 +132,7 @@
       "markets": 436,
       "hours_missing": 67,
       "address_missing": 41,
-      "future_dates_missing": 96,
+      "future_dates_missing": 95,
       "coordinates_missing": 18
     },
     {
@@ -196,7 +196,7 @@
     },
     {
       "source": "cosedicasa.com",
-      "records": 443
+      "records": 444
     },
     {
       "source": "Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata",
@@ -713,17 +713,17 @@
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
     "examples": [],
-    "baseline_records": 14749,
+    "baseline_records": 14750,
     "baseline_potential_extra_rows": 1837,
     "positive_group_growth": 0,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
     "total": 1,
-    "hours_missing": 1,
+    "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": -2,
-    "future_dates_missing": -6,
+    "coordinates_missing": 0,
+    "future_dates_missing": -1,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

@@ -116,36 +116,40 @@
               "calendar_scope": "explicit_visible_list",
               "conditions": [],
               "date_intervals": [],
-              "description": "Mercatino di Antiquariato, Modernariato e Collezionismo attivo e regolare presso il chiostro del Museo Diocesano. Si svolge mensilmente ogni terza domenica del mese in una location al coperto sotto il porticato. Non esiste un calendario unico online centralizzato; si consiglia di verificare prima della visita sui canali ufficiali del museo.",
               "edition_intervals": [
                 {
-                  "end": "2026-11-28",
-                  "start": "2026-11-28"
+                  "end": "2026-11-22",
+                  "start": "2026-11-22"
                 }
               ],
-              "entry": "Ingresso gratuito",
               "forecast_rule": null,
-              "hours_intervals": [],
-              "hours_text": null,
+              "hours_intervals": [
+                {
+                  "end": "16:00",
+                  "start": "09:00"
+                }
+              ],
+              "hours_text": "09:00–16:00",
               "location": {
-                "address": "Chiostro del Museo Diocesano Francesco Gonzaga, Piazza Virgiliana 56",
-                "city": "Mantova",
-                "province": "MN",
+                "address": "Parco esposizioni di Novegro, via Novegro, padiglione C",
+                "city": "Segrate",
+                "province": "MI",
                 "region": "Lombardia"
               },
-              "name": "Mercatino del Collezionismo — Museo Diocesano, Mantova",
+              "name": "Mercatino antiquariato e usato di Segrate, \"Borsa Scambio\", Parco esposizioni di Novegro, via Novegro, padiglione C",
               "observed_location": {
-                "address": "Chiostro del Museo Diocesano Francesco Gonzaga, Piazza Virgiliana 56, Mantova",
-                "city": "Mantova",
-                "province": "MN",
+                "address": "\"Borsa Scambio\", Parco esposizioni di Novegro, via Novegro, padiglione C",
+                "city": "Segrate",
+                "province": "Milano",
                 "region": "Lombardia"
               },
               "occurrences": [
                 {
-                  "date": "2026-11-28",
+                  "date": "2026-11-22",
                   "end_time": null,
                   "evidence": [
-                    "vintagery.it card record (browser capture)"
+                    "#post-content .mercatini-mostre-date-big:row[1]",
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
                   ],
                   "start_time": null,
                   "status": "source_listed"
@@ -156,72 +160,180 @@
               "source_rows": [
                 {
                   "evidence": [
-                    "record.organizer"
+                    "#post-content .mercatini-mostre-content-title"
+                  ],
+                  "field": "location.city",
+                  "value": "Segrate (Milano)"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-address"
+                  ],
+                  "field": "location.address",
+                  "value": "\"Borsa Scambio\", Parco esposizioni di Novegro, via Novegro, padiglione C"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-region"
+                  ],
+                  "field": "location.region",
+                  "value": "Lombardia"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-performer"
                   ],
                   "field": "organizer",
-                  "value": "Matermanto"
+                  "value": "Parco Esposizioni Novegro"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-phone"
+                  ],
+                  "field": "phone",
+                  "value": "02/70200022"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-contacts"
+                  ],
+                  "field": "contacts",
+                  "value": "Info@parcoesposizioninovegro.it"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-website"
+                  ],
+                  "field": "website",
+                  "value": "www.parcoesposizioninovegro.it; www.parcoesposizioninovegro.it/fiere/novegro-borsa-scambio/"
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-expo"
+                  ],
+                  "field": "exhibitors",
+                  "value": "50"
+                },
+                {
+                  "evidence": [
+                    "self Event.location.geo"
+                  ],
+                  "field": "publisher_geo",
+                  "value": {
+                    "latitude": "45.471897",
+                    "longitude": "9.275008",
+                    "precision": "publisher_point_unverified"
+                  }
+                },
+                {
+                  "evidence": [
+                    "#post-content .mercatini-mostre-suspension:label=Prossime date"
+                  ],
+                  "field": "next_dates",
+                  "value": "22 novembre 2026"
+                },
+                {
+                  "evidence": [
+                    "self Event.startDate/endDate"
+                  ],
+                  "field": "schema_edition",
+                  "value": {
+                    "end": "2026-11-22",
+                    "start": "2026-11-22"
+                  }
                 }
               ],
-              "suspensions": [],
-              "tags": [],
-              "tips": "Parcheggiare nelle aree esterne al centro storico poiché Piazza Virgiliana è in zona ZTL. Portare contanti per gli acquisti. Se visiti nei mesi invernali, indossare vestiti adeguati nonostante il chiostro sia riparato. Verificare sempre con i canali ufficiali del museo prima di recarsi sul posto per possibili variazioni dovute a festività o eventi cittadini."
+              "suspensions": []
             },
             "field_evidence": {
-              "calendar": {
-                "selector": "record.start_date; schedule_notes dates"
-              },
-              "hours": {
-                "selector": "record.start_time/end_time"
-              },
-              "identity": {
-                "selector": "record.id",
-                "value": "a9186a2d-1451-4a7c-a1ff-841e99a6b5dc"
-              },
-              "location": {
-                "selector": "record.city/region/address"
-              }
+              "calendar": [
+                "#post-content .mercatini-mostre-date-big:row[1]",
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "contacts": [
+                "#post-content .mercatini-mostre-contacts"
+              ],
+              "exhibitors": [
+                "#post-content .mercatini-mostre-expo"
+              ],
+              "hours_text": [
+                "#post-content .mercatini-mostre-times: main market schedule"
+              ],
+              "location.address": [
+                "#post-content .mercatini-mostre-address",
+                "self Event.location.address"
+              ],
+              "location.city": [
+                "#post-content .mercatini-mostre-content-title",
+                "self Event.location.address"
+              ],
+              "location.province": [
+                "self Event.location.address"
+              ],
+              "location.region": [
+                "#post-content .mercatini-mostre-region",
+                "self Event.location.address"
+              ],
+              "name": [
+                "#content h1"
+              ],
+              "next_dates": [
+                "#post-content .mercatini-mostre-suspension:label=Prossime date"
+              ],
+              "organizer": [
+                "#post-content .mercatini-mostre-performer"
+              ],
+              "phone": [
+                "#post-content .mercatini-mostre-phone"
+              ],
+              "publisher_geo": [
+                "self Event.location.geo"
+              ],
+              "schema_edition": [
+                "self Event.startDate/endDate"
+              ],
+              "website": [
+                "#post-content .mercatini-mostre-website"
+              ]
             },
             "schema": 1,
             "source": {
-              "bytes": 1516,
-              "canonical_url": null,
-              "final_url": "https://vintagery.it/mercatini/a9186a2d-1451-4a7c-a1ff-841e99a6b5dc",
-              "hash_basis": "browser_captured_record",
-              "html_sha256": "6e52294af9c7f224610f47fb7838a904386e3482349ee59d6e4164f188a37da6",
-              "modified_at": null,
+              "bytes": 621953,
+              "canonical_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+              "final_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+              "hash_basis": "http_response_bytes",
+              "html_sha256": "e5b0d0fc99d2cfb8e4dba4096bf9cd46111dff523f3bf03fe24b7bd17ae91ab8",
+              "modified_at": "2026-11-19T16:29:40+00:00",
               "published_at": null,
-              "publisher": "vintagery.it",
+              "publisher": "cosedicasa.com",
               "redirect_observed": false,
-              "requested_url": "https://vintagery.it/mercatini/a9186a2d-1451-4a7c-a1ff-841e99a6b5dc",
-              "source_id": "a9186a2d-1451-4a7c-a1ff-841e99a6b5dc"
+              "requested_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+              "source_id": "milano-borsa-scambio-di-novegro"
             },
             "status": "parsed",
-            "warnings": [
-              "hours_seasonal_or_per_edition",
-              "rule_with_other_text"
-            ]
+            "warnings": []
           },
-          "read_on": "2026-11-19"
+          "read_on": "2026-11-20"
         },
-        "market_id": "mercatino-del-collezionismo-museo-diocesano-mantova-mantova",
+        "market_id": "mercatino-antiquariato-e-usato-di-segrate-borsa-scambio-parco-esposizioni-di-nov",
         "source_page": {
-          "bytes": 1516,
-          "canonical_url": null,
-          "final_url": "https://vintagery.it/mercatini/a9186a2d-1451-4a7c-a1ff-841e99a6b5dc",
-          "hash_basis": "browser_captured_record",
-          "html_sha256": "6e52294af9c7f224610f47fb7838a904386e3482349ee59d6e4164f188a37da6",
-          "modified_at": null,
+          "bytes": 621953,
+          "canonical_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+          "final_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+          "hash_basis": "http_response_bytes",
+          "html_sha256": "e5b0d0fc99d2cfb8e4dba4096bf9cd46111dff523f3bf03fe24b7bd17ae91ab8",
+          "modified_at": "2026-11-19T16:29:40+00:00",
           "published_at": null,
-          "publisher": "vintagery.it",
-          "read_on": "2026-11-19",
+          "publisher": "cosedicasa.com",
+          "read_on": "2026-11-20",
           "redirect_observed": false,
-          "requested_url": "https://vintagery.it/mercatini/a9186a2d-1451-4a7c-a1ff-841e99a6b5dc",
-          "source_id": "a9186a2d-1451-4a7c-a1ff-841e99a6b5dc",
+          "requested_url": "https://www.cosedicasa.com/mercatini/milano-borsa-scambio-di-novegro",
+          "source_id": "milano-borsa-scambio-di-novegro",
           "status": "parsed"
         }
       }
     ],
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "max_new": 1,
     "publisher": "later-sources",
     "schema": 1
@@ -232,9 +344,9 @@
   "reconciled_id_count": 77,
   "records_added": 0,
   "records_deleted": 0,
-  "records_total": 14749,
+  "records_total": 14750,
   "review_only": false,
   "schema": 1,
-  "source_age_days": 49,
+  "source_age_days": 50,
   "verified_future_events_created": 0
 }
