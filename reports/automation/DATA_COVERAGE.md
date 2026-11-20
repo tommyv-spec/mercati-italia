@@ -2,18 +2,18 @@
 
 **Analisi in sola lettura.** Nessun mercato, dato fonte o appuntamento modificato.
 
-- Schede: **14,750**
-- Senza orari: **1,925** (13.1%)
+- Schede: **14,751**
+- Senza orari: **1,925** (13.0%)
 - Senza indirizzo: **1,236** (8.4%)
-- Senza prossime date: **3,002**
-- Senza coordinate precise verificate: **14,661**
-- Senza verifica singola documentata: **14,750**
+- Senza prossime date: **3,001**
+- Senza coordinate precise verificate: **14,662**
+- Senza verifica singola documentata: **14,751**
 
 ## Regioni da migliorare (volume di dati mancanti, non punteggio di affidabilità)
 
 | Regione | Schede | Senza orario | Senza indirizzo | Senza prossima data | Gap pesato |
 |---|---:|---:|---:|---:|---:|
-| Lombardia | 4088 | 527 | 166 | 744 | 16324 |
+| Lombardia | 4089 | 527 | 166 | 743 | 16324 |
 | Piemonte | 1382 | 159 | 179 | 218 | 5635 |
 | Veneto | 1386 | 144 | 128 | 219 | 5503 |
 | Toscana | 1039 | 204 | 115 | 269 | 4762 |
@@ -21,8 +21,8 @@
 | Lazio | 1114 | 104 | 65 | 258 | 4558 |
 | Campania | 842 | 123 | 63 | 107 | 3342 |
 | Puglia | 520 | 60 | 40 | 77 | 2051 |
-| Sicilia | 436 | 67 | 41 | 96 | 1879 |
-| Liguria | 415 | 60 | 56 | 103 | 1846 |
+| Sicilia | 436 | 67 | 41 | 95 | 1876 |
+| Liguria | 415 | 60 | 56 | 104 | 1849 |
 | Sardegna | 413 | 31 | 31 | 51 | 1547 |
 | Abruzzo | 408 | 30 | 33 | 54 | 1542 |
 | Marche | 322 | 62 | 43 | 93 | 1517 |
@@ -42,13 +42,13 @@ Fino a due per regione. È una coda di approfondimento: **non** prova che gli or
 |---|---|---:|---:|---:|---:|
 | Roma | Lazio | 413 | 34 | 11 | 117 |
 | Milano | Lombardia | 135 | 14 | 16 | 36 |
-| Bologna | Emilia-Romagna | 60 | 8 | 4 | 54 |
+| Bologna | Emilia-Romagna | 60 | 8 | 4 | 55 |
 | Firenze | Toscana | 56 | 12 | 4 | 40 |
-| Genova | Liguria | 43 | 14 | 9 | 15 |
+| Genova | Liguria | 43 | 14 | 9 | 16 |
 | Torino | Piemonte | 34 | 5 | 3 | 16 |
 | Como | Lombardia | 33 | 8 | 0 | 12 |
 | Modena | Emilia-Romagna | 23 | 7 | 5 | 15 |
-| Palermo | Sicilia | 20 | 8 | 4 | 13 |
+| Palermo | Sicilia | 20 | 8 | 4 | 12 |
 | Lucca | Toscana | 22 | 9 | 0 | 10 |
 | Ancona | Marche | 24 | 3 | 7 | 7 |
 | Venezia | Veneto | 22 | 5 | 5 | 8 |

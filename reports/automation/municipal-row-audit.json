@@ -4,8 +4,8 @@
   "offline": false,
   "imports": 0,
   "verified_events": 0,
-  "reference_date": "2026-11-19",
-  "catalog_total": null,
+  "reference_date": "2026-11-20",
+  "catalog_total": 87,
   "sample_limit": 3,
   "history": {
     "25177cb0-f763-44ca-8c30-dd8111c58cc3": {
@@ -433,10 +433,117 @@
       "resource_last_modified": "2026-11-06T08:54:46.199491",
       "status": "sampled_complete_csv",
       "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "96e39a52-7a13-4688-b0b4-b5fdbe39f844": {
+      "checked_on": "2026-11-20",
+      "resource_last_modified": "2026-11-10T09:33:16.285037",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "9c1b8b19-65b7-4e28-b0a3-06b7bfcbfa6d": {
+      "checked_on": "2026-11-20",
+      "resource_last_modified": "2026-11-10T09:40:31.817187",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
+    },
+    "a0074e98-d84e-44a8-88d8-463f8920a5d5": {
+      "checked_on": "2026-11-20",
+      "resource_last_modified": "2026-11-03T08:52:28.873307",
+      "status": "sampled_complete_csv",
+      "kind": "historic_stall_capacity_not_market_visits"
     }
   },
-  "sources": [],
-  "errors": [
-    "URLError: <urlopen error _ssl.c:1011: The handshake operation timed out>"
-  ]
+  "sources": [
+    {
+      "id": "96e39a52-7a13-4688-b0b4-b5fdbe39f844",
+      "title": "Posteggi mercati e fiere - NOGARA",
+      "publisher": "Comune di Nogara",
+      "source_modified_claim": "",
+      "resource_id": "631c5eee-2ec1-48e6-bb2f-7c3e169f91ff",
+      "resource_last_modified": "2026-11-10T09:33:16.285037",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "b4c9539ec3af9490dd1e89273a3c16482ca210a44472af02d41b089263a850a3",
+      "source_rows_read": 9,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 9,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 9,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "9c1b8b19-65b7-4e28-b0a3-06b7bfcbfa6d",
+      "title": "Posteggi mercati e fiere - PIANIGA",
+      "publisher": "Comune di Pianiga",
+      "source_modified_claim": "",
+      "resource_id": "93b04f86-c013-45dd-877f-e62079537d35",
+      "resource_last_modified": "2026-11-10T09:40:31.817187",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "abddf5f7182d9f38239ff5c77147c46b1e601c95c667dbb7bfbca07507af58dd",
+      "source_rows_read": 133,
+      "distinct_market_names_not_new_markets": 4,
+      "explicit_valid_weekdays": 132,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 122,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    },
+    {
+      "id": "a0074e98-d84e-44a8-88d8-463f8920a5d5",
+      "title": "Posteggi mercati e fiere - VIGASIO",
+      "publisher": "Comune di Vigasio",
+      "source_modified_claim": "",
+      "resource_id": "544b9b06-5789-401e-8ca1-7111d7d34c3d",
+      "resource_last_modified": "2026-11-03T08:52:28.873307",
+      "claimed_license": "CC-BY-4.0",
+      "status": "sampled_complete_csv",
+      "market_import_permission": false,
+      "markets_confirmed": 0,
+      "csv_sha256": "6452f4d77e3c469ba6dcd38ed9f4f5ba0204e4043f0a6dc00c81bd7200ea9024",
+      "source_rows_read": 1,
+      "distinct_market_names_not_new_markets": 1,
+      "explicit_valid_weekdays": 1,
+      "rows_with_addresses": 0,
+      "rows_with_hours": 0,
+      "expired_concession_rows": 0,
+      "historical_stall_rows": 0,
+      "source_kind": "historic_stall_capacity_not_market_visits",
+      "fields": [
+        "nome_mercato",
+        "fiera_mercato",
+        "giorno",
+        "inizio_periodo",
+        "fine_periodo",
+        "tipo_posteggio",
+        "totale_posteggi"
+      ]
+    }
+  ],
+  "errors": []
 }
