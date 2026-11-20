@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-19",
+  "as_of": "2026-11-20",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -62,10 +62,10 @@
       "publisher": "Roma Capitale",
       "record_count_measured": null,
       "review_status": "schema_sampled_review_only",
-      "schema_observation": "venue_inventory_missing_visit_days",
+      "schema_observation": "manual_schema_review_required",
       "title": "Dati sui Mercati Rionali",
       "triage_class": "market_location_candidate",
-      "triage_score_not_market_yield": 18
+      "triage_score_not_market_yield": 16
     },
     {
       "actual_market_count_estimated": null,
@@ -653,7 +653,7 @@
       "triage_score_not_market_yield": -18
     }
   ],
-  "catalog_record_count": 14750,
+  "catalog_record_count": 14751,
   "catalog_source_labels_count": 92,
   "market_confirmations": 0,
   "market_updates": 0,
@@ -846,12 +846,12 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 3,
         "address_missing": 98,
-        "coordinates_missing": 245,
-        "future_dates_missing": 383,
+        "coordinates_missing": 244,
+        "future_dates_missing": 386,
         "hours_missing": 238,
         "records": 507,
         "source_or_import_date_unknown": 507
@@ -859,7 +859,7 @@
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 1678,
+      "priority_workload_score_not_evidence": 1681,
       "publisher": "vintagery.it",
       "records": 507,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -910,21 +910,21 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 0,
+      "count_delta_since_last_audit": 1,
       "fields": {
         "address_generic_not_navigable": 30,
-        "coordinates_missing": 24,
-        "future_dates_missing": 86,
+        "coordinates_missing": 25,
+        "future_dates_missing": 82,
         "hours_missing": 148,
-        "records": 443,
-        "source_or_import_date_unknown": 11
+        "records": 444,
+        "source_or_import_date_unknown": 12
       },
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1005,
+      "priority_workload_score_not_evidence": 1002,
       "publisher": "cosedicasa.com",
-      "records": 443,
+      "records": 444,
       "rights_classification": "publisher_rights_unreviewed",
       "sample_id_only": {
         "address_generic_not_navigable": [
@@ -3835,7 +3835,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3852,7 +3853,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3869,7 +3871,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3886,7 +3889,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3904,7 +3908,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3923,7 +3928,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3942,7 +3948,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3961,7 +3968,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3978,7 +3986,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -3995,7 +4004,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4012,7 +4022,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4027,7 +4038,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4042,7 +4054,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4060,7 +4073,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4078,7 +4092,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4096,7 +4111,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4115,7 +4131,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4134,7 +4151,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4151,7 +4169,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4169,7 +4188,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4187,7 +4207,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4205,7 +4226,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4223,7 +4245,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4245,7 +4268,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -4264,7 +4288,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4287,7 +4312,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4304,7 +4330,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4327,6 +4354,7 @@
         "recheck_reasons": [
           "parser_code_changed",
           "sample_catalog_fields_changed",
+          "sample_review_due",
           "catalog_source_urls_changed"
         ],
         "review_status": "partial_review",
@@ -4344,14 +4372,15 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
         "url_pattern": "/d/68zx-njaw"
       },
       {
-        "catalog_records": 443,
+        "catalog_records": 444,
         "format_id": "cosedicasa.com--e4978a2ff443",
         "host": "cosedicasa.com",
         "open_todo_ids": [],
@@ -4362,6 +4391,7 @@
         "recheck_reasons": [
           "parser_code_changed",
           "sample_catalog_fields_changed",
+          "sample_review_due",
           "catalog_source_urls_changed"
         ],
         "review_status": "partial_review",
@@ -4379,7 +4409,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4401,7 +4432,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4417,7 +4449,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4439,7 +4472,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4461,7 +4495,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4483,7 +4518,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4505,7 +4541,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4544,7 +4581,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4563,7 +4601,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4583,7 +4622,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4605,7 +4645,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4631,7 +4672,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4652,7 +4694,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4674,7 +4717,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4696,7 +4740,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4736,7 +4781,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:51:51.701445+00:00",
@@ -4758,7 +4804,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4779,7 +4826,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4801,7 +4849,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4826,7 +4875,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4848,7 +4898,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -4871,7 +4922,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4896,7 +4948,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4917,7 +4970,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -4942,7 +4996,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4964,7 +5019,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -4989,7 +5045,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5010,7 +5067,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5033,7 +5091,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5057,7 +5116,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5094,7 +5154,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5114,7 +5175,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5135,7 +5197,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5165,7 +5228,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5191,7 +5255,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5210,7 +5275,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5232,7 +5298,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5254,7 +5321,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5274,7 +5342,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5303,7 +5372,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -5327,7 +5397,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5353,7 +5424,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5374,7 +5446,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5394,7 +5467,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5416,7 +5490,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -5437,7 +5512,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5458,7 +5534,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5479,7 +5556,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5499,7 +5577,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5521,7 +5600,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5544,7 +5624,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5567,7 +5648,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -5588,7 +5670,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5609,7 +5692,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5629,7 +5713,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5652,7 +5737,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5673,7 +5759,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5693,7 +5780,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5714,7 +5802,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5737,7 +5826,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5763,7 +5853,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5783,7 +5874,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5808,7 +5900,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5832,7 +5925,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5853,7 +5947,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -5873,7 +5968,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5899,7 +5995,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5919,7 +6016,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5940,7 +6038,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5960,7 +6059,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -5980,7 +6080,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6001,7 +6102,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6022,7 +6124,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6043,7 +6146,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6064,7 +6168,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6084,7 +6189,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6101,7 +6207,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6124,7 +6231,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6146,7 +6254,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6168,7 +6277,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6190,7 +6300,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6214,7 +6325,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6234,7 +6346,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6255,7 +6368,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6273,7 +6387,8 @@
           "parser_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6293,7 +6408,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6315,7 +6431,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6338,7 +6455,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6358,7 +6476,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6378,7 +6497,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6402,7 +6522,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6423,7 +6544,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6446,7 +6568,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -6466,7 +6589,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6487,7 +6611,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6509,7 +6634,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6529,7 +6655,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6553,7 +6680,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6580,7 +6708,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6600,7 +6729,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -6622,7 +6752,8 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
@@ -6643,7 +6774,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -6665,7 +6797,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -15813,7 +15946,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T19:42:27.887935+00:00",
@@ -15833,7 +15967,8 @@
         ],
         "recheck_reasons": [
           "parser_code_changed",
-          "sample_catalog_fields_changed"
+          "sample_catalog_fields_changed",
+          "sample_review_due"
         ],
         "review_status": "partial_review",
         "reviewed_at": "2026-10-20T20:50:44.639033+00:00",
@@ -15855,14 +15990,15 @@
           "storage_comparison"
         ],
         "recheck_reasons": [
-          "parser_code_changed"
+          "parser_code_changed",
+          "sample_review_due"
         ],
         "review_status": "not_reviewed",
         "reviewed_at": "2026-10-20T17:53:35.590967+00:00",
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-19",
+    "generated_for_date": "2026-11-20",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {
