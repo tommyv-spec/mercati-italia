@@ -1,6 +1,6 @@
 {
-  "baseline_market_ids_preserved": 14750,
-  "baseline_market_records": 14750,
+  "baseline_market_ids_preserved": 14751,
+  "baseline_market_records": 14751,
   "catalog_imports": 0,
   "catalog_updates": 0,
   "checked_sources": [
@@ -27,7 +27,7 @@
       "catalog_market_imports": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "reason_class": "ValueError",
+      "reason_class": "URLError",
       "requests": 0,
       "state": "source_unavailable_or_schema_review"
     }
@@ -2647,29 +2647,13 @@
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/13667_Mercatini+delle+pulci+e+antiquariato+a+Villabassa.html",
       "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "city": "Firenze",
-      "end": "2026-12-20",
-      "first_seen": "2026-10-19",
-      "id": "firenze-feelflorence:53",
-      "kind": "market_candidate",
-      "last_seen": "2026-10-20",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "firenze-feelflorence",
-      "source_url": "https://www.feelflorence.it/it/eventi/mercato-di-natale-piazza-santa-croce",
-      "start": "2026-11-14",
-      "status": "not_seen_again_not_a_market_closure",
-      "title": "Mercato di Natale in Piazza Santa Croce"
     }
   ],
   "new_external_url_pointers": 0,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-11-19",
+  "reference_date": "2026-11-20",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
