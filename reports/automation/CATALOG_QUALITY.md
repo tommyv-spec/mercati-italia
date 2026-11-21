@@ -7,8 +7,8 @@ duplicazione *oppure* un mercato distinto: nessuna fusione automatica.
 - Schede: **14,751**.
 - Orari mancanti: **1,925**.
 - Indirizzi mancanti: **1,236**.
-- Coordinate mancanti: **972**.
-- Date future mancanti: **3,001**.
+- Coordinate mancanti: **971**.
+- Date future mancanti: **2,996**.
 - Schede senza data ma erroneamente dichiarate previste/confermate: **0**.
 - Località da verificare: **2**.
 - Possibili doppioni (solo mercati settimanali, stesso indirizzo/giorno): **1,523** gruppi, **1,837** righe in eccesso potenziali.

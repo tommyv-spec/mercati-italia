@@ -41,7 +41,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "2d7352f7-7d9f-4be7-927b-de1b760993c3": {
-      "checked_date": "2026-11-20",
+      "checked_date": "2026-11-21",
       "column_fingerprint": null,
       "status": "needs_review",
       "viability": "manual_schema_review_required"
@@ -65,7 +65,7 @@
       "viability": "concession_registry_without_visit_schedule"
     },
     "4c43a70b-81ab-4a65-815a-993f52767166": {
-      "checked_date": "2026-10-25",
+      "checked_date": "2026-11-21",
       "column_fingerprint": "5a2f70d84c95687954a7b77e3c2c040e0c5863485ba3c1b9167fa4aadae5d76a",
       "status": "schema_preview_only",
       "viability": "concession_registry_without_visit_schedule"
@@ -215,7 +215,7 @@
       "viability": "historical_aggregate_not_venues"
     },
     "f4407fb8-5e36-4311-8422-02d463741780": {
-      "checked_date": "2026-11-15",
+      "checked_date": "2026-11-21",
       "column_fingerprint": null,
       "status": "needs_review",
       "viability": "manual_schema_review_required"
@@ -227,91 +227,55 @@
       "viability": "manual_schema_review_required"
     }
   },
-  "reference_date": "2026-11-20",
+  "reference_date": "2026-11-21",
   "reports": [
     {
       "adapter_enabled": false,
       "events_confirmed": 0,
       "field_hints": {
+        "concession_period": [
+          "DATA VALIDITA CONCESSIONE",
+          "DATA SCADENZA CONCESSIONE"
+        ],
         "market_type": [
           "FIERA/MERCATO"
         ],
         "name": [
           "NOME"
-        ],
-        "weekday": [
-          "GIORNO"
         ]
       },
       "fields": [
         "NOME",
         "FIERA/MERCATO",
-        "GIORNO",
-        "INIZIO PERIODO",
-        "FINE PERIODO",
-        "TIPO POSTEGGIO",
-        "TOTALE POSTEGGI"
+        "ATTIVITA'",
+        "DATA VALIDITA CONCESSIONE",
+        "DATA SCADENZA CONCESSIONE"
       ],
       "format": "CSV",
-      "id": "dcf55d07-06db-4d89-96fe-ba2ded874b2c",
+      "id": "4c43a70b-81ab-4a65-815a-993f52767166",
       "review_blockers": [
         "municipality_must_be_validated_from_publisher_context"
       ],
-      "sample_bytes": 3431,
-      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/1627b911-2a6b-4020-a8c8-82bc52c365a0.csv",
-      "schema_viability": "manual_schema_review_required",
+      "sample_bytes": 58382,
+      "sample_url": "https://dati.veneto.it/SpodCkanApi/api/2/rest/dataset/db18408f-27c6-40c8-87f9-ab3dcba465df.csv",
+      "schema_viability": "concession_registry_without_visit_schedule",
       "source_license_verified": false,
       "status": "schema_preview_only",
-      "title": "Posteggi mercati e fiere - Comune di Marcon",
+      "title": "Fiere e mercati - Comune di Noventa Padovana",
       "truncated": false
     },
     {
       "adapter_enabled": false,
+      "error": "HTTPError: HTTP Error 503: Service Temporarily Unavailable",
       "events_confirmed": 0,
-      "field_hints": {
-        "municipality": [
-          "comune"
-        ],
-        "statistics_count": [
-          "mercati",
-          "attivazioni",
-          "cessazioni"
-        ],
-        "statistics_year": [
-          "anno"
-        ]
-      },
-      "fields": [
-        "comune",
-        "provincia",
-        "anno",
-        "mercati",
-        "totale",
-        "attivazioni",
-        "cessazioni",
-        "posteggi",
-        "alimentare_totale",
-        "alimentare_attivazioni",
-        "alimentare_cessazioni",
-        "nonalimentare_totale",
-        "nonalimentare_attivazioni",
-        "nonalimentare_cessazioni",
-        "produttori_totale",
-        "produttori_attivazioni",
-        "produttori_cessazioni"
-      ],
+      "field_hints": {},
+      "fields": [],
       "format": "CSV",
-      "id": "ede498b0-03e3-48e3-88fa-c3753604ad4f",
-      "review_blockers": [
-        "explicit_market_name_missing"
-      ],
-      "sample_bytes": 65536,
-      "sample_url": "https://dati.lazio.it/dataset/ede498b0-03e3-48e3-88fa-c3753604ad4f/resource/4b626432-795c-465c-bd6d-5c77a8f44793/download/oscomercatiquindicinali.csv",
-      "schema_viability": "historical_aggregate_not_venues",
+      "id": "f4407fb8-5e36-4311-8422-02d463741780",
+      "sample_url": "https://dati.lazio.it/dataset/f4407fb8-5e36-4311-8422-02d463741780/resource/0fe222fb-213a-4420-b57f-b17e45dbb03d/download/oscoitineranti.csv",
       "source_license_verified": false,
-      "status": "schema_preview_only",
-      "title": "Censimento dei mercati quindicinali",
-      "truncated": true
+      "status": "needs_review",
+      "title": "Censimento dei mercati itineranti"
     },
     {
       "adapter_enabled": false,

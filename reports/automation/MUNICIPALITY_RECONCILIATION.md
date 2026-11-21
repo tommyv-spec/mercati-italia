@@ -4,7 +4,7 @@ Fonte: https://www.istat.it/classificazione/codici-dei-comuni-delle-province-e-d
 File originale ISTAT aggiornato al 21 febbraio 2026, licenza CC BY 4.0.
 Questo controllo non dimostra che un mercato sia aperto.
 
-- Record analizzati: 14750
+- Record analizzati: 14751
 - Località già sospette: 21
 - Proposte supportate da Comune/provincia ISTAT e titolo: 0
 - Da verificare manualmente: 21

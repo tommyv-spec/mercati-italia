@@ -3,11 +3,11 @@
 **La data dell'ultimo script non è una verifica del mercato.**
 Il controllo distingue importazione, lettura della fonte, data dichiarata del contenuto e riscontri dei singoli campi. Le ricorrenze previste rimangono stime.
 
-- Data della misura: **2026-11-20**.
+- Data della misura: **2026-11-21**.
 - Schede totali: **14,751**.
 - Fonti misurate (nome e dominio): **93**.
-- Importazione registrata entro 30 giorni: **815**.
-- Lettura della fonte registrata entro 30 giorni: **13,909**.
+- Importazione registrata entro 30 giorni: **728**.
+- Lettura della fonte registrata entro 30 giorni: **13,864**.
 - Fonte datata entro 30 giorni: **1,160**.
 - Di cui solo aggiornamento dataset, non del singolo mercato: **1,160**.
 - Schede con aggiornamento soltanto del dataset: **1,389**.
@@ -15,8 +15,8 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Fonte più vecchia del limite di 540 giorni: **51**.
 - Schede con età del contenuto della fonte non comprovata: **13,349**.
 - Timestamp legacy che non provano l'età della fonte: **12,561**.
-- Schede con date future previste: **11,194**.
-- Previsioni basate su fonti troppo vecchie/sconosciute: **10,233**.
+- Schede con date future previste: **11,184**.
+- Previsioni basate su fonti troppo vecchie/sconosciute: **10,223**.
 - Date di verifica registrate nel catalogo: **0**.
 
 ## Alert
@@ -27,7 +27,6 @@ Il controllo distingue importazione, lettura della fonte, data dichiarata del co
 - Da correggere: source_data_older_than_allowed_forecast_window
 - Da correggere: publisher_metadata_unavailable_or_changed
 - Da correggere: publisher_refresh_incomplete
-- Da correggere: publisher_refresh_conflicting_fields
 
 ## Metadati degli enti
 
@@ -60,19 +59,19 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | bresciatoday.it | www.bresciatoday.it | 2 | 0 | 0 | 2 | 0 |
 | brindisireport.it | www.brindisireport.it | 2 | 0 | 0 | 2 | 0 |
 | casertanews.it | www.casertanews.it | 1 | 0 | 0 | 1 | 0 |
-| cesenatoday.it | www.cesenatoday.it | 1 | 0 | 0 | 1 | 1 |
+| cesenatoday.it | www.cesenatoday.it | 1 | 0 | 0 | 1 | 0 |
 | chietitoday.it | www.chietitoday.it | 1 | 0 | 0 | 1 | 0 |
 | cittadellaspezia.com | www.cittadellaspezia.com | 2 | 0 | 0 | 2 | 0 |
 | citynews_baritoday.it | www.baritoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_bresciatoday.it | www.bresciatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_cagliaritoday.it | www.cagliaritoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_cataniatoday.it | www.cataniatoday.it | 1 | 0 | 0 | 1 | 0 |
-| citynews_ferraratoday.it | www.ferraratoday.it | 1 | 0 | 0 | 1 | 1 |
-| citynews_firenzetoday.it | www.firenzetoday.it | 2 | 0 | 0 | 2 | 2 |
-| citynews_forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 1 |
-| citynews_frosinonetoday.it | www.frosinonetoday.it | 2 | 0 | 0 | 2 | 2 |
-| citynews_genovatoday.it | www.genovatoday.it | 2 | 0 | 0 | 2 | 2 |
-| citynews_modenatoday.it | www.modenatoday.it | 1 | 0 | 0 | 1 | 1 |
+| citynews_ferraratoday.it | www.ferraratoday.it | 1 | 0 | 0 | 1 | 0 |
+| citynews_firenzetoday.it | www.firenzetoday.it | 2 | 0 | 0 | 2 | 0 |
+| citynews_forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
+| citynews_frosinonetoday.it | www.frosinonetoday.it | 2 | 0 | 0 | 2 | 0 |
+| citynews_genovatoday.it | www.genovatoday.it | 2 | 0 | 0 | 2 | 0 |
+| citynews_modenatoday.it | www.modenatoday.it | 1 | 0 | 0 | 1 | 0 |
 | citynews_monzatoday.it | www.monzatoday.it | 1 | 0 | 0 | 1 | 1 |
 | citynews_parmatoday.it | www.parmatoday.it | 1 | 0 | 0 | 1 | 1 |
 | citynews_riminitoday.it | www.riminitoday.it | 3 | 0 | 0 | 3 | 3 |
@@ -93,17 +92,17 @@ La data del contenuto riguarda la fonte o l'intero dataset. Non certifica che og
 | eventiintoscana.it | www.eventiintoscana.it | 2 | 0 | 0 | 2 | 0 |
 | ferrarainfo.com | www.ferrarainfo.com | 2 | 0 | 0 | 2 | 0 |
 | ferraratoday.it | www.ferraratoday.it | 1 | 0 | 0 | 1 | 0 |
-| firenzetoday.it | www.firenzetoday.it | 4 | 0 | 0 | 4 | 3 |
-| forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 1 |
+| firenzetoday.it | www.firenzetoday.it | 4 | 0 | 0 | 4 | 0 |
+| forlitoday.it | www.forlitoday.it | 1 | 0 | 0 | 1 | 0 |
 | frosinonetoday.it | www.frosinonetoday.it | 1 | 0 | 0 | 1 | 0 |
-| genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 5 |
-| happings.com | www.happings.com | 9914 | 0 | 1 | 9913 | 9246 |
+| genovatoday.it | www.genovatoday.it | 7 | 0 | 0 | 7 | 0 |
+| happings.com | www.happings.com | 9914 | 0 | 1 | 9913 | 9224 |
 | lazioinfesta.com | www.lazioinfesta.com | 2 | 0 | 0 | 2 | 0 |
-| leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 1 |
+| leccotoday.it | www.leccotoday.it | 1 | 0 | 0 | 1 | 0 |
 | lombardiainfesta.it | www.lombardiainfesta.it | 1 | 0 | 0 | 1 | 0 |
 | milanopocket.it | www.milanopocket.it | 5 | 0 | 0 | 5 | 0 |
 | milanotoday.it | www.milanotoday.it | 1 | 0 | 0 | 1 | 0 |
-| modenatoday.it | www.modenatoday.it | 4 | 0 | 0 | 4 | 3 |
+| modenatoday.it | www.modenatoday.it | 4 | 0 | 0 | 4 | 0 |
 | monzatoday.it | www.monzatoday.it | 1 | 0 | 0 | 1 | 1 |
 | napolidavivere.it | www.napolidavivere.it | 1 | 0 | 0 | 1 | 0 |
 | novaratoday.it | www.novaratoday.it | 3 | 0 | 0 | 3 | 1 |
@@ -143,9 +142,9 @@ Una lettura recente vale soltanto per i valori e l'identità presenti nella prov
 
 | Campo | Mancante | Presente senza riscontro | Riscontro e fonte recenti | Riscontro recente, età fonte sconosciuta | Riscontro da aggiornare |
 |---|---:|---:|---:|---:|---:|
-| Sede | 1236 | 3101 | 2059 | 8172 | 183 |
-| Orari | 1925 | 1739 | 2196 | 7506 | 1385 |
-| Giorni | 1422 | 1836 | 2061 | 9215 | 217 |
+| Sede | 1236 | 3096 | 2059 | 8177 | 183 |
+| Orari | 1925 | 2023 | 2197 | 7221 | 1385 |
+| Giorni | 1422 | 1835 | 2062 | 9215 | 217 |
 
 ## Funzionamento del recupero automatico
 
@@ -153,10 +152,10 @@ URL primari distinti nel catalogo: 6527. Le pagine riconosciute vengono lette un
 
 | Pagina sorgente | Esito del ciclo | Schede collegate | Campi aggiornati |
 |---|---|---:|---:|
-| bassa-romagna-farmers | retrieved | 4 | 0 |
-| bassa-romagna-weekly | layout_changed | 0 | 0 |
+| bassa-romagna-farmers | source_held | 0 | 0 |
+| bassa-romagna-weekly | source_held | 0 | 0 |
 
-Conflitti mantenuti in revisione: 4.
+Conflitti mantenuti in revisione: 0.
 
 
 ## Limiti del sistema

@@ -6,8 +6,8 @@
   "market_identities_deleted": 0,
   "metrics": {
     "address_missing": 1236,
-    "coordinates_missing": 972,
-    "future_dates_missing": 3001,
+    "coordinates_missing": 971,
+    "future_dates_missing": 2996,
     "hours_missing": 1925,
     "review_only_duplicate_groups": 1523,
     "review_only_potential_extra_rows": 1837,
@@ -51,7 +51,7 @@
       "region": "Emilia-Romagna",
       "markets": 954,
       "hours_missing": 179,
-      "future_dates_missing": 374,
+      "future_dates_missing": 375,
       "address_missing": 109,
       "coordinates_missing": 77
     },
@@ -67,7 +67,7 @@
       "region": "Lazio",
       "markets": 1114,
       "address_missing": 65,
-      "future_dates_missing": 258,
+      "future_dates_missing": 256,
       "coordinates_missing": 67,
       "hours_missing": 104
     },
@@ -84,13 +84,13 @@
       "markets": 4089,
       "hours_missing": 527,
       "address_missing": 166,
-      "future_dates_missing": 743,
-      "coordinates_missing": 259
+      "future_dates_missing": 742,
+      "coordinates_missing": 258
     },
     {
       "region": "Marche",
       "markets": 322,
-      "future_dates_missing": 93,
+      "future_dates_missing": 92,
       "coordinates_missing": 25,
       "hours_missing": 62,
       "address_missing": 43
@@ -156,7 +156,7 @@
       "markets": 203,
       "address_missing": 24,
       "coordinates_missing": 19,
-      "future_dates_missing": 53,
+      "future_dates_missing": 52,
       "hours_missing": 35
     },
     {
@@ -170,7 +170,7 @@
     {
       "region": "Veneto",
       "markets": 1386,
-      "future_dates_missing": 219,
+      "future_dates_missing": 218,
       "address_missing": 128,
       "coordinates_missing": 126,
       "hours_missing": 144,
@@ -713,17 +713,17 @@
     "source_supported_revealed_extra_rows": 0,
     "source_supported_revealed_groups": 0,
     "examples": [],
-    "baseline_records": 14750,
+    "baseline_records": 14751,
     "baseline_potential_extra_rows": 1837,
     "positive_group_growth": 0,
     "unexplained_group_growth": 0
   },
   "baseline_delta": {
-    "total": 1,
+    "total": 0,
     "hours_missing": 0,
     "address_missing": 0,
-    "coordinates_missing": 0,
-    "future_dates_missing": -1,
+    "coordinates_missing": -1,
+    "future_dates_missing": -5,
     "future_date_quality_mismatch": 0,
     "suspicious_city": 0,
     "review_only_potential_extra_rows": 0

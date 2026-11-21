@@ -2,16 +2,16 @@
   "publisher": "happings.com",
   "resources": {
     "https://www.happings.com/happings_event-sitemap.xml": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
-      "failures": 3,
+      "failures": 0,
       "kind": "sitemap",
-      "last_attempt": "2026-11-10",
-      "last_error": "TimeoutError",
-      "last_sha256": "4af2de317a3ba747c69bc6ff73f5bcde08c411014cd389c7b06863a74eea5e1e",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T15:36:00.586113+00:00",
-      "next_due": "2026-11-14",
+      "last_attempt": "2026-11-21",
+      "last_error": null,
+      "last_sha256": "912c57806dac877cdf888509aca7c490bbc65c1ec5f531ca64e5ee84a23bbd03",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:35.952238+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -32,7 +32,7 @@
           "url": "https://www.happings.com/it/sitemap_index.xml"
         }
       ],
-      "status": "unavailable"
+      "status": "retrieved"
     },
     "https://www.happings.com/happings_event-sitemap10.xml": {
       "attempts": 4,
@@ -425,16 +425,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/happings_event-sitemap9.xml": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-20",
-      "failures": 2,
+      "failures": 0,
       "kind": "sitemap",
-      "last_attempt": "2026-11-09",
-      "last_error": "TimeoutError",
+      "last_attempt": "2026-11-21",
+      "last_error": null,
       "last_sha256": "292d1da23618a544259ed575ef07300629be1575f60aecf6bd97755dce41aa70",
-      "last_success": "2026-10-20",
-      "last_success_at": "2026-10-20T15:38:17.588954+00:00",
-      "next_due": "2026-11-11",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:25.830231+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -455,7 +455,7 @@
           "url": "https://www.happings.com/it/sitemap_index.xml"
         }
       ],
-      "status": "unavailable"
+      "status": "retrieved"
     },
     "https://www.happings.com/it/": {
       "attempts": 5,
@@ -479,16 +479,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/": {
-      "attempts": 3,
+      "attempts": 4,
       "discovered_at": "2026-10-21",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": "2026-11-08",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "919755f0d90f759c1a63d031080bcca07872ceedde87ab3662cfb56244725d35",
-      "last_success": "2026-11-08",
-      "last_success_at": "2026-11-08T03:53:25.228000+00:00",
-      "next_due": "2026-11-15",
+      "last_sha256": "d1cae2807d2794c6fa0c54c52f7aa5bbb4435b3aa08f2f0920e6896d0f7ed3c1",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:15.901491+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "html_link",
@@ -1415,16 +1415,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/7/": {
-      "attempts": 2,
+      "attempts": 3,
       "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": "2026-11-06",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8e17816bfb670b37d9d97b16fc78667ed5d1621c7f2cb12d98156ec0c4160e32",
-      "last_success": "2026-11-06",
-      "last_success_at": "2026-11-06T03:56:49.252087+00:00",
-      "next_due": "2026-11-13",
+      "last_sha256": "8ae735db75e2ce55d8dfef55735896436d5d404d84c2b1cfacbd591776f00f64",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:02.431051+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "html_link",
@@ -1454,16 +1454,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/categoria-evento/mercati/page/8/": {
-      "attempts": 2,
+      "attempts": 3,
       "discovered_at": "2026-10-25",
       "failures": 0,
       "kind": "archive",
-      "last_attempt": "2026-11-06",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c2d83c3e9aa9c36c04e0a89c809cc5899d68afb2c8aeaab16fb39565458bb844",
-      "last_success": "2026-11-06",
-      "last_success_at": "2026-11-06T03:56:54.237305+00:00",
-      "next_due": "2026-11-13",
+      "last_sha256": "fba8e128f7a3eabae23e557e1252fa878ee45cb10c10d3081472e318defbc862",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:09.166390+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "html_link",
@@ -1922,16 +1922,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/23-edizione-mercatini-di-natale-2026/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d3dacbf4bca8a69e3d62195ed362d20b0a5d3c9884b3b3d4158f4f00e15bdac8",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:47.943491+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b5c3bc70bea1f4201cde8dd08e93b9d91b03de39ea79fac6aafae13988f8c4c8",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:04.380325+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -6591,6 +6591,12 @@
           "observed_at": "2026-11-03",
           "sha256": "5af230bc572b80b4b5a11e9c3febe6c1973118dddfe9207feab43c834e4247cb",
           "url": "https://www.happings.com/it/happing/apertura-straordinaria-della-chiesa-di-san-martino/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-21",
+          "sha256": "061bc470d9ad61e4d4c4f746abef7b23d7c8a7763fcec40bc21c17f4d8dcb764",
+          "url": "https://www.happings.com/it/happing/incontro-con-marianna-santoni/"
         }
       ],
       "status": "retrieved"
@@ -10557,6 +10563,12 @@
           "observed_at": "2026-11-08",
           "sha256": "f48fedf3f3c1377a7bee2a8e8abc86a4ae23680e71b0d4debd67c2175d76f36b",
           "url": "https://www.happings.com/it/happing/campus-stakeholders-meeting/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-21",
+          "sha256": "080a2eaf4497d29953aa6859fc25963371ca7d0eddba91a8f70e6752ce9680b7",
+          "url": "https://www.happings.com/it/happing/incontri-al-tramonto-lora-della-passione/"
         }
       ],
       "status": "retrieved"
@@ -12762,6 +12774,12 @@
           "observed_at": "2026-11-09",
           "sha256": "de385923bafa9e284288ea3b2085341d88bc48e93f33549bcd16bf86d04c47cf",
           "url": "https://www.happings.com/it/happing/cena-a-tema/"
+        },
+        {
+          "kind": "sitemap_loc",
+          "observed_at": "2026-11-21",
+          "sha256": "912c57806dac877cdf888509aca7c490bbc65c1ec5f531ca64e5ee84a23bbd03",
+          "url": "https://www.happings.com/happings_event-sitemap.xml"
         }
       ],
       "status": "retrieved"
@@ -28392,6 +28410,12 @@
           "observed_at": "2026-11-18",
           "sha256": "074ccb2df232dbd78b80c4ab34178aa990701448d141edb07557153da5e19adf",
           "url": "https://www.happings.com/it/happing/festa-dautunno/"
+        },
+        {
+          "kind": "sitemap_loc",
+          "observed_at": "2026-11-21",
+          "sha256": "912c57806dac877cdf888509aca7c490bbc65c1ec5f531ca64e5ee84a23bbd03",
+          "url": "https://www.happings.com/happings_event-sitemap.xml"
         }
       ],
       "status": "retrieved"
@@ -40151,16 +40175,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-avellino/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "4e90fe46a5ad175f1bebcfda8d629404eea55de8d131f6bb50320cda9c6db01d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:53.958771+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "e2d3603de7c6362133c0711b8559516c5b48118dc072630571ece4f2264d3183",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:10.365893+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40190,16 +40214,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-cividale-del-friuli/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "cf5a8eb05b578ec81907dd42b7dbc660bf05ebb4b518c44b897a542ad0493a79",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:00.463093+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "74cfe4cb5900c5f092806b91f870016f075d7c0df82059910fee51e94032d112",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:18.421778+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40229,16 +40253,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-codroipo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "93d31bf7ea26d21269393f0c29269ade8cafb89c8aad5f735b2ad6996243c78a",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:07.139757+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4ff0cd933f45177d56cc7266ebde535dd535f9ac64ab95d3a12697090d4e8d98",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:26.409155+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40268,16 +40292,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-monfalcone/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "35d4dce2109520769f8dc36b9fd652f6947b218e99b0c09ffe89a004d546a3f0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:13.555447+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "52858233ecebf9af2e6ab73eb9ebd3aee920574103617081b0fd79d14c9577e5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:44.669893+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -40307,16 +40331,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/il-mercato-di-campagna-amica-di-pistoia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6f5ef83498ed023ffe2f1fb4d553f8ffb304ce6f1e74583e77fdd45f8992ec5d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:19.953390+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fbd35307ef7045b6e465096bac53a3195174aa62a6d1038d94a509e0cd004ff3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:52.683758+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41828,16 +41852,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/inaugurazione-pianeta-terra-festival/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "099e30b6caca1def8f7bfeb98a7d63a0b3fee542a1a7123cd887cd7b547730eb",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:09:35.100971+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "a7f5546f6c820e24817ef29e5fed62778427410c3997f0035fa9187214c08da0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:20.277082+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41867,16 +41891,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontri-al-tramonto-lora-del-fantasy/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "7727b08daf5009a0df81f0bf2f3e7ff01848e1e54b427ce309f049c1dbdb119a",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:09:42.392569+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "62806c80a3f9e190921055f9cd37113d639c95d73aaf129ddcdc6ea5d2582c8d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:19.086503+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41906,16 +41930,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontri-al-tramonto-lora-della-passione/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8190e4e35ba4598f3965b72c849bbea5bac38b1b067ad9413eb403e6dea63531",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:09:49.731275+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "080a2eaf4497d29953aa6859fc25963371ca7d0eddba91a8f70e6752ce9680b7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:18.465281+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41945,16 +41969,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontri-al-tramonto-lora-delle-creature/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "230cbf6155482a2e139f811eb3a17f2c9516441f24bb57f9feb000f0187ba992",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:09:57.086199+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "deaa6e324f28ef0f78d1d1771962b873526a4c58b504a13c7448267f164f8ee4",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:18.971281+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -41984,16 +42008,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontriamoci-e-facciamo-festa/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "395772e55b70bb90799b59476cf3ee957ba1bfcc108bb07409f3b64cdf066dbf",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:04.685453+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "5f886d89f26021e928968e56e5760a2fcd4e3f9da6db90462da1cd346fa8939d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:21.320773+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42023,16 +42047,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-alberto-casadei/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "7bba03199afa62be3ea6d43133793451c1b54305eeeeafd3aef4c33cc994bf0d",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:11.899821+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "2e8c3a082b5ac69d0de07c3b72c621248147caac6b73fee18c75d8eb8e0bc9a6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:27.921151+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42062,16 +42086,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-antonio-musarra-il-mondo-secondo-francesco-dassisi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "a841a59e2f420cd1726cfbcec191f68b03f324bd88827b2053a1f968f9aa3b52",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:19.279929+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "d069cf8fb7a5d31f37f417862d164a2246530d34014de5611956f5778948e91f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:37.109864+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42101,16 +42125,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-dacia-maraini-in-marcia-per-la-liberta-il-difficile-cammino-che-porto-le-donne-italiane-al-voto/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d3a15eb66b4e5dc4b21d932f22466096edb32ed36945be586104aa12b66d31db",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:32.532426+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "9f2ec0b0b061f9c37723f431e8f473be77b0b12c33f5a524667d8aa6016675b2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:39.587730+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42140,16 +42164,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-edurne-portela-e-jose-ovejero/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6f968be3d8479be1eb0591d7f75e90194aaf60f5540a18db2999a6ed103cc3c2",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:40.139213+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "b3589e078304fd9f0df69248e404e0eb38614e0e9474cff8d5c0ca318f809658",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:47.039441+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42179,16 +42203,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-lillustratrice-anna-sarvira/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ef14b987bc19ea9f6ff56cddbf430d580cde885ca6d6de9bc1d76669fd1c5664",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:47.442806+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "2f7d7c45a61921b6634e8de5491d5ebb974235687ea7618851b5aa7e61c13e9b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:57.445603+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42218,16 +42242,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-luca-bracali/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "21bb2b58f0f4916ab3406b7d80b2426745771b561ea04c6c37a5ecf04c284827",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:10:53.577968+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "f6981a5fbb2e6bde8e00e9bc0789758cf2fe44311fa7999e189828546dbd9650",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:12.227496+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42257,16 +42281,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-marco-pastonesi-strade-nere-ediciclo-e-rugby-underground-bottega-errante/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b17579e5e7aaaa3e6c5a0afc9b4d84b0ede89d630cf7859ad026a47ef663f967",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:01.116734+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "311d501a271145a699dd10318624e726a36fe9ad58d66fceba88188551c73598",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:25.647717+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42296,16 +42320,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-marianna-santoni/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d9f09bef86a82b0b815b0420e1c4ea2a851f824192ae2430198387351069775f",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:07.337142+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "061bc470d9ad61e4d4c4f746abef7b23d7c8a7763fcec40bc21c17f4d8dcb764",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:29:34.959144+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42335,16 +42359,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-massimo-sestini/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6a1a3c0245f68fad5ee08d54931000bc11aa8e0734096e728b6eb20088b80a40",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:14.630383+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "21cdcb48d364316e996872eaf86c6c2f086512144316a6cf3b69d1631ae31c92",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:50.855126+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42374,16 +42398,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-con-pierpaolo-mittica/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "699cfcc49d37ee3f6244ac4cf9bb3e9510b0a0f4edff5540ee9c7173e423cd78",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:21.938611+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "04e90d1ca7a6bc85ded5470937e9cf77d3975b4cb25b7926ea74b58275c609da",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:05.473150+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42413,16 +42437,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/incontro-deccellenza-alla-stella-di-pila-fontina-dop-e-tartufo-bianco-dalba-con-lo-chef-davide-palluda/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "91d584fbe5f4a57eef2d861d1e17485ce107813a78d6a415c52e19662ccf1d1a",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:35.978544+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "8ac9121ac712e39b16a0a9d9491c7d236d12133c418c1c05daff3137f215eb31",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:17.853045+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42452,16 +42476,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/indovina-la-sigla/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0b3173d94c01264e9bc89d628d1765a676f3f9374acec3daa62e6fe8e222451b",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:42.295519+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "1d7e5c4cd7c77e4a8586f71e9a232bbcf15e666549842c4d8cf99c726037a3ad",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:37.103933+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42491,16 +42515,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/indovina-lafternoon-tea/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "a712dc7b974909f01f5df87778b5b68fcd1d2b3705051bcc59de5ec5fbfab18b",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:49.812392+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "0eeb0bb9b86efd75576403ace7524ae97170fecc6946bffed29758e50a19aab7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:52.640209+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42530,16 +42554,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/infesta/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "f5f484f4f0e7d602bfb6600508681604999859ec45b9dffed4d9d67c78054660",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:11:57.037699+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "f1b5e2245804a0dd21c34839e1a767a234df2b52a893a52eab8a8f53471fb69d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:06.996363+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42569,16 +42593,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/ingresso-gratuito-al-museo-peter-mitterhofer/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b69d9bb1433ef51381c91b5d1785b6662f780b59856151338ca2c4fa7173baa4",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:12:04.537702+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "ca5779f2da53203978171f73758bd5f07e0fe7906af91130c5e3cb64ddb1aadf",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:28.170934+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42608,16 +42632,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/iniziativa-di-raccolta-fondi/": {
-      "attempts": 1,
+      "attempts": 2,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-10-31",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6eb64d5f0a018511e4ee534d6d7043968f32a174ed0f14880f4864b7d9382532",
-      "last_success": "2026-10-31",
-      "last_success_at": "2026-10-31T04:12:11.789930+00:00",
-      "next_due": "2026-11-07",
+      "last_sha256": "32952bcc0ba675ffa5e6415eb20f723c01162a1912a284beae1cb5b2bdca3cfc",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:49.678986+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -42870,6 +42894,12 @@
           "observed_at": "2026-11-05",
           "sha256": "10484afce31273d5e19d8894a993dfca8da84fd83665e8c77753f321139d07ff",
           "url": "https://www.happings.com/it/happing/salto-nel-buio-creature-degli-abissi-inaugurazione/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-21",
+          "sha256": "c43472758404449ff4d47f9a15e787fee58168983ca7b94bb7f07873acfe590f",
+          "url": "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/"
         }
       ],
       "status": "retrieved"
@@ -50654,16 +50684,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-2/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "71635d3a4a070ea421f83fc69dd9f7202962a4139a8ebc740e05ed0be1e38bf0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:25.729525+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2d80f9b7c2aa15d995477e4fab409a0c3b9da5adfc959966b9dc9ec2d69ad54c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:00.817499+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -50693,16 +50723,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-2026-2/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "1cae388fae4d8b99d492f3c805260abd0fa4e8a74d7f0fb8ca2e9d45f7e92e72",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:32.527191+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b90bdbb2870d7fd0b05e35cfb049f12d3f3f77403f8ced4ccc241ed255dc483d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:08.975002+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -50732,16 +50762,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-2026-3/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "39230fd85d03c0e8b9a5898a7c6f4491ebef2ec83b24dd25c20a91d31b5a4949",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:46.284346+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "f8508e0bb075e87866984184e9b4b2197bb57acdaec6e11f242176c0afd495a7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:17.237188+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -50771,16 +50801,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-2026/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8019d553a00f1366e961bc1729814d52941dae982d96a84c289aa5faec183120",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:52.694881+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "88d004efea693736011302acdee50b6920a64413abab276fc3f12575d56329ec",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:25.551610+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -50810,16 +50840,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-3-evento-9418/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "77af4fe59db62bf2e8a603b90d5c24a5b4765adb3b54a3bde27c0eb35dfc13ac",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:06:59.332122+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "20f4d83a756998283c2f4df1e8f6fc18cd921cf0d9f8bd4b8e99e43b68c60b48",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:34.199516+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -50927,16 +50957,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-4/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "94beed7440df7af18e7cb1a46ea38c8e3a494a7a64ce0b4d0b27e947e3de259f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:05.781482+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2dcbbefa14f3fb495b37eb2de69209ee20e2befec8b987fd19c474c3150f722a",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:42.539290+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51005,16 +51035,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-a-basella/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "39412140ef7f766779d584792ff135fe9bf9f9b1db4642b39b77f64e5936a519",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:11.409900+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fb9ffc59fb1e918154ba75672884e69a9d9c0c784c75d6939f05f1e5bb53dfd0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:30:59.332956+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51161,16 +51191,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale-nel-centro-storico/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "683df234eb3c9ed658c9a3746fd70ac0960378c49a5a2caba75d5f76640a26ac",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:17.885469+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2bb7081c9671b7ee6f486904bb5cd4821954d99c7700acf23d396c97baf041c5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:09.341888+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51239,16 +51269,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-natale/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0f55c568a1aae37851b116e1f840ce67dec95075b5ebf24ce5c7d6c510552b7b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:24.311556+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "f7b415a43e2c91f7eae23d3351051827b555438f68f445ca0319044c70f451cc",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:18.109422+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51278,16 +51308,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatini-di-paese/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "84cd3e6c6c0a56c192fd48c48b0c1cf0b82a8db23cc997e52182a40708d737e8",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:30.702154+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "7fd3278029cfa0818ab072dc97eab43522ad3e6f5a566a3f0f63c9e788804ec1",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:27.403367+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51317,16 +51347,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-agricolo-e-artigianale-di-campo-tures/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8328fbf0559a037b3646a85023d0fc792b0c526891572bc0da2880312eda0c44",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:44.004777+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c4f48ab162d15182651561828ad43435a231ad377b101dd35a75f95c1f625f64",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:35.840473+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51395,16 +51425,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-contadino-a-chiusa/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c979e7a110293d77ffa453d95ff419e907633cbfd3e0ed5866bfbf2dc4cd3726",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:51.288851+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "a477aa069c2eb58493b6f15bdc51687eac01345864d6e4eb5d4704d9c2d30dd5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:41.910079+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51434,16 +51464,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-contadino-a-san-giacomo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c78455db1a6e5b9eb64c6ecf368e6fd98d755649be2c026cc139278667d10fc1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:07:58.303797+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "cd839a7529943c3127ea1dc61b8dbfa1f5fb9422d08621371de238631b5c9f94",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:50.977088+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51473,16 +51503,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-contadino-di-lana-di-mezzo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "58b53cd2ba17258642a25fa353ed6d39c1ea87191e961fbc9212b88f00959326",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:05.297640+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c4eae91bb084ae421eb871b3fa54fd23779357dbe673c70ceeb38ed3ed6895cc",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:31:57.092940+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51512,16 +51542,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-dei-contadini-a-nova-levante/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "443e3ce316fba44ae35c2e780ed268905f8a68d822ea29341f284c48ab18e211",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:12.573799+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2f966390307e8af2e9c15c38be10cf0c1f16f235fed8429ec21f075efd42e3aa",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:14.066995+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51551,16 +51581,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-della-creativita-mani-e-menti-a-pontremoli-ms/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0ef1ed8d2c9f02bb375dcddab984021ed68bcd0e4a0915ad17d4d645af7b5cb1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:19.896806+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ed01b041cba90f17d7ae554a43d42b3719cb14257bb4659b5a316bc1cccafb3c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:22.445204+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51590,16 +51620,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-dellantiquariato-artigianato-e-hobbistica/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "7830370964ea68776d970d8b11f6d8d356673c30964315d36187324209f46b9d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:27.219697+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "820a967418f4d235de9310553d30612f186201e9290d0685d6282a0bf6714fca",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:30.945567+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51707,16 +51737,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-delle-pulci-al-raffeiner-orchideenwelt/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6169df616d3fc4b7fdb9f21286d5fd62cb7849cd711ffdb044eb26d7463678ad",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:33.337232+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "dc3820049b3886a680b14b89f839069a484629143fc3ce8bcc28f5d62d6986b5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:37.265286+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -51785,16 +51815,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-delle-pulci-di-libri/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "aada8a473ddf1b16c2d37e1e8d24a76adca5a46365b1eda5ee9c74816f433362",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:46.838497+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4c23fba619967578aef03d549a1c18773e43ea28f56ce306c13bb939b95ddbd7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:43.694882+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -52136,16 +52166,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-di-natale/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "3a784eb1fb0c7835c2bc6eb4ad26ed4957ac22bb483167d88510ccb7943b0c14",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:08:54.743891+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b4f350cbadf147af015a0ba03a55d4e764f885a96315292fc94f0b2479ae13b3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:32:54.493372+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -52916,16 +52946,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercatino-santa-lucia-aspettando-natale/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "184da5e6557981a0704572867c7345e09b317943655a6f10ee9147d13fbb48cc",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:01.244121+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "884b55fa8291fed0abae71a3c4f98456a36dc31f074b9204947d0307408e201c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:03.011020+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53033,16 +53063,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-agricolo-coperto-di-sondrio/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "a5343813ac06e2a738faaffa93b12c875b1f0075c1a44c4ae1bdc239da504a24",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:08.521440+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "88df3c6800b10554625a20b0d93208d6f2ed2b602fce25fc0160f9b55e2486f2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:11.503073+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53072,16 +53102,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-agricolo-di-leini/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "330ed300c5244444274fe86c1904dce7fca9dd18a8a7257aa40a621a3de16311",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:15.622203+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "3d7f27a9c38767360f7a1f835e4e0818d85a074eb426120b0746fb86bcf19d5f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:26.324576+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53228,16 +53258,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-ai-portici-del-consorzio-agrario-di-cremona/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "413cb1c2d17df2be1bfc4a2c0a4b939748efa64901dfa187a9e390c2d9fc5245",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:24.188022+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "7bdcb92a517cdc2d7b7ff58461d2b21282926666f415df97f6eb4fe4548798f1",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:34.712691+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53384,16 +53414,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-brenzone/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "fe8191d60ab010e584e49a614164b1735bda79c368f911f90fd5da769d5697cd",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:31.620047+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "8d00b1f0a1abed86aada906b3a8b3c2fc8010c02868320a9b9299f90a74fc6b3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:43.865402+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53423,16 +53453,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-albissola-marina/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "a87bd82f987fe0ca35e86f835b55173c675bb3fb6de535945bbbd4c36467e243",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:39.282122+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "669d9a0701488ee44848f5ecd0424151a95474709c98f9b1e1edb8e10326b8ce",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:33:52.242775+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53501,16 +53531,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-coperto-di-catania/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "adb77672116db7b67de17d7f668dc42c85861bb63f9d3d16e88bda857ca62c87",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:09:53.435938+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "19dcad0524439503e196e64f03e11d4137a95bec3261fda675a4e1c3733692da",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:01.227558+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53540,16 +53570,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-assemini/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ec796b7758992f2c4ce2c2270569f28ee2b2d739ece01590394ec6b62d7326f0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:00.196213+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "83a880797a3e08f9e556be039044b130ac680d050ec503881e931b706fb788a8",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:09.673968+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53579,16 +53609,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-barriera-repubblica-a-parma/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c81ddbff2f06658fec57b02323ac0a1b0490b703c850930a482c9834fc1cc785",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:07.755566+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "85676e63b03387240431c1c3e4a891a87157f02703c2fd8ff6be9e58d615ca39",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:18.192074+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53618,16 +53648,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-bibbiena/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "13b23f044bd5296ea8979b7fd8d11d293f2863b997e94f12115ca58ed6821816",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:14.749333+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "958cc0fb33b0f53260b670d0358345d1003cb58a6b51c7f1635b0b3bfcd01002",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:26.852178+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53657,16 +53687,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-catania/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "2e783ddd815f0864a2d8b202c80e14dd486234f6e8f2b89271c3c8b17f890d5e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:21.949184+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "5d30f48460eacb065204bb0da00788eb99b9ce16580251affe8e41a30080a10b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:46.543523+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53735,16 +53765,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-falconara-marittima/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "fa3537a7b7a11cd337e23f4053982e348bd603197d258d58e752fdc45e08d55f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:28.733029+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "cbb27f22a1bc8cf1b46f48543b266eaa099c7d3b6446ed4eb030309ca957096c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:34:55.217822+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53774,16 +53804,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-fidenza/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "3aa635731d3f878c8162cbf3e8599e9e820f0a3040b8b1050c65cdb05919f499",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:34.966863+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "02163c613b4b369d1ef0ed9efcb587965292ac0aa172c3d06807dbf7aa0ba0f5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:04.113702+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53813,16 +53843,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-lavagna/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "71192dd7f201f8f52e9ac220771424c16ed897f1c9305e9d089127c0cef60d89",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:42.553806+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "1db9fab2bceda31ef2cc4fb9fd30d717100da2c41c26ae907c88d1fecff772fd",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:12.611519+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53852,16 +53882,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-marina-di-carrara/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "7f50727038709f429d354187c93fc84327a5920e332e27a4e04611d460dc54f8",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:10:56.305559+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "85110100b6ea7d90a00e0b1522b764a631eaa81cdcfd484b9b30351c15dfc7e9",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:21.427304+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53891,16 +53921,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-parabiago/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "aca86c6e9fdd3a46ac68e9557039732dbb2e5db62521a1fb488e2e7b7313e699",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:02.550994+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "9be0e0b6714e7bdb22648e61af42bb71d7849bd33fa3fdbb1803c9bd937379d6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:27.816715+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53930,16 +53960,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-piazza-santo-spirito/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "5923c570d8cb1951770fcc3ba081d7d9ef048f2387f2997a3eb6aa236fc26060",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:10.571204+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "92c3a955154aadc18ac8e81529393ecfbd9944d6d5b949061e5014c0b167f29b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:34.292689+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -53969,16 +53999,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-sale-marasino/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "01428ad5feae20610f9f7582f17b1dc0b80f28582b068f51d8e495ae75183362",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:17.842183+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "a13ca0a2122b4f60aad517fda7c5aa883a0015c0efe02268be2d0166a4b58015",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:35:42.885461+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54008,16 +54038,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-salsomaggiore-terme/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "15b70760f87b276c86cff645e8de4427acdbbdb428ad1275e88b31bad4149afe",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:25.215022+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "00536f519d465382ace2c2ddb86398190b5eaafd506b2b2a0a388f94f0fbbd41",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:01.275586+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54047,16 +54077,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-seriate/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "797209fc2d53b047bfaa1a2ee8cf1fb1e6d1f30cf56110817b2033cf5a1416c0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:32.731981+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ee898864aa0f7a77ba014b3ed704f56cf42f4f6761681c4e5823f50958a0c916",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:10.444275+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54086,16 +54116,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-di-torrile/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ac4ae312aa90fe099626b5659ca1992a03543b3ddba63474472fad346dfdc451",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:41.161646+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "eba210355336232a3379ff8065dc9f5b115c3d06009984183092c960dec43098",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:16.867422+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54125,16 +54155,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-presso-il-mercato-ittico-di-milano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "fe3ec46a75b35f9719008fde90e2055eedb528795d16d89f255399f7d231f566",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:11:49.012289+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "d96167112971397c2f37a336f0f265fcd5f3fe7f8e68ad5b0b1d42b6fd6aac2d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:26.013729+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54164,16 +54194,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-campagna-amica-serra-madre/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6891b4601a0b1f9dd9f4ff738646269c7cdd4780ea9f61fed2c227ff287a0bd1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:04.169918+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fd7db78557f4b8760bf8a5d87e182c2cc50d891850e5e83e1c65002eb3c91cd6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:34.931012+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54242,16 +54272,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-contadino-di-laives/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "2cbf5deadfec749fb3eeb21752f587062bd309a6c4b29fca08c17f105a97123e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:11.463874+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "97d1832408eaa4f2be615a76ee3397d5b2b37aee2445d355f4be911be52c2930",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:44.825640+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54320,16 +54350,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-bordighera/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b7dd846c199510dda4d09abcaa960b557776baabb4960a2bec9eca6ec46e3524",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:18.731886+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "eed045b7eaff34216754f2ef05da1fac03b1e3313906f0df989531a4ba3ef578",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:51.381765+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54398,16 +54428,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-isernia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "15b6dd66e69448e6ea62223c74523202e6c8a4458e3d7b4f98d58a29b0a7d0b4",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:25.977251+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "e6e6f45512b74637fd01a27486b46601e4671c2cd00f67b1717ac118949e9e7e",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:36:58.151475+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54437,16 +54467,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-livorno/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b0d1390306e3c5daae785dbf40b93dd522a4ec90fd429cea8901157403bde16d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:33.144815+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "99916bddc50adc0df705740578345a4f531242c1ebad5e87babbb1d608b9bb67",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:15.865386+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54476,16 +54506,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-di-pisa/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "65b6284f933044900db77372ae79971e9eebbbd255eddd848a75f2a2f75fd1c2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:40.072538+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "194d11b4d1b47f0374aff33f377a5f2d54d748d28ddf0c44260ac288c87144cc",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:24.561520+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "explicit_seed",
@@ -54515,16 +54545,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-imperia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6d1b31a2b49679b865f297d815fcdc05feb3dd2a8b4b07c70b24b286f41c2b0b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:46.832972+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "5d3c880cee0cac6f378f01c738abc67e8bd8f707ae4cd55b67e4d3fc49f25a35",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:34.118060+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54554,16 +54584,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-campagna-amica-taranto/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "dafe8394f0f7bf5f683513fc66e353ff7c35ee20ed1675b913466392c211272f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:12:53.749267+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "dfce6d88b5b528646f3142b6fbea87a63ad60996646a7fc09ae9f2b4edddf6df",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:43.476389+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54632,16 +54662,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-della-colonna-di-san-marco-a-siena/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "bb0180fee5c9becad015c0de82879d363460d91da776f88e28356558bb42cf49",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:08.704111+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "47feea100809b8c82e51b5fba74e11e93eee7ed76898aeffbee5fafe15b1f978",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:37:52.344882+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -54671,16 +54701,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-di-ascoli-piceno/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "819a529bf315c6536e46df15647df1adfa24f47c99c3ee3ae08c5c86ddb5924d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:15.857141+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b2ceff95f95aadf9dce8ce1ce7869ca22cd97cc1ada4bfe60e00ecc87676d0b3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:01.472124+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55217,16 +55247,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-di-oristano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "35e9e04b878ee1584bf4049060243b0ae4833f3af802282c917cbb6db69ba58e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:23.199269+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "42964c82d1aca6cc3e0a0a6ef95598f36a2cfa1046777c916bb6ecc7223b2a41",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:10.314825+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55373,16 +55403,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-coperto-di-verona/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "44089afa8ffb94a31227ab6950624f366a8d4fc5320b9a8ffc2fac6b5554a983",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:29.676618+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "8f3254e257b4484bf28d9109e79c3ea9277e87e72191905fbb8dcdc8ecbd34bf",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:19.175989+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55568,16 +55598,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-dei-prodotti-tipici-e-stagionali-di-campagna-amica-di-mogliano-veneto/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "959efc29c2b062d0482912fb9ba6745f447bdc273e3f747d903afc2dde4b7b82",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:36.965648+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "57786ed24a619d8744ccc6add64426d6132363be5382d7573aa512cd91da82d2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:36.907908+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55607,16 +55637,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-dei-produttori-di-chieri/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "19a4358f02753163cb5d12fa5976809bc3eb36382080d0afbbb3c058adfc68b0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:44.145082+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "8c5375a21fff2742c114454b387f3dfd59a272346eb1267a39dbeb40232a97ac",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:45.923414+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55958,16 +55988,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-delle-bonta-di-san-martino/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0792defa259a825608278a12d18aeddeabe063a5bd034ec8b9244bcf5a287e97",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:13:52.748092+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "70cb79ea93753dd18c552762a70a1fb06b7d35ecb002ce1a234461cce1a95443",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:38:54.671791+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -55997,16 +56027,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-delle-pulci-di-velturno/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "1d4eb0e94e6935973690066e1ca347a4ff2314b0ddc9df5329d1529e4acd110d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:14:00.159050+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "65aa383bf9dc85d2688ea01874568e05f93bceebba9c88776a19d6966104d0f7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:05.048344+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56192,16 +56222,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-al-circo-massimo-di-roma/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6171ecb2f1366f096f2baf549cd737725a9cbd99e5bd8ce89320f3be9e894c09",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:14:14.945986+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "80247e698262578d125c988c60a5ffa04a0a60cdcdd6c677fb6240bed1f23bec",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:14.091474+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56309,16 +56339,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-del-villaggio-del-sole-di-udine/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "97ef20c271c8c94993ab9148852743e2ad9e3f8c74e9e4e6ac16b6e6e147d13f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:14:22.744812+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "8211e59f1b15defa34b204097d020e724f372ba73ee31cf1d9f610731bad5010",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:23.537902+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56348,16 +56378,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-abbasanta/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "36cc369bfd28e72d2228b1d72abf2f223b55b12c537685a995134ed226551ced",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:14:30.401199+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "cca786813cd59adda821f4816132457e8e2964f37de19a83d5ebacfd8a10c3d0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:32.336717+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -56504,16 +56534,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-atri/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e9f8fe7c755324f141c946ce9e348484801882510b2a524a17e1d7cc9c4a247c",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:14:37.771289+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "8082dd183a9c6db69806313b62a999595088cfe05c7341566cfd452178fa3cc4",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:39:39.947238+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57479,16 +57509,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cortona/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ab097fcfee9477cbac1822901982e3d8f2c7e3d6a1a07b4990900f3f0ca5cc25",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:54:59.403915+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "df52ce0a257062d2038d83cfbf13753b13410f1c216d0d7cb4b23e23075233a3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:43.952933+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57518,16 +57548,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-costermano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6e217b165591957b2fcfa09a409a4a054c22329183893b20a6dcdec295504a3d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:10.321897+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2a3c64c126ee3d44f18706a200394501a3bef651dfa314101c6ef06323741149",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:50.819721+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57596,16 +57626,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-cuorgne/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "f84550e30969d440ed8933537f0c1f325729c1441bde796a15e7074a03ad159f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:15.298241+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4a8bfa2e166213f1c94655c63d68cffdc1dd8a79e7dc8c891a9f40ca67cce048",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:15:58.721947+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57674,16 +57704,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-fornacette-a-calcinaia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "517a61f3e4ec9d16910dd7115f817cda74ee571c697b11fd6a8d4af59c487593",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:20.370822+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "56cae376a549580f2591a6be1fa2e68c71cd7e5f9facdde0892001c7ddf21153",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:06.051743+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57713,16 +57743,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-gabicce-mare/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e916ed70436d5f6418b19a26134a499f8beedb398cf9657d6be6a1ea937c31f7",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:25.566543+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "7f8606eafe3c991541f9bf7e2d2ffce424aa9169b3e84f750a821594f50c3cae",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:13.010477+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57752,16 +57782,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-galliate/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "80fad9d1a5ce4f60926ea810528cd376125be356d9783a7b240f6996100b1d70",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:30.381037+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "a2f837888182c8b951dc5dca17cb153575362c8537faf6d91bc8c77712d676bf",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:24.998957+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57830,16 +57860,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-latina-sede-coldiretti/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "90a5f345b86bc31b4e9306e8638112ded1d5bc3fa73672d1a73d016398634c1f",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:36.043623+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2187f5c925022342cb6c238dcde2ca6b1ae716dc3c1a909b9f3b160ab9382d3f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:29.720531+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57869,16 +57899,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-li-punti-sassari/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6feac8c6c4deacbc011ed5226b499fd2c475fd6443c1fb20df80f8aa937b42a5",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:41.185227+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "7a8b03e419511915d8056aade44716b72e17972b706a51bfb0ebfe1a18953809",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:36.546593+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57908,16 +57938,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-lomazzo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "94f8f862500204693b29f93789a6b2e88a2a5f2d1d43d1a6f4763a0e063bc7de",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:46.100410+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "501a75b2698f0cba75c061328feebfb5f664eacd40239e5fc845a1b5414c87fd",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:43.323170+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -57986,16 +58016,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-massarosa/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "1dc6ddb5e1fb74dca86c79d4e0ccb49b53167ab11637cc34e8392bad475ccbcd",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:55:56.120258+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "a14f33e9d3c8d3cc52fe752299ccde3cb7b97212363c99a87187c1fc91c998f2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:51.264843+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58025,16 +58055,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-medole/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "4de86a240830be79d88b1da8044495cec5e3bc93247102f82dfd71e87b137f78",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:01.163940+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4f31012e8c115ce5b40d62aba3c9b62bc49320de081b6eb89b5b08fa793680de",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:16:56.043306+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58103,16 +58133,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-merate/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8d9d80474e58d949e1c80ef78b04ce8e95fb5938e4da6c17bfb4c7d16bb750b6",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:06.253196+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "89b0761a097468e719c84f0aae1384e328593cd378d17b641a3e52c7218245e6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:02.883953+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58142,16 +58172,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-messina/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "42a5a42ca5c00e7b7be38a75804b30fbe18396049d6384fd0016afcd5e68dd4a",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:11.217146+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ad0aa71cf8deedd216ddc0690ba4fac5c410c611e274391be3c6019f8575508d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:09.822035+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58220,16 +58250,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-montevarchi/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "491e2460c2930b5c05aa1888dc26c40bdf820288402755b21c3f627500c5d8c1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:16.359051+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b57686b1c0cd6634ef0b3accf8a8916cd3030c0f965cc68b18508dab8c2f78f2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:23.889007+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58298,16 +58328,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-monza-via-romagna/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ba98fe0832576b0a4f9f21ae43757365248bf89bdfbcbf6602d4b187bf8a325e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:20.917624+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0780934e888b0dd01437167bd4f014c7d708869927954616eae1fe12a87eb3a3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:30.952289+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58337,16 +58367,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-negrar/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e46f2876177ee32060329cd26c7ee94cc0180695a112b4e5bbf7e5dd7cfe7d63",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:26.327153+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "48697d9ac9d53d98df8e07f2b9aedea7878333c49f9f2afd4341c938e81ca780",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:37.996499+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58376,16 +58406,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-nichelino/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "23bb7416dee32fc05a67332e5f3f46eef463a6534dc1e381b534d8216c4bb5a0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:31.826261+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "bee38ad5bb0a7936c38c14fd82f381ed3fe96e4603c8fdac369dbec423a700d3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:44.811382+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58415,16 +58445,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-palmi/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "481a3c4e04927323afd35d72a3d92845f6fe4c74e1fe93f18b309973198f35cd",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:43.036547+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "545658d97c5ce07658e58fe0c7b73fe3e8e0e30d3803e82bf40e8ca3376f076b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:52.513417+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58454,16 +58484,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-piazza-del-carmine/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "1c74d82715fe477a786716eccd854f0fca8e688d5293d29b8a2f3131b4cda9a2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:48.306092+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "699dab825f67866afbf9d6a3885e9c62e5cec3a4709585267526d693e8e5d7a0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:17:57.449406+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58493,16 +58523,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-de-carlo-tibaldi/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d94d3bd205b309ce4dcb9ae01f579a59316350778f08664621cfd751ff0ee5df",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:53.629093+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "1cddc1c0aa6acf3d586a9be2d5e1606be5e15ae46eecd7e38515b742e16d14c8",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:02.421218+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58532,16 +58562,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pavia-via-pastrengo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "2c41afaa3f4d7fb24d4edf12fb59f42c56d0c8075a515ccfa0f2c6662b48f9fe",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:56:58.724751+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c659f9033a191a6095259ee6d5b820eb77d049dc85e0ba6f8376a452fe905c73",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:10.240674+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58571,16 +58601,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pescia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "45ea1d5eb3dd4f0fbe4a803daff643fe53b19e428d2e07d41392d4eeb19fd261",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:03.874758+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "03c7b6f881348f80eb6cf138484512a5ef88596ad1f0cec6d55a92acd9bb6002",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:23.769161+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58610,16 +58640,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pirri-a-cagliari/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "624116fdc3f66a224e63f638ba4c6d534607e0c9a16af1dbf0a297d68a4ca6e3",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:09.292838+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ab42116cb41317e386db09f02c6652dddbe35cd5974676e7876d87a425d51c88",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:30.868253+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58649,16 +58679,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pitze-serra-quartu-santelena/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ede2254174962f80660c46edd231b5beb40c8d13dafa3e942da63c0ed96d315e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:14.518796+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "e23ce892ad56ada7e9640999e0d18843cade5cdfb4b5ff9f11ddccbafe95d7c5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:38.388198+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58688,16 +58718,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-ponte-san-giovanni-a-perugia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "724bf8b0d39d9a7e63e6abaa93c1e8742a2b4f9c9025f0c7dd0846019ff4d0f2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:19.915210+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4cf77704b7fd845a4a37365195b7877c0d7042cb4ef2c6ace322022527c77318",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:43.323192+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58727,16 +58757,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera-2/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c8e499620bf1acc203088d1ebcc0754590d78f7042edb2199e65bf1e860acb2e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:29.813164+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ceb3227946b2c3e8b57a9cde4d3feb7b1e4948989fbd6fc99805ed03a608aacb",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:50.503918+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58766,16 +58796,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-pontedera/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "c8fa2e537f9e563691678d7e067130b05758c44f30decc27f2977a804307fdd5",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:35.201038+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "88767326ab2cb46cc295ada3a51be83aa2f053538124a83bf1d12a6381f19157",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:18:57.644559+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58805,16 +58835,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porta-galliera-bologna/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "725f52c7d5eea6d200cc03fb28604716d766aa13b0d30752602165e0722976a1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:39.665630+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "222d1c55e17f30f83c07530fdc0d646c2a83b642977d1e50d43d4142c7e76145",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:04.673222+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58844,16 +58874,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-porto-santelpidio/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6fb0df2c3ff7472d537f53b3ead5ebd19006eafb6514037e50c9f314489a966b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:46.022860+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "10b015ecc24bc5b3b3ff83ed54e2b92fe0a570a1c93d547e9edb0e7aed717f5e",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:09.712538+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58922,16 +58952,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-madonna-dellulivo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "559d9453ebb9d76f184750cd5c99b92b37540b0470ef3aa0a2f09f62425caef1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:51.646625+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c8b6748a28e5da11c6617e188ef30863e82030934c20bd2643d644bee831c2f2",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:26.442596+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -58961,16 +58991,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-prato-sacra-famiglia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b3f3b0a66f924d86dd91cf5d8361f1f95e72e201f3f4710281275059dcf6391b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:57:57.063218+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "82f9d834139035994141a3225f8b6d8686709685fa1d1a4005b0c36fd89e3166",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:33.742071+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59000,16 +59030,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-preganziol/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "931ca7fad2166a4f71765850dd0d2bba4b754af4d209698de3275c986cc119d2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:02.751583+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "49205c170669755c32df22c4fd39cd7089c1f5705550941fb0a0f2029aaab15c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:41.727268+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59039,16 +59069,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-quarrata/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "9ce82f7c42508f48080d4f32c95da85229a44b601c5404c20ab89342cbd852df",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:08.292605+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "1dff86eb7d428aeeb8973cb3a14311032fbbc887375a3682f367b606c15142c0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:46.885290+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59078,16 +59108,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-reggio-calabria/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "deca9feae84c005db59f5f3c3b16a93f3269f569852effbe5eaa8f67f0938cb7",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:18.468881+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b2ec67a05916ca34ae8f9ac639814b27e874fa64bf1ee026f271d14940f17afe",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:51.960369+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59117,16 +59147,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rende-piazza-madonna-di-lourdes/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "91f1bb72bc9023b093f0f28e3e8ac9889076c4d0f778d05975c4bc60e951e24c",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:23.889071+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "f2bd7df7be68b87305bd5fc278a2cdefdc546d21e343db63b83339358938cc23",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:19:57.025323+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59156,16 +59186,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rho/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "db0a2bd4976568af6fc123c8b7658f6fb56adf40133d5fe001aa0175a4395185",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:29.162845+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "507c4d363ea15f38718139651c20a7cb75fdb1b230f5c893eb4c4102b9f72a2b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:05.010810+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59195,16 +59225,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rivarolo-canavese/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e3002823d6a7bfddc8d52fbe3e2ed7f88be118fe269c57ac10f6f20dd2c48534",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:34.584760+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0afd074a468fa887ffa140849980d061a4a23bd68f99c90cbcb1af4f2a571b17",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:13.059124+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59273,16 +59303,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rosta/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "81d378554ca29b98ee7b963af4d7419d0a13b1caab63f92a6504cd6d8c456451",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:40.017822+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "49f27219a107389a776718d8bc8b74a28bd4ac60c7b2afd300f2d98c3d4bf4e1",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:28.851347+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59312,16 +59342,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-rovato/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ad326c905c0131fc4fdc186e700360adf576dbc5c20f859d82a0540e896d05f2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:45.549549+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "41920a06f02fad9f758e1dd76c1baeaba9bd52d5b2f45f8b9af9f81ebea3c293",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:33.919236+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59351,16 +59381,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-san-giorgio-del-sannio/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e88b57451cf2eb171e7add79890ccedce68d55cc9f1a2c032ae9ecac135f8f58",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:51.002586+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "cc6e1fdcaa8f8343d31dbd52c180e30ac693e20699975c0ea39cd4795f2eb9bf",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:41.262449+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59390,16 +59420,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-san-giorio-di-susa/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "4a2ab927438c6f96d044e67ea9b240fcb98e2e00b49e16ff9a0d6bce097e2deb",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:58:56.533212+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "08db409991461d83ec6242532e478049cdd77cef8418f0d640fec72db4d3491a",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:49.676371+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59429,16 +59459,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-san-giovanni-valdarno/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "efdb9c1a5a7aaa4ec5f8f548b150e4b50988d89cb72062ffda34a80a73cb7376",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:08.520486+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "a30e4253b8356bcdfa735bcb6f544c85d41256ec4ae51db792904268c1388f54",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:20:56.932457+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59468,16 +59498,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-san-miniato/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "073380706f1aa772db48bc689ad3bbbef9419fafe7bf459bcb9d6cb1e035db14",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:13.940188+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "063862070259b7ae862ca18e4d97a03139d8b6135ef5e2fa8bb144a79f024536",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:05.377808+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59507,16 +59537,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-sassari/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ebbfc13deeadf5a5595b6037eb71bee4f973f9a00ec6ab5ca86ab015b8b25ab4",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:19.385373+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2e8cf82c681af42480c533fca77c2ee53c6050e0045233af47aee2bd5a164106",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:12.688512+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59546,16 +59576,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-sesto-fiorentino/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "bf7874acdaa04fa98b88c80ddad43b203c6b8f2bfe4fd2e7e0582165a3829372",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:25.407194+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "91bcefcf42712783c806173ad5e1ad755016c640239ccd612bcbb0f869cdc08b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:20.450510+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59624,16 +59654,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-sorso/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "70a9b28bb50c47c07b05d7d4529f7a1a07b9343dd49b94e1aa8a71d6c8615718",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:31.224895+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "688b0f644338dd60565883f153c3dfca7e446c4f4113ae60d6e431ca8ef93049",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:35.836615+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59663,16 +59693,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-terni/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "58a0c8405913cc0ee0237ae267b52e8536c32c7c3fab0095eeb4b4d626f226fb",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:36.969158+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0fe7b59c6603256daf804102cf763f37ab20c3dca1b9f614ec149479b4bc6601",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:43.980523+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59702,16 +59732,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-thiene/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "268b80d380e0a820d762e6a67c5ab4fb28aeff0698732a53bf652b9d5f696285",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:42.807660+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "dffe1e5898e2a35d0c5155ecebe22869c2121c8057f4fabba5990a08596d0863",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:51.554710+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59780,16 +59810,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-torino-via-mittone/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "5d5843e719ccb9b73f821b537de600ef5a8a8c032190e4264537313a69829cbf",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T03:59:48.490766+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0ecb6d0ef857a19d3ea41bcfdbd52958b5c6b5440ebfb6537e057767778833af",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:21:59.990262+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59819,16 +59849,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-torri-del-benaco/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "9a9404462ed4d6848b50acd52fb805da808fbe879d9febacf4a25c868bb68816",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:00.945075+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "d08942d1f968a15142fd2130206a7a2d496d5496b87a965b3fb5b2fe6e6c2b69",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:07.371577+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59858,16 +59888,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-trapani/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "5978bba10c805f8a9d6fcbec92790901750f68fe7a8ca53838affe95ab0ad2f4",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:06.799046+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "70d40aeca7b777ea90c20a8aa4c03a070f0057416004f5ffaaa787bd1204c269",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:14.651401+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59897,16 +59927,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-trecate/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "89e3151f996ef231ccd0d388f3fcd05b363d57ff0702fa158313ce252b6a4ca6",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:12.591262+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "df5819679a82e1f9574c1954e426155a0c3a2aa6ab0bf8f1238f119d6694798d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:22.042848+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -59936,16 +59966,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-udine/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "bc56bb22f14a5ec89eacd13ac6d11b482800240b1751bf3f68d77336c874216c",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:18.339964+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "84b3ecb0dbb919acf13064c26c462ffeb998d124117da52c7f203493c0a0bf4f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:29.791707+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60014,16 +60044,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-avesa/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "288f5587783a0f5ecaa4bc9bf0e1cbe4a73b1357ff864014b87cc4f1b3d28f94",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:24.176440+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "57b427a49ecccbeb461712d3c0d8fe05fd403e95111f3a6fd90d6c10807a028c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:44.642775+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60053,16 +60083,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-borgo-roma/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "41d55c882dc0dbc05ed1e4695e14ec585d50b935544c9e69bdc049f1a10028c0",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:30.104872+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fd703eb4e196b162a6ab7a03baec74a0430f097c41be25be6224495516dfc7d8",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:52.449901+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60092,16 +60122,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-borgo-venezia/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "3ff53e76090a064420d034bb4578e551905f19730900bb2b549e8c62f3afd714",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:36.082519+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "d7607ba19bf129991a8daf7806fb5f94fff0a92b21720d645fbe82edce6f7ba9",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:22:57.811862+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60131,16 +60161,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-montorio/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "132603a92a4f3724df2b9b2ffa08d578c897c42e1c28e46703858da81653766b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:42.103196+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "9494a87a8e7fa8d6bb8ba320aa148a8e8a35a4bd78083aed03fd870ff14ddd52",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:05.897386+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60170,16 +60200,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-piazza-cittadella/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "bbbf8932ed76c15cfa6e807001e70a224551cdd222c6ea73ceb89f015e488a42",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:00:54.663763+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "9087cab37cb7e48a9592a1f1ab4a1c165d05436d8a3db64229be703835a2bd9d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:11.406277+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60209,16 +60239,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-piazza-isolo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0bb30597b30cb4460291b4c8ef94a324ee9f011c10df8b2a074df0d3729d04ff",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:01.016641+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "1f6ade9b445078dd1846234736ef287d913400a5ea5795df7d0177d8ce941da0",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:19.429683+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60248,16 +60278,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-san-massimo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "164c50fbba8c78737c69d133c9f5f38ee927e8079b94c7daddc73849396de312",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:07.425673+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "ef68c68df6097966cab5009c52716baca0d2170163b29617456adc339eb517c6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:24.776873+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60287,16 +60317,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-san-michele-extra/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "00320b4f1c8a7fcbcb30a74c9bc68547eabc2980bcf4946de91b39a7d24e3cf6",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:13.519881+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "5c9fddb4a707d9eba12b3f34a47dc7b721f6cb2c3550fe0aa73c99c5e0096879",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:32.074864+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60326,16 +60356,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-verona-santa-lucia-golosine/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "45f26f434fae06a97141248b20811440eb66351dc1d7676bec1a7a8e72fd1fbb",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:20.795285+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "9c9e97c3c58d7ba41acdeadc3a549bded8de4c0776cb82ed47708d3ce0c22196",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:47.038679+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60404,16 +60434,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-via-ripamonti-terminal-24/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ca341625d7ef92bfc2a6509ffceb0c6f742ee1710341e5f612dccd29d8f2f768",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:27.267161+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b57f24ba66c844fc78f5529957397e246fd46a92689381b2bdb22e9f9f4ba82a",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:23:54.514025+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60482,16 +60512,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vicenza-piazza-delle-erbe/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "428e24277fd07a035945926c31c06080b443f62f4cd714e09fc7182da969da54",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:33.878110+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "856b23011e3b4cb53dcbd0051334e53464ca3266a0581c72a3ac119723642a50",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:02.455274+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60521,16 +60551,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vicenza-via-prati/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "edd8032837c24b1837dff01f75d65d3a57c1f2ff6afc2f64daddc30b3854944c",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:40.969119+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "80acc92501a51d81152100a595e55db369a1067dccbe0ab8b073ee1bd08219ab",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:09.911715+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60560,16 +60590,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-vicopisano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d189d6b7cbc64305870f902e701a3df773e660287dce160cb8ceda5be77e7a06",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:01:55.112031+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "d7086fe293953bb347821f7ccfa4daa71d508d2821b57dfe1de5544f72f2f4de",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:17.513341+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60638,16 +60668,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-villarbasse/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "92acb7b518d1ecbb8a909cf8a3d0ba6e6760c59d3dcb629d13438f4df21fb2c7",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:01.614509+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0f0523b443b80b538ea908c715a4e5d321b10f9a395ad86b3396449a6c767c7c",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:25.262493+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60677,16 +60707,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-viterbo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "0a1af65b7d9c6f5bea3c99ecd2e3940beb34483ca711d8a00391640d5c681e01",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:08.674940+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "16bb0dc51b7a140c0a4de410417aab996743107b551df6ede3648d99fe73ae47",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:30.811278+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60716,16 +60746,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-di-voghera/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "91db22ce0e3bbf1e30e5920a7eae004ffde805526ea45727d1623a1887080d58",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:15.332121+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "964ba94dcb27acdfc5f2bf0582ab0c23135bd0188db4fd0f57570ca3e38fa1b8",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:39.133263+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60755,16 +60785,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-lucca-centro-storico/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d31c84475924c95add9cad2aaa6da8939c779709149513dfe30a7c26ccdee608",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:22.768126+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "989cfc4d67b9203920656f8d4b12056d5df29ed80f7d9d0ecb699cf0611f91ac",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:24:55.734421+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60794,16 +60824,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-piazza-degli-avveduti-di-fano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "6c491185a5c3f1ba0ed9cf2df81415304d1f0e3ede8bd91f87cfa637950de4c3",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:28.621126+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "b7d2aba290088a55f24c9e01748fc67bcd0432279cee0b459b7afe3146f8a3b7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:04.025058+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60833,16 +60863,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-piazza-giovane-italia-varese/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "3b29239036e95677e3cc8cef73761ba69e9e5a66ade505646886a4271f212133",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:34.829300+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "1519db98244711a379f4aa4cb92773f16fb942468631d008919f605e1f286290",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:11.477831+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60872,16 +60902,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-risorgimento-a-benevento/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "f31d6929f8e2369bd91e356aa8c7ca650f2c665823a3ee33c352518465689bf1",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:41.106084+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "31bb1e499e20c6ebb071344fa39c291e588b8c14559d64ecb1a28b02c12d2970",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:19.073938+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60911,16 +60941,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-san-mariano-loc-girasole/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "3b99e1ca82063a8ee07b9d7847bc221e99d6c25745f5572933d44c7e1832f52e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:53.012660+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c5db61671483b8753c36c5ab44f18c2a53beed64c7ba5d759a0203527dd71385",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:24.669661+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -60950,16 +60980,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-santa-maria-del-rovere/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "5eb90bb60f447536ee85e06a522839dede7ea34bae92a6c772e1630f3ca7a672",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:02:59.114524+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fba5bc13d96b3911215f7ef6442a91d30c136e5c20ae9c8d54db5bc19516e3be",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:32.433834+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61028,16 +61058,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-via-delloceano-pacifico-eur/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d076af9d3a061654f8ba0d9047735f0da5b6a42e258036af2805d316c93fc331",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:05.093072+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "10899e4d2bc0da309770047a71b4a00d4717a10ac9b31807379758f339adff62",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:40.009880+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61067,16 +61097,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-campagna-amica-villa-san-martino-di-pesaro/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "4b3000ae4b32575211ac89eae0aa78e83101d952efba03bd29c75f03c545c357",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:10.231701+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "6c3bfa638b564cf5c145a2d6b3feeda285442a8ecb84a85c43aca57a01004aa7",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:25:48.823333+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61106,16 +61136,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-castelnovo-isola-vicentina/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "dae7f55157867b1bfc3399d07aca6d9f8938f6d8ec2446f49bdac3b8a8a7ba91",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:16.501286+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c96842404b4ca36fc8e94c7891b42b526a6755931c9693a3a2bee9ae4a442567",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:03.283529+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61145,16 +61175,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-piazza-amendola-a-siena/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "73619e2419f05650f44d8bab19c8b4c19236e6bbae137805b7af9287c97cd670",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:22.950427+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "42895ee8fb9ffa00c30f5f29cdf25a1bf74cff5bd3607597eed16bbe576c6116",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:11.792587+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61184,16 +61214,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-seravezza-querceta/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "72a409a7540747425e06bd67938dd0d5e77211b890c9d18ea577f84acb9729e2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:29.277741+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "d5a984d8662c232cf072f896b80c753e7a55660267793aaac14c87fb7652f182",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:19.599907+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61223,16 +61253,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-teramo/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "305abec9e758dbeb23c60144001dc7edfeb3c84019936a458dad94552a14ee53",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:35.784408+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "cda7f69919046781c4453e9fe710fc9a61b3f56ef848ff55d9e004db1eb06017",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:27.486626+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61340,16 +61370,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-di-vendita-diretta-di-tortona/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d39842d8da887a4e4e921220c674d787e2e12fd5dad29204b0984562c66255d4",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:48.475406+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "e16682de85f550b373ba8c67b92a9570fd91463f5c38410254b157b3aa136090",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:36.224668+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61379,16 +61409,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-dorico-di-campagna-amica/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "b6fd248ee3df2d5c4fcb7ea5c6225fe04b99dad318b19db7be4e796a02bbfd2d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:03:54.819579+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "567fc379ff7b3fbfa6ef6ca27f22c2928547c0bd45e7fd0d75aba91bbaeb60c3",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:44.751066+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61418,16 +61448,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-e-evento-selbergmocht-ad-appiano/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "481efe16f8605e37734c892d1dace22c01601a6654c2f91876e4b7b8dcb815be",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:01.420787+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "39b16e23005b0376a5474a64c61b827701ab63ab891d09231b64057ffb49877f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:26:52.765755+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61457,16 +61487,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-mondiale-del-tartufo-bianco-dalba/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "db57166a4f3a3c8b422c8911dc81c7803bf16cf8f0fd93f8e2687bc3b2b8d96b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:07.976196+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "f315a0438aa55c7a947180ccbcdf298896afa8574b91b0b8c5a3f68a4076b888",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:02.065697+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61496,16 +61526,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-brunico/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "74124f8519031645dab736e2f79112f35797c84d3f898fcfa5317f2dbcd1113d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:14.417081+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "58e85dd18dc48601529042dfacbde39f1659b707c8b057c04ff087d847e1c1b6",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:19.995667+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61535,16 +61565,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-castelrotto/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e2007e7f8209e49b82246d847855bc93752fc42e090a2e9b533391f918e83155",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:21.775791+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "5403eac1f4ddfff105c88d9e737b1916e11ac76e605b835e71ffe977d41dfb0b",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:27.971385+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61574,16 +61604,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-fie-allo-sciliar/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "27692b451d87b4f5bb2ca8dd7865ea0ec257dda196572a40422bbb1c7fe4e01b",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:28.040046+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "3d8dd978e04f35e3e3314caf1f7a21322146b867d82c199ca67e7ee828d6ba45",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:35.969078+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61613,16 +61643,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-laives/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d3f8c9ddf736bb86f3ae1793fd1c497b7ce43ab35a15dd3b1a82c947b21a687d",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:34.481254+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "89629eb82f63289e8d562c86cab74fec14c96193eec072c757a61f51097f9cfb",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:44.479158+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61652,16 +61682,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-a-siusi/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "5054b6dabfb86d82d4f8c4fb0cf056551e84fbc23e5f46e3f696deb1d9b87dda",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:47.297208+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "0fc0efa1de87073f593908ca48133160bf4ac3c83441d29d97ba5300ae1a0358",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:27:52.506035+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61730,16 +61760,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-di-dobbiaco/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "307a68ec58742c4fbcf178679819d6393b31aa517632325d995412347e24bf64",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:04:53.788128+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "658d1077ac69226c68249249b99c148814ef85af015c34e48dc5c41625abb55d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:00.716585+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61769,16 +61799,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-settimanale-di-naturno/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "dd274fbb51f77ff22c35e7fbf85d7628e80a5152672bfb24d2af1052ef1a6101",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:00.342445+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "75d7a572336653641ca960f0771c76a7fd190d1f230102ff2b1edd8b0589eb99",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:09.315356+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -61808,16 +61838,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mercato-tradizionale-al-brennero/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "ce8e74b44102b5e4689c06eb61b86d199621031e500d8499870f71a0ae447b7e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:07.079488+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "f340e690a551e42ee39b749cd0053699266df085272011bc69c5d207f17739b9",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:17.499581+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -62855,16 +62885,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/mostra-mercato/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "e207bb173f4af0ed87998605e7491a37af5f8f6090a0b3466afff624e36a9251",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:13.737318+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "2603d1e683dcf913b7c4daeb119682b721f129c3869f12fc4648c613cabf445d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:31.333023+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -65711,16 +65741,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/pacini-editore-presenta-quattro-teste-dal-museo-di-corneto-un-giallo-antiquario/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "8fe7b56c061fa90c1a02bbf790caf88a68728bb82c8b3ca9bda0468fd63413e2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:20.576704+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "c43472758404449ff4d47f9a15e787fee58168983ca7b94bb7f07873acfe590f",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:39.647072+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -68033,16 +68063,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/piccolo-mercato-contadino-di-collepietra/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "d168b4eba7d357cec33719392b39202d47a24a6b4188bb35eaa3b246989945e2",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:27.955643+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "fff17754f8149febea7e3d669c066d107fc07be3146689e8f00789fb4fa0ceb5",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:47.831260+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -73419,6 +73449,12 @@
           "observed_at": "2026-11-19",
           "sha256": "aaba00a433d1b551f45ddc07f1ba4fa5afffe3862aa5e4fcac99ffb950df8a88",
           "url": "https://www.happings.com/it/happing/festa-dellalbero/"
+        },
+        {
+          "kind": "sitemap_loc",
+          "observed_at": "2026-11-21",
+          "sha256": "912c57806dac877cdf888509aca7c490bbc65c1ec5f531ca64e5ee84a23bbd03",
+          "url": "https://www.happings.com/happings_event-sitemap.xml"
         }
       ],
       "status": "retrieved"
@@ -73608,6 +73644,12 @@
           "observed_at": "2026-11-10",
           "sha256": "681ed005ff1f0dadc083ad0f19814c03f4827cc9971ce09e0362aa1d8b3fbbae",
           "url": "https://www.happings.com/it/happing/gsiesa-marschtl-mercato-annuale-della-val-casies/"
+        },
+        {
+          "kind": "sitemap_loc",
+          "observed_at": "2026-11-21",
+          "sha256": "912c57806dac877cdf888509aca7c490bbc65c1ec5f531ca64e5ee84a23bbd03",
+          "url": "https://www.happings.com/happings_event-sitemap.xml"
         }
       ],
       "status": "retrieved"
@@ -73964,16 +74006,16 @@
       "status": "retrieved"
     },
     "https://www.happings.com/it/happing/sagra-di-colma-con-mercato-del-rosario/": {
-      "attempts": 4,
+      "attempts": 5,
       "discovered_at": "2026-10-20",
       "failures": 0,
       "kind": "detail",
-      "last_attempt": "2026-11-14",
+      "last_attempt": "2026-11-21",
       "last_error": null,
-      "last_sha256": "33ca6bff9fc6c3f804ae2161f8061189d17f17879edc352628f3fd7c066f7d7e",
-      "last_success": "2026-11-14",
-      "last_success_at": "2026-11-14T04:05:34.589772+00:00",
-      "next_due": "2026-11-21",
+      "last_sha256": "4b1bde3e603bc083e5372a475ab46139e2f52470e0f646ebf806d234af88fc9d",
+      "last_success": "2026-11-21",
+      "last_success_at": "2026-11-21T04:28:56.350663+00:00",
+      "next_due": "2026-11-28",
       "origins": [
         {
           "kind": "sitemap_loc",
@@ -79383,6 +79425,12 @@
           "observed_at": "2026-11-15",
           "sha256": "1fb59b427bc2f4a81c0413dfc753849de651ef7b67d284c93d93519df6b40177",
           "url": "https://www.happings.com/it/happing/fai-programma-e-inventa-con-makerdojo/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-21",
+          "sha256": "21cdcb48d364316e996872eaf86c6c2f086512144316a6cf3b69d1631ae31c92",
+          "url": "https://www.happings.com/it/happing/incontro-con-massimo-sestini/"
         }
       ],
       "status": "retrieved"
@@ -80352,6 +80400,12 @@
           "observed_at": "2026-11-09",
           "sha256": "ccccab61b60faf986d2a84077858cab43c199de69b0a5adf59287ed1e6038d31",
           "url": "https://www.happings.com/it/happing/spettacolo-teatrale-i-tre-orsi-polari-de/"
+        },
+        {
+          "kind": "html_link",
+          "observed_at": "2026-11-21",
+          "sha256": "a7f5546f6c820e24817ef29e5fed62778427410c3997f0035fa9187214c08da0",
+          "url": "https://www.happings.com/it/happing/inaugurazione-pianeta-terra-festival/"
         }
       ],
       "status": "retrieved"

@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-20",
+  "as_of": "2026-11-21",
   "confirmed_openings_added": 0,
   "coordinates_created": 0,
   "daily_detailed_tasks_saved_in_git": false,
-  "daily_shard": 1,
-  "daily_worklist_count": 487,
+  "daily_shard": 2,
+  "daily_worklist_count": 468,
   "distinct_source_labels": 92,
   "incomplete_market_records_retained": 14751,
   "market_fields_changed": 0,
@@ -16,7 +16,7 @@
   "may_grant_source_reuse_rights": false,
   "missing_by_field": {
     "coordinates": 14662,
-    "date": 3001,
+    "date": 2996,
     "indirizzo": 5068,
     "individual_edition_confirmation": 14751,
     "orario_testo": 1925,
@@ -47,7 +47,7 @@
         "adapter_scope": "happings_weekly_province_index",
         "authorized": true,
         "basis": "explicit_project_owner_instruction",
-        "checked_on": "2026-11-20",
+        "checked_on": "2026-11-21",
         "granted_by_this_report": false,
         "publication_channel": "dev-only",
         "record_sha256": "512250e027cd43a3b86a41294b842a896d5bbac6cdc0696e1f3eba0237b01d72",
@@ -76,7 +76,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 2200,
-        "date": 1464,
+        "date": 1463,
         "indirizzo": 482,
         "individual_edition_confirmation": 2200,
         "orario_testo": 360,
@@ -111,7 +111,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 507,
-        "date": 386,
+        "date": 387,
         "indirizzo": 101,
         "individual_edition_confirmation": 507,
         "orario_testo": 238,
@@ -129,7 +129,7 @@
       "bulk_scrape_allowed": false,
       "missing_fields": {
         "coordinates": 444,
-        "date": 82,
+        "date": 77,
         "indirizzo": 30,
         "individual_edition_confirmation": 444,
         "orario_testo": 148,

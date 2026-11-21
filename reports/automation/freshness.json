@@ -50,27 +50,27 @@
     ]
   },
   "field_evidence": {
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "meaning": "Riscontri puntuali dei campi; non conferme di apertura o coordinate",
     "metrics": {
       "indirizzo:mancante": 1236,
-      "indirizzo:riscontrato_data_fonte_sconosciuta": 8172,
+      "indirizzo:riscontrato_data_fonte_sconosciuta": 8177,
       "indirizzo:riscontrato_fonte_recente": 2059,
       "indirizzo:riscontro_da_aggiornare": 183,
-      "indirizzo:senza_riscontro_documentato": 3101,
+      "indirizzo:senza_riscontro_documentato": 3096,
       "markets": 14751,
-      "markets_with_all_three_fields_source_supported": 1249,
-      "markets_with_recent_field_evidence": 2828,
+      "markets_with_all_three_fields_source_supported": 1250,
+      "markets_with_recent_field_evidence": 2829,
       "orario_testo:mancante": 1925,
-      "orario_testo:riscontrato_data_fonte_sconosciuta": 7506,
-      "orario_testo:riscontrato_fonte_recente": 2196,
+      "orario_testo:riscontrato_data_fonte_sconosciuta": 7221,
+      "orario_testo:riscontrato_fonte_recente": 2197,
       "orario_testo:riscontro_da_aggiornare": 1385,
-      "orario_testo:senza_riscontro_documentato": 1739,
+      "orario_testo:senza_riscontro_documentato": 2023,
       "ricorrenza_testo:mancante": 1422,
       "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 9215,
-      "ricorrenza_testo:riscontrato_fonte_recente": 2061,
+      "ricorrenza_testo:riscontrato_fonte_recente": 2062,
       "ricorrenza_testo:riscontro_da_aggiornare": 217,
-      "ricorrenza_testo:senza_riscontro_documentato": 1836
+      "ricorrenza_testo:senza_riscontro_documentato": 1835
     },
     "publishers": [
       {
@@ -386,7 +386,7 @@
         "indirizzo:riscontro_da_aggiornare": 140,
         "indirizzo:senza_riscontro_documentato": 64,
         "markets": 444,
-        "markets_with_all_three_fields_source_supported": 71,
+        "markets_with_all_three_fields_source_supported": 72,
         "markets_with_recent_field_evidence": 248,
         "orario_testo:mancante": 148,
         "orario_testo:riscontrato_data_fonte_sconosciuta": 15,
@@ -395,9 +395,9 @@
         "publisher": "cosedicasa.com",
         "ricorrenza_testo:mancante": 7,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 13,
-        "ricorrenza_testo:riscontrato_fonte_recente": 109,
+        "ricorrenza_testo:riscontrato_fonte_recente": 110,
         "ricorrenza_testo:riscontro_da_aggiornare": 187,
-        "ricorrenza_testo:senza_riscontro_documentato": 128
+        "ricorrenza_testo:senza_riscontro_documentato": 127
       },
       {
         "indirizzo:senza_riscontro_documentato": 70,
@@ -432,17 +432,17 @@
       },
       {
         "indirizzo:mancante": 438,
-        "indirizzo:riscontrato_data_fonte_sconosciuta": 17,
+        "indirizzo:riscontrato_data_fonte_sconosciuta": 22,
         "indirizzo:riscontrato_fonte_recente": 20,
-        "indirizzo:senza_riscontro_documentato": 1725,
+        "indirizzo:senza_riscontro_documentato": 1720,
         "markets": 2200,
         "markets_with_all_three_fields_source_supported": 4,
-        "markets_with_recent_field_evidence": 51,
+        "markets_with_recent_field_evidence": 52,
         "orario_testo:mancante": 360,
         "orario_testo:riscontrato_data_fonte_sconosciuta": 2,
-        "orario_testo:riscontrato_fonte_recente": 36,
+        "orario_testo:riscontrato_fonte_recente": 37,
         "orario_testo:riscontro_da_aggiornare": 1012,
-        "orario_testo:senza_riscontro_documentato": 790,
+        "orario_testo:senza_riscontro_documentato": 789,
         "publisher": "eventiesagre.it",
         "ricorrenza_testo:mancante": 707,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 635,
@@ -516,9 +516,9 @@
         "markets_with_all_three_fields_source_supported": 241,
         "markets_with_recent_field_evidence": 1013,
         "orario_testo:mancante": 672,
-        "orario_testo:riscontrato_data_fonte_sconosciuta": 7362,
+        "orario_testo:riscontrato_data_fonte_sconosciuta": 7077,
         "orario_testo:riscontrato_fonte_recente": 1000,
-        "orario_testo:senza_riscontro_documentato": 880,
+        "orario_testo:senza_riscontro_documentato": 1165,
         "publisher": "happings.com",
         "ricorrenza_testo:mancante": 47,
         "ricorrenza_testo:riscontrato_data_fonte_sconosciuta": 8538,
@@ -838,8 +838,8 @@
   },
   "metrics": {
     "dataset_updated_not_specific_market": 1389,
-    "forecast_from_stale_or_unknown_source": 10233,
-    "import_within_30d": 815,
+    "forecast_from_stale_or_unknown_source": 10223,
+    "import_within_30d": 728,
     "legacy_update_timestamp_without_source_date": 12561,
     "recent_dataset_only_update": 1160,
     "source_date_31_to_90d": 80,
@@ -849,10 +849,10 @@
     "source_date_outside_limit": 51,
     "source_date_unknown": 13349,
     "source_date_within_30d": 1160,
-    "source_read_within_30d": 13909,
+    "source_read_within_30d": 13864,
     "total": 14751,
-    "with_any_future_date": 11750,
-    "with_forecast_dates": 11194,
+    "with_any_future_date": 11755,
+    "with_forecast_dates": 11184,
     "with_import_timestamp": 911,
     "with_source_read_timestamp": 13921,
     "without_documented_verification": 14751,
@@ -882,7 +882,7 @@
       "status": "needs_review"
     }
   ],
-  "reference_date": "2026-11-20",
+  "reference_date": "2026-11-21",
   "safe_for_automatic_quality_promotion": true,
   "schema": 1,
   "snapshot_measurement_not_event_verification": true,
@@ -946,63 +946,21 @@
     }
   ],
   "source_refresh": {
-    "conflicts": 4,
+    "conflicts": 0,
     "field_changes": 0,
     "markets_with_field_changes": 0,
     "release_safe": true,
     "selected_pages": [
       {
-        "changed_fields": 0,
-        "content_date": "2026-01-27",
-        "held_reasons": {
-          "multiple_or_missing_source_venues": 47,
-          "no_single_explicit_annual_weekday": 34
-        },
-        "layout_complete": true,
-        "matched_markets": 4,
-        "parser_issues": [],
-        "parser_metrics": {
-          "ambiguous_municipality_days": 0,
-          "ambiguous_source_identities": 0,
-          "city_blocks": 6,
-          "content_scopes": 1,
-          "fraction_rows": 0,
-          "rows": 6,
-          "rows_with_numeric_hours": 6,
-          "unique_source_row_ids": 6
-        },
-        "read_on": "2026-11-20",
-        "sha256": "3468a02d9e18efe0e5e549a7d1e004062b801e98d19c2cec86fab1e3c46bc831",
+        "error_type": "ValueError",
         "source_id": "bassa-romagna-farmers",
-        "status": "retrieved",
+        "status": "source_held",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-del-contadino/"
       },
       {
-        "changed_fields": 0,
-        "content_date": null,
-        "held_reasons": {},
-        "layout_complete": false,
-        "matched_markets": 0,
-        "parser_issues": [
-          {
-            "code": "conflicting_source_updated_on",
-            "severity": "error"
-          }
-        ],
-        "parser_metrics": {
-          "ambiguous_municipality_days": 2,
-          "ambiguous_source_identities": 0,
-          "city_blocks": 9,
-          "content_scopes": 1,
-          "fraction_rows": 7,
-          "rows": 20,
-          "rows_with_numeric_hours": 0,
-          "unique_source_row_ids": 20
-        },
-        "read_on": "2026-11-20",
-        "sha256": "6699201d36424c9ff3d03110a2a1133595a2465fa019e76ff3908802c8e935f2",
+        "error_type": "ValueError",
         "source_id": "bassa-romagna-weekly",
-        "status": "layout_changed",
+        "status": "source_held",
         "url": "https://www.bassaromagnamia.it/poitofintrests/mercati-settimanali-6/"
       }
     ],
@@ -1026,13 +984,14 @@
         "unsupported": 953
       },
       "market_read_statuses": {
+        "content_conflict": 3,
         "disabled": 62,
-        "not_observed": 514,
+        "not_observed": 2644,
         "not_read": 953,
-        "not_selected": 10977,
+        "not_selected": 8538,
         "publisher_source_held_for_review": 19,
-        "retrieved": 2136,
-        "unavailable": 90
+        "retrieved": 2529,
+        "unavailable": 3
       },
       "markets": 14751,
       "schema": 1,
@@ -1040,8 +999,8 @@
         "counts_describe": "comparison_eligibility",
         "eligible_markets": 651,
         "market_read_statuses": {
-          "not_selected": 626,
-          "retrieved": 25
+          "not_selected": 628,
+          "retrieved": 23
         },
         "mode": "existing_address_exact_match",
         "publisher": "happings.com",
@@ -1306,7 +1265,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1391,7 +1349,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1404,7 +1361,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 2,
         "source_date_unknown": 2,
-        "source_read_within_30d": 2,
         "total": 2,
         "with_source_read_timestamp": 2,
         "without_documented_verification": 2,
@@ -1417,7 +1373,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1430,7 +1385,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 2,
         "source_date_unknown": 2,
-        "source_read_within_30d": 2,
         "total": 2,
         "with_source_read_timestamp": 2,
         "without_documented_verification": 2,
@@ -1443,7 +1397,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 2,
         "source_date_unknown": 2,
-        "source_read_within_30d": 2,
         "total": 2,
         "with_source_read_timestamp": 2,
         "without_documented_verification": 2,
@@ -1456,7 +1409,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1597,14 +1549,14 @@
     {
       "domain": "www.cosedicasa.com",
       "metrics": {
-        "forecast_from_stale_or_unknown_source": 134,
+        "forecast_from_stale_or_unknown_source": 124,
         "import_within_30d": 12,
         "legacy_update_timestamp_without_source_date": 432,
         "source_date_unknown": 444,
         "source_read_within_30d": 441,
         "total": 444,
-        "with_any_future_date": 362,
-        "with_forecast_dates": 134,
+        "with_any_future_date": 367,
+        "with_forecast_dates": 124,
         "with_import_timestamp": 12,
         "with_source_read_timestamp": 442,
         "without_documented_verification": 444,
@@ -1675,7 +1627,7 @@
         "source_date_unknown": 2200,
         "source_read_within_30d": 2200,
         "total": 2200,
-        "with_any_future_date": 736,
+        "with_any_future_date": 737,
         "with_forecast_dates": 735,
         "with_import_timestamp": 3,
         "with_source_read_timestamp": 2200,
@@ -1741,7 +1693,6 @@
         "forecast_from_stale_or_unknown_source": 1,
         "legacy_update_timestamp_without_source_date": 4,
         "source_date_unknown": 4,
-        "source_read_within_30d": 3,
         "total": 4,
         "with_any_future_date": 1,
         "with_forecast_dates": 1,
@@ -1757,7 +1708,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1782,7 +1732,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 7,
         "source_date_unknown": 7,
-        "source_read_within_30d": 5,
         "total": 7,
         "with_source_read_timestamp": 5,
         "without_documented_verification": 7,
@@ -1795,12 +1744,12 @@
       "domain": "www.happings.com",
       "metrics": {
         "forecast_from_stale_or_unknown_source": 9300,
-        "import_within_30d": 171,
+        "import_within_30d": 84,
         "legacy_update_timestamp_without_source_date": 9647,
         "source_date_31_to_90d": 1,
         "source_date_from_declared_source_content": 1,
         "source_date_unknown": 9913,
-        "source_read_within_30d": 9246,
+        "source_read_within_30d": 9224,
         "total": 9914,
         "with_any_future_date": 9540,
         "with_forecast_dates": 9300,
@@ -1829,7 +1778,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 1,
         "source_date_unknown": 1,
-        "source_read_within_30d": 1,
         "total": 1,
         "with_source_read_timestamp": 1,
         "without_documented_verification": 1,
@@ -1878,7 +1826,6 @@
       "metrics": {
         "legacy_update_timestamp_without_source_date": 4,
         "source_date_unknown": 4,
-        "source_read_within_30d": 3,
         "total": 4,
         "with_source_read_timestamp": 3,
         "without_documented_verification": 4,
@@ -2281,7 +2228,7 @@
         "source_date_unknown": 507,
         "source_read_within_30d": 507,
         "total": 507,
-        "with_any_future_date": 121,
+        "with_any_future_date": 120,
         "with_forecast_dates": 34,
         "with_import_timestamp": 507,
         "with_source_read_timestamp": 507,
@@ -2320,7 +2267,6 @@
     "future_predictions_have_stale_or_missing_source_dates",
     "source_data_older_than_allowed_forecast_window",
     "publisher_metadata_unavailable_or_changed",
-    "publisher_refresh_incomplete",
-    "publisher_refresh_conflicting_fields"
+    "publisher_refresh_incomplete"
   ]
 }

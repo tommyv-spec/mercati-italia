@@ -1,9 +1,10 @@
 {
   "attention_required": true,
-  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,751\n- Senza verifica documentata: 14,751\n- Fonte vecchia oltre soglia: 51\n- Fonte senza data: 13,349\n- Date previste da fonte vecchia/sconosciuta: 10,233\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: bassa-romagna-weekly\n- Conflitti fra valori esistenti e nuove letture: 4\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 83927e3665d2105d",
+  "body": "Controllo automatico della qualità e attualità delle fonti, **non** un errore di deploy.\nNessun orario o mercato è stato verificato automaticamente.\n\n- Schede: 14,751\n- Senza verifica documentata: 14,751\n- Fonte vecchia oltre soglia: 51\n- Fonte senza data: 13,349\n- Date previste da fonte vecchia/sconosciuta: 10,223\n- Date confermate senza prova: 0\n- Publisher non raggiungibili / metadati cambiati: Roma Capitale\n- Enti che dichiarano dati aggiornati rispetto al controllo precedente: nessuno\n- CSV comunali cambiati (richiedono nuova verifica): nessuno\n- Lettori di pagine da ripristinare: bassa-romagna-farmers, bassa-romagna-weekly\n- Conflitti fra valori esistenti e nuove letture: 0\n\nCorreggere le fonti autorizzate e gli adapter ripetibili. Mai creare verifiche manuali fittizie.\n\nFirma stato: 78f2230ac0903902",
   "problems": {
-    "automatic_field_conflicts": 4,
+    "automatic_field_conflicts": 0,
     "automatic_page_refresh_held": [
+      "bassa-romagna-farmers",
       "bassa-romagna-weekly"
     ],
     "municipal_csv_changed": [],
@@ -11,13 +12,13 @@
     "publisher_unavailable": [
       "Roma Capitale"
     ],
-    "stale_forecast": 10233,
+    "stale_forecast": 10223,
     "stale_source": 51,
     "total": 14751,
     "unknown_source_date": 13349,
     "unsupported_confirmation": 0,
     "without_verification": 14751
   },
-  "signature": "83927e3665d2105d",
+  "signature": "78f2230ac0903902",
   "title": "[Mercati autopilot] Dati da verificare"
 }
