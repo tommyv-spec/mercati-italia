@@ -1,6 +1,6 @@
 {
   "aggregate_gaps_are_not_proven_source_errors": true,
-  "as_of": "2026-11-20",
+  "as_of": "2026-11-21",
   "candidate_datasets": [
     {
       "actual_market_count_estimated": null,
@@ -736,7 +736,7 @@
         "address_generic_not_navigable": 44,
         "address_missing": 438,
         "coordinates_missing": 100,
-        "future_dates_missing": 1464,
+        "future_dates_missing": 1463,
         "hours_missing": 360,
         "records": 2200,
         "source_or_import_date_unknown": 3
@@ -744,7 +744,7 @@
       "kind": "third_party_event_aggregator",
       "layout": "regional_listing_and_details",
       "next_action": "Use existing two-page rotating URLs-only discovery, then verify dates/street with independent organizer/Comune; exclude expired editions.",
-      "priority_workload_score_not_evidence": 5962,
+      "priority_workload_score_not_evidence": 5961,
       "publisher": "eventiesagre.it",
       "records": 2200,
       "rights_classification": "urls_only_no_bulk_content_reuse",
@@ -851,7 +851,7 @@
         "address_generic_not_navigable": 3,
         "address_missing": 98,
         "coordinates_missing": 244,
-        "future_dates_missing": 386,
+        "future_dates_missing": 387,
         "hours_missing": 238,
         "records": 507,
         "source_or_import_date_unknown": 507
@@ -859,7 +859,7 @@
       "kind": "other_legacy_or_publisher",
       "layout": "unclassified_source_page",
       "next_action": "Identify original publisher and distribution rights; gather a bounded schema sample and independent official evidence before field changes.",
-      "priority_workload_score_not_evidence": 1681,
+      "priority_workload_score_not_evidence": 1682,
       "publisher": "vintagery.it",
       "records": 507,
       "rights_classification": "source_rights_and_structure_require_review",
@@ -910,11 +910,11 @@
       "actual_individual_market_validations": 0,
       "automatic_import_authorized_by_this_audit": false,
       "automatic_source_row_reuse_authorized_by_this_audit": false,
-      "count_delta_since_last_audit": 1,
+      "count_delta_since_last_audit": 0,
       "fields": {
         "address_generic_not_navigable": 30,
-        "coordinates_missing": 25,
-        "future_dates_missing": 82,
+        "coordinates_missing": 24,
+        "future_dates_missing": 77,
         "hours_missing": 148,
         "records": 444,
         "source_or_import_date_unknown": 12
@@ -922,7 +922,7 @@
       "kind": "editorial_event_calendar",
       "layout": "monthly_recurrence_with_exceptions",
       "next_action": "Check monthly recurrence and summer suspensions against a current official organizer. Editorial 'next date' is not event confirmation; do not republish copyrighted detail content.",
-      "priority_workload_score_not_evidence": 1002,
+      "priority_workload_score_not_evidence": 997,
       "publisher": "cosedicasa.com",
       "records": 444,
       "rights_classification": "publisher_rights_unreviewed",
@@ -15998,7 +15998,7 @@
         "url_pattern": "/?anno={value}&cod_co={value}&dt_dataa={value}&dt_datada={value}&progr_fiera={value}&r1={value}&r2={value}&strr_provincia={value}&strr_sede={value}&strs_keywords={value}"
       }
     ],
-    "generated_for_date": "2026-11-20",
+    "generated_for_date": "2026-11-21",
     "ledger": "backend/data/source-format-review-ledger.json",
     "schema_version": 1,
     "summary": {

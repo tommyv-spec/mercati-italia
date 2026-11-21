@@ -17,7 +17,7 @@ Nessun dato viene riletto o ripubblicato dal sito terzo.
 | eventiesagre.it | 2200 | 360 | 438 | 100 | 0 | 0 | regional_listing_and_details |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 1143 | 342 | 1 | 151 | 0 | 0 | one_market_id_per_weekday |
 | vintagery.it | 507 | 238 | 98 | 244 | 0 | 0 | unclassified_source_page |
-| cosedicasa.com | 444 | 148 | 0 | 25 | 0 | 0 | monthly_recurrence_with_exceptions |
+| cosedicasa.com | 444 | 148 | 0 | 24 | 0 | 0 | monthly_recurrence_with_exceptions |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 7 | 0 | 44 | 0 | 0 | unclassified_source_page |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 0 | 10 | 0 | 8 | 0 | one_venue_with_weekdays |
 | dati.comune.roma.it | 70 | 2 | 0 | 6 | 0 | 0 | unclassified_source_page |
