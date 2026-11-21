@@ -13,8 +13,8 @@ Coordinate indicative mai utilizzate per confermare una sede.
 ## Conteggi e motivi di blocco
 
 - legacy_lombardia_records_checked: **2946**
-- legacy_no_exact_street_day_match: **1990**
-- legacy_no_safe_street_or_day: **434**
+- legacy_no_exact_street_day_match: **1989**
+- legacy_no_safe_street_or_day: **435**
 - missing_address_multiple_official_venues: **10**
 - missing_address_no_matching_official_town_day: **93**
 - missing_address_without_grounded_venue: **14**
