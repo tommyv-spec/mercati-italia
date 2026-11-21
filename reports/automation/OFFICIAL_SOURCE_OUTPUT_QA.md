@@ -7,7 +7,7 @@ Un dato publisher vecchio o mancante NON conferma chiusura o aperture.
 | Fonte | Controllo | Righe originali normalizzate | Indirizzi | Orari | Coordinate | Data dataset |
 |---|---|---:|---:|---:|---:|---|
 | lombardia | superato | 1368 | 1367 | 905 | 1137 | 2026-11-17 |
-| milano | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
+| milano | superato | 85 | 0 | 85 | 85 | 2024-05-27 |
 | bologna | superato | 48 | 47 | 48 | 48 | 2025-04-02 |
 | firenze | superato | 4 | 4 | 4 | 4 | 2023-03-03 |
 | corciano | publisher_unavailable_or_mapping_contract_changed | — | — | — | — | — |
