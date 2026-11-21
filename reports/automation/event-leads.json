@@ -25,16 +25,195 @@
     },
     {
       "catalog_market_imports": 0,
+      "descriptions_copied": 0,
       "event_confirmations": 0,
       "id": "eventiesagre-index",
-      "reason_class": "URLError",
-      "requests": 0,
-      "state": "source_unavailable_or_schema_review"
+      "indexes_read": 2,
+      "links_only": 16,
+      "publisher_events_verified": 0,
+      "requests": 3,
+      "state": "discovery_leads_only"
     }
   ],
   "fresh_official_leads": 0,
   "individual_event_confirmations": 0,
   "leads": [
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:8592",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Vari/8592_Mercatini+di+Roseto+Degli+Abruzzi.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:6568",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/6568_Mercatino+dell+Antiquariato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:21193810",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Natale/21193810_Mercatino+Di+Natale+A+Massa+D+albe.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21189920",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21189920_Mostra+Mercato+Dell+antiquariato+A+Roncade.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:21189447",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21189447_Il+Mercatino+Dell+artigianato+Hobbisti+E+Creativi+A+Lanciano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:21186452",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21186452_L+ingegno+In+Piazza+In+Abruzzo.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21184191",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21184191_Mercatino+Antiquariato+Di+Povegliano+Veronese.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21176118",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21176118_Il+Mercatino+Dell+antiquariato+A+Montegrotto+Terme.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21168900",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21168900_Il+Mercatino+Dell+antiquariato+A+Verona.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:21155577",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21155577_Mercatino+Pojano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-21",
+      "id": "eventiesagre-index:21113968",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Artigianato/21113968_Arti+E+Mestieri.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21042887",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21042887_Mercatino+Dell+antiquariato+A+Soave.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:21036560",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036560_Mercato+Dell+Antiquariato.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-10-23",
+      "id": "eventiesagre-index:21028887",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:15083",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/15083_Mercato+dell+Antiquariato+a+Valeggio+Sul+Mincio.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
+    {
+      "catalog_import_allowed": false,
+      "first_seen": "2026-11-12",
+      "id": "eventiesagre-index:11918",
+      "last_seen": "2026-11-21",
+      "opening_confirmed": false,
+      "possible_existing_market_ids": [],
+      "source_id": "eventiesagre-index",
+      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/11918_Mercatino+dellaAntiquariato+a+Piazzola+sul+Brenta.html",
+      "status": "external_pointer_only_no_fact_reuse"
+    },
     {
       "catalog_import_allowed": false,
       "city": "Firenze",
@@ -762,39 +941,6 @@
     },
     {
       "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:6568",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/6568_Mercatino+dell+Antiquariato.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21189920",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21189920_Mostra+Mercato+Dell+antiquariato+A+Roncade.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21184191",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21184191_Mercatino+Antiquariato+Di+Povegliano+Veronese.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
       "first_seen": "2026-11-03",
       "id": "eventiesagre-index:21183828",
       "last_seen": "2026-11-12",
@@ -894,72 +1040,6 @@
     },
     {
       "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21176118",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21176118_Il+Mercatino+Dell+antiquariato+A+Montegrotto+Terme.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21168900",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21168900_Il+Mercatino+Dell+antiquariato+A+Verona.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21042887",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21042887_Mercatino+Dell+antiquariato+A+Soave.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:21036560",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21036560_Mercato+Dell+Antiquariato.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-10-23",
-      "id": "eventiesagre-index:21028887",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/21028887_Mercatino+Antiquariato+Collezionismo+a+Mordano.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:15083",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/15083_Mercato+dell+Antiquariato+a+Valeggio+Sul+Mincio.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
       "first_seen": "2026-11-03",
       "id": "eventiesagre-index:12567",
       "last_seen": "2026-11-12",
@@ -967,17 +1047,6 @@
       "possible_existing_market_ids": [],
       "source_id": "eventiesagre-index",
       "source_url": "https://www.eventiesagre.it/Mercatini_Filiera+Corta/12567_Mercato+Contadino+di+Arco.html",
-      "status": "not_seen_again_not_a_market_closure"
-    },
-    {
-      "catalog_import_allowed": false,
-      "first_seen": "2026-11-12",
-      "id": "eventiesagre-index:11918",
-      "last_seen": "2026-11-12",
-      "opening_confirmed": false,
-      "possible_existing_market_ids": [],
-      "source_id": "eventiesagre-index",
-      "source_url": "https://www.eventiesagre.it/Mercatini_Antiquariato/11918_Mercatino+dellaAntiquariato+a+Piazzola+sul+Brenta.html",
       "status": "not_seen_again_not_a_market_closure"
     },
     {
@@ -2649,11 +2718,11 @@
       "status": "not_seen_again_not_a_market_closure"
     }
   ],
-  "new_external_url_pointers": 0,
+  "new_external_url_pointers": 16,
   "new_market_records_created": 0,
   "precise_coordinates_created": 0,
   "publisher_rights_inferred": false,
-  "reference_date": "2026-11-20",
+  "reference_date": "2026-11-21",
   "registry_digest": "e3574b60fd7c2ae324c12704adb1de746fef55ed4c69973d6a4c232b3f18e5cc",
   "research_only": true,
   "schema": 1
