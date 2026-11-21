@@ -5,44 +5,44 @@ Sono ispezionati fino a 3 CSV al giorno; nessun record o dato personale viene sa
 Nessuna fonte viene abilitata all'importazione.
 
 - Dataset trovati dalla ricerca CKAN: **87**.
-- Dataset con campione storico: **74**.
+- Dataset con campione storico: **77**.
 - Campioni in questo run: **3**.
 
-## Posteggi mercati e fiere - NOGARA
-- Editore dichiarato: Comune di Nogara
+## Fiere e mercati - MASERA' DI PADOVA
+- Editore dichiarato: Comune di Maserà di Padova
 - Stato: sampled_complete_csv
 - Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 9
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
-- Righe di posteggi storici: 9
-- Giorni settimanali espliciti: 9
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - PIANIGA
-- Editore dichiarato: Comune di Pianiga
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 133
-- Nomi distinti (NON mercato nuovo): 4
-- Concessioni scadute: 0
-- Righe di posteggi storici: 122
-- Giorni settimanali espliciti: 132
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
-
-## Posteggi mercati e fiere - VIGASIO
-- Editore dichiarato: Comune di Vigasio
-- Stato: sampled_complete_csv
-- Data modifica dichiarata: 
-- Categoria dei record: historic_stall_capacity_not_market_visits
-- Righe amministrative lette: 1
-- Nomi distinti (NON mercato nuovo): 1
-- Concessioni scadute: 0
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 167
+- Nomi distinti (NON mercato nuovo): 12
+- Concessioni scadute: 160
 - Righe di posteggi storici: 0
-- Giorni settimanali espliciti: 1
-- Campi: nome_mercato, fiera_mercato, giorno, inizio_periodo, fine_periodo, tipo_posteggio, totale_posteggi
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+
+## Fiere e mercati - GIAVERA DEL MONTELLO
+- Editore dichiarato: Comune di Giavera del Montello
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 55
+- Nomi distinti (NON mercato nuovo): 1
+- Concessioni scadute: 35
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
+
+## Fiere e mercati - CASTEL D'AZZANO
+- Editore dichiarato: Comune di Castel d'Azzano
+- Stato: sampled_complete_csv
+- Data modifica dichiarata: 
+- Categoria dei record: concessions_not_market_visits
+- Righe amministrative lette: 2
+- Nomi distinti (NON mercato nuovo): 2
+- Concessioni scadute: 1
+- Righe di posteggi storici: 0
+- Giorni settimanali espliciti: 0
+- Campi: nome_mercato, fiera_mercato, attivita, data_validita_concessione, data_scadenza_concessione
 
 
 Le sedi saranno aggiunte solo dopo confronto con catalogo, identità univoche,
