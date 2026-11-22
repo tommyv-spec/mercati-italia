@@ -1,22 +1,28 @@
-# Qualità dei dati — 2026-11-21
+# Qualità dei dati — 2026-11-22
 
-Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-11-20).
+Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-11-21).
 
 ## Semaforo
 
-🟢 Tutto regolare.
+🔴 **Da guardare:**
 
+- Il job **data-expansion-audit** non è andato a buon fine (ultimo tentativo 2026-11-22T04:27+00:00).
+- Il job **event-leads-daily** non è andato a buon fine (ultimo tentativo 2026-11-22T04:32+00:00).
+- Il job **market-autopilot** non è andato a buon fine (ultimo tentativo 2026-11-22T04:06+00:00).
+- Il job **official-source-output-qa** non è andato a buon fine (ultimo tentativo 2026-11-22T04:44+00:00).
+- Il job **publisher-quality-daily** non è andato a buon fine (ultimo tentativo 2026-11-22T04:40+00:00).
+- Il job **regional-field-reconciliation** non è andato a buon fine (ultimo tentativo 2026-11-22T04:36+00:00).
 
 | Job automatico | Esito | Quando |
 |---|---|---|
-| data-expansion-audit | ✅ | 2026-11-21T04:52+00:00 |
-| event-leads-daily | ✅ | 2026-11-21T04:55+00:00 |
+| data-expansion-audit | ❌ | 2026-11-22T04:27+00:00 |
+| event-leads-daily | ❌ | 2026-11-22T04:32+00:00 |
 | happings-weekly-fields | ✅ | 2026-11-16T03:44+00:00 |
 | istat-reference-check | ✅ | 2026-11-19T05:13+00:00 |
-| market-autopilot | ✅ | 2026-11-21T04:46+00:00 |
-| official-source-output-qa | ✅ | 2026-11-21T05:02+00:00 |
-| publisher-quality-daily | ✅ | 2026-11-21T04:59+00:00 |
-| regional-field-reconciliation | ✅ | 2026-11-21T04:57+00:00 |
+| market-autopilot | ❌ | 2026-11-22T04:06+00:00 |
+| official-source-output-qa | ❌ | 2026-11-22T04:44+00:00 |
+| publisher-quality-daily | ❌ | 2026-11-22T04:40+00:00 |
+| regional-field-reconciliation | ❌ | 2026-11-22T04:36+00:00 |
 
 ## Cosa vede chi usa l'app
 
@@ -24,11 +30,11 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 
 | Dato | Mercati |
 |---|---:|
-| Orari esatti | 26.5% (+0.1) |
-| Solo mattina/pomeriggio | 62.2% (-0.1) |
+| Orari esatti | 26.5% (+0.0) |
+| Solo mattina/pomeriggio | 62.2% (+0.0) |
 | Via precisa | 67.5% (+0.0) |
 | Solo «centro» | 27.3% (+0.0) |
-| Date nei prossimi 30 giorni | 86.2% (+0.0) |
+| Date nei prossimi 30 giorni | 86.0% (-0.2) |
 | Posizione sulla mappa | 92.2% (+0.0) |
 
 ## Per fonte
@@ -40,8 +46,8 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 | happings.com | 6,082 | 13.1% | 57.3% | 99.7% | 94.7% | 2026-11-21 |
 | eventiesagre.it | 1,026 | 23.4% | 77.6% | 57.4% | 100.0% | 2026-11-21 |
 | Regione Lombardia – MERCap (CC0 1.0 dichiarata) | 830 | 67.8% | 99.6% | 63.4% | 100.0% | 2026-11-21 |
-| vintagery.it | 432 | 51.6% | 80.1% | 26.2% | 100.0% | 2026-11-19 |
-| cosedicasa.com | 389 | 66.6% | 92.3% | 86.1% | 99.2% | 2026-11-21 |
+| vintagery.it | 432 | 51.6% | 80.1% | 24.3% | 100.0% | 2026-11-19 |
+| cosedicasa.com | 389 | 66.6% | 92.3% | 83.3% | 99.2% | 2026-11-21 |
 | Regione del Veneto – Calendario regionale dei mercati — dati ufficiali; apertura non confermata | 94 | 92.6% | 100.0% | 100.0% | 100.0% | 2026-11-21 |
 | Comune di Milano - Open Data (CC BY 4.0) | 85 | 100.0% | 88.2% | 90.6% | 100.0% | 2026-11-21 |
 | dati.comune.roma.it | 68 | 100.0% | 100.0% | 0.0% | 100.0% | 2026-11-21 |
