@@ -1,29 +1,29 @@
-# Qualità dei dati — 2026-11-23
+# Qualità dei dati — 2026-11-24
 
-Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-11-22).
+Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo precedente (2026-11-23).
 
 ## Semaforo
 
 🔴 **Da guardare:**
 
-- Il job **data-expansion-audit** non è andato a buon fine (ultimo tentativo 2026-11-23T03:43+00:00).
-- Il job **event-leads-daily** non è andato a buon fine (ultimo tentativo 2026-11-23T03:45+00:00).
-- Il job **happings-weekly-fields** non è andato a buon fine (ultimo tentativo 2026-11-23T03:39+00:00).
-- Il job **market-autopilot** non è andato a buon fine (ultimo tentativo 2026-11-23T03:41+00:00).
-- Il job **official-source-output-qa** non è andato a buon fine (ultimo tentativo 2026-11-23T03:50+00:00).
-- Il job **publisher-quality-daily** non è andato a buon fine (ultimo tentativo 2026-11-23T03:48+00:00).
-- Il job **regional-field-reconciliation** non è andato a buon fine (ultimo tentativo 2026-11-23T03:46+00:00).
+- Il job **data-expansion-audit** non è andato a buon fine (ultimo tentativo 2026-11-24T03:45+00:00).
+- Il job **event-leads-daily** non è andato a buon fine (ultimo tentativo 2026-11-24T03:46+00:00).
+- Il job **happings-weekly-fields** non è andato a buon fine (ultimo tentativo 2026-11-24T03:41+00:00).
+- Il job **market-autopilot** non è andato a buon fine (ultimo tentativo 2026-11-24T03:43+00:00).
+- Il job **official-source-output-qa** non è andato a buon fine (ultimo tentativo 2026-11-24T03:51+00:00).
+- Il job **publisher-quality-daily** non è andato a buon fine (ultimo tentativo 2026-11-24T03:50+00:00).
+- Il job **regional-field-reconciliation** non è andato a buon fine (ultimo tentativo 2026-11-24T03:48+00:00).
 
 | Job automatico | Esito | Quando |
 |---|---|---|
-| data-expansion-audit | ❌ | 2026-11-23T03:43+00:00 |
-| event-leads-daily | ❌ | 2026-11-23T03:45+00:00 |
-| happings-weekly-fields | ❌ | 2026-11-23T03:39+00:00 |
+| data-expansion-audit | ❌ | 2026-11-24T03:45+00:00 |
+| event-leads-daily | ❌ | 2026-11-24T03:46+00:00 |
+| happings-weekly-fields | ❌ | 2026-11-24T03:41+00:00 |
 | istat-reference-check | ✅ | 2026-11-19T05:13+00:00 |
-| market-autopilot | ❌ | 2026-11-23T03:41+00:00 |
-| official-source-output-qa | ❌ | 2026-11-23T03:50+00:00 |
-| publisher-quality-daily | ❌ | 2026-11-23T03:48+00:00 |
-| regional-field-reconciliation | ❌ | 2026-11-23T03:46+00:00 |
+| market-autopilot | ❌ | 2026-11-24T03:43+00:00 |
+| official-source-output-qa | ❌ | 2026-11-24T03:51+00:00 |
+| publisher-quality-daily | ❌ | 2026-11-24T03:50+00:00 |
+| regional-field-reconciliation | ❌ | 2026-11-24T03:48+00:00 |
 
 ## Cosa vede chi usa l'app
 
@@ -35,7 +35,7 @@ Pagina aggiornata in automatico. Tra parentesi: variazione rispetto al controllo
 | Solo mattina/pomeriggio | 62.2% (+0.0) |
 | Via precisa | 67.5% (+0.0) |
 | Solo «centro» | 27.3% (+0.0) |
-| Date nei prossimi 30 giorni | 85.0% (-1.0) |
+| Date nei prossimi 30 giorni | 85.0% (+0.0) |
 | Posizione sulla mappa | 92.2% (+0.0) |
 
 ## Per fonte
